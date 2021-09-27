@@ -1,0 +1,320 @@
+{
+    "meta": {
+        "name": "刚体转动惯量的测量",
+        "author": "117503445",
+        "version": "1.0.0"
+    },
+    "logic": [
+        {
+            "name": "m_0",
+            "comment": "下盘质量",
+            "source": {
+                "type": "input",
+                "default": 360
+            }
+        },
+        {
+            "name": "m",
+            "comment": "圆环质量",
+            "source": {
+                "type": "input",
+                "default": 400
+            }
+        },
+        {
+            "name": "r",
+            "comment": "上圆盘半径",
+            "source": {
+                "type": "input",
+                "default": [
+                    5.00,
+                    4.95,
+                    5.00,
+                    5.05,
+                    5.00
+                ]
+            }
+        },
+        {
+            "name": "r_a",
+            "comment": "上圆盘半径平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "r_u",
+            "comment": "上圆盘半径不确定度",
+            "source": {
+                "type": "mathjs",
+                "expression": "smartlab_u(r,1)"
+            }
+        },
+        {
+            "name": "L",
+            "comment": "下圆盘两悬点间距",
+            "source": {
+                "type": "input",
+                "default": [
+                    17.20,
+                    17.15,
+                    17.16,
+                    17.15,
+                    17.16
+                ]
+            }
+        },
+        {
+            "name": "L_a",
+            "comment": "下圆盘两悬点间距平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "R",
+            "comment": "下圆盘有效半径",
+            "source": {
+                "type": "mathjs",
+                "expression": "L/sqrt(3)"
+            }
+        },
+        {
+            "name": "R_a",
+            "comment": "下圆盘有效半径平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "R_u",
+            "comment": "下圆盘有效半径不确定度",
+            "source": {
+                "type": "mathjs",
+                "expression": "smartlab_u(R,1)"
+            }
+        },
+        {
+            "name": "t_0",
+            "comment": "下圆盘振动总时间",
+            "source": {
+                "type": "input",
+                "default": [
+                    76.03,
+                    76.43,
+                    76.25,
+                    75.90,
+                    76.20
+                ]
+            }
+        },
+        {
+            "name": "t_0_a",
+            "comment": "下圆盘振动总时间平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "T_0",
+            "comment": "下圆盘单次振动周期",
+            "source": {
+                "type": "mathjs",
+                "expression": "t_0/50"
+            }
+        },
+        {
+            "name": "T_0_a",
+            "comment": "下圆盘单次振动周期平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "T_0_ua",
+            "comment": "下圆盘单次振动周期不确定度",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "l",
+            "comment": "上下圆盘绳长",
+            "source": {
+                "type": "input",
+                "default": [
+                    50.00,
+                    50.00,
+                    50.00,
+                    50.00,
+                    50.00
+                ]
+            }
+        },
+        {
+            "name": "l_a",
+            "comment": "上下圆盘绳长平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "H",
+            "comment": "上下圆盘垂直距离",
+            "source": {
+                "type": "mathjs",
+                "expression": "sqrt(l.^2-(R-r).^2)"
+            }
+        },
+        {
+            "name": "H_a",
+            "comment": "上下圆盘垂直距离平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "H_u",
+            "comment": "上下圆盘垂直距离不确定度",
+            "source": {
+                "type": "mathjs",
+                "expression": "smartlab_u(H,1)"
+            }
+        },
+        {
+            "name": "d",
+            "comment": "圆环内径",
+            "source": {
+                "type": "input",
+                "default": [
+                    16.75,
+                    16.78,
+                    16.80,
+                    16.81,
+                    16.75
+                ]
+            }
+        },
+        {
+            "name": "d_a",
+            "comment": "圆环内径平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "D",
+            "comment": "圆环外径",
+            "source": {
+                "type": "input",
+                "default": [
+                    18.9,
+                    18.92,
+                    19.01,
+                    19.05,
+                    19.00
+                ]
+            }
+        },
+        {
+            "name": "D_a",
+            "comment": "圆环外径平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "t",
+            "comment": "下盘+圆环振动总时间",
+            "source": {
+                "type": "input",
+                "default": [
+                    84.18,
+                    83.82,
+                    84.02,
+                    84.51,
+                    83.90
+                ]
+            }
+        },
+        {
+            "name": "t_a",
+            "comment": "下盘+圆环振动总时间平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "T",
+            "comment": "下盘+圆环单次振动周期",
+            "source": {
+                "type": "mathjs",
+                "expression": "t/50"
+            }
+        },
+        {
+            "name": "T_a",
+            "comment": "下盘+圆环单次振动周期平均值",
+            "source": {
+                "type": "mathjs-suffix"
+            }
+        },
+        {
+            "name": "T_u",
+            "comment": "下盘+圆环单次振动周期不确定度",
+            "source": {
+                "type": "mathjs",
+                "expression": "smartlab_u(T,1)"
+            }
+        },
+        {
+            "name": "I_0",
+            "comment": "圆盘转动惯量",
+            "source": {
+                "type": "mathjs",
+                "expression": "m_0 * smartlab_g * R_a * r_a * T_0_a ^ 2 * 100 / (4 * pi^2 * H_a)"
+            }
+        },
+        {
+            "name": "I_0_ru",
+            "comment": "圆盘转动惯量的相对不确定度",
+            "source": {
+                "type": "mathjs",
+                "expression": "sqrt((0.5/m_0)^2 + (r_u/r_a)^2 + (R_u/R_a)^2 + (H_u/H_a)^2 + (2*T_0_ua/T_0_a)^2)"
+            }
+        },
+        {
+            "name": "I_0_u",
+            "comment": "圆盘转动惯量的不确定度",
+            "source": {
+                "type": "mathjs",
+                "expression": "I_0_ru * I_0"
+            }
+        },
+        {
+            "name": "I",
+            "comment": "圆环转动惯量",
+            "source": {
+                "type": "mathjs",
+                "expression": "smartlab_g * R_a * r_a * ((m_0+m)*T_a^2-m_0*T_0_a^2) * 100/ (4 * pi^2 * H_a)"
+            }
+        },
+        {
+            "name": "I_except",
+            "comment": "圆环转动惯量理论值",
+            "source": {
+                "type": "mathjs",
+                "expression": "m * (d_a^2 + D_a^2) / 8"
+            }
+        },
+        {
+            "name": "I_d",
+            "comment": "圆环转动惯量误差",
+            "source": {
+                "type": "mathjs",
+                "expression": "abs(I_except-I)"
+            }
+        }
+    ],
+    "ui": {}
+}

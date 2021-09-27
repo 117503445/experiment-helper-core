@@ -1,0 +1,34 @@
+{
+    "meta": {
+        "name": "平凸透镜曲率半径的测量",
+        "author": "117503445",
+        "version": "1.0.0"
+    },
+    "logic": [
+        {
+            "name": "d_yiqi",
+            "comment": "仪器不确定度",
+            "source": {
+                "type": "input",
+                "default": 0.004
+            }
+        },
+        {
+            "name": "λ",
+            "comment": "波长",
+            "source": {
+                "type": "input",
+                "default": 589.3
+            }
+        },
+        {
+            "name": "λ1",
+            "comment": "波长",
+            "source": {
+                "type": "mathjs",
+                "expression": "sqrt(d_yiqi)"
+            }
+        }
+    ],
+    "ui": {}
+}
