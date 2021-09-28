@@ -27,3 +27,11 @@ function ua(arr) {
 
 parser.set('ua', ua);
 console.log(parser.evaluate('ua([1.5206,1.5286,1.5250,1.5180,1.5240])'));
+
+(function (arr) { let arr_r = []; for (let i = 0; i < 5; i++) { arr_r.push(arr[i] - arr[i + 5]); } return arr_r; })([
+    11.899104999999999,
+    12.018880000000003,
+    12.122079999999997,
+    11.824424000000004,
+    11.848256
+])

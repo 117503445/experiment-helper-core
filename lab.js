@@ -3,10 +3,11 @@ const math = mathjs.create(mathjs.all, { number: 'BigNumber' })
 
 const fs = require('fs')
 
-experiment = JSON.parse(fs.readFileSync('./labs/平凸透镜曲率半径的测量.json', 'utf8'))
+experiment = JSON.parse(fs.readFileSync('./labs/音叉振动频率的测量.json', 'utf8'))
 
 // std_input = { 'f_0': 98 }
 std_input = {}
+
 
 
 function smartlab_ua(arr) {
@@ -22,7 +23,7 @@ function smartlab_ua(arr) {
 
     let avernum = mathjs.mean(arr);
     let s = 0 //残差平方之和
-    for (const v of arr) {
+    for (const v of  arr) {
         s += mathjs.pow(v - avernum, 2)
     }
 
@@ -38,6 +39,10 @@ function smartlab_u(arr, uncertainty_yq) {
 
 
 function process_input(logic, std_input) {
+
+    let variables = logic['variables']
+    let functions = logic['functions']
+
     const parser = math.parser()
 
     parser.set('smartlab_g', math.bignumber(9.8));
@@ -45,7 +50,11 @@ function process_input(logic, std_input) {
     parser.set('smartlab_ua', smartlab_ua);
     parser.set('smartlab_u', smartlab_u);
 
-    for (let x of logic) {
+    for (let fName in functions) {
+        parser.set(fName, eval(functions[fName]))
+    }
+
+    for (let x of variables) {
         // console.log('x', x);
         switch (x['source']['type']) {
             case 'input':
@@ -92,6 +101,6 @@ function process_input(logic, std_input) {
 
 process_input(experiment['logic'], std_input)
 
-console.log(experiment['logic']);
+console.log(experiment['logic']['variables']);
 
 // console.log(JSON.stringify(experiment, null, 4))
