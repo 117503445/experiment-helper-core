@@ -3,7 +3,7 @@ const math = mathjs.create(mathjs.all, { number: 'BigNumber' })
 
 const fs = require('fs')
 
-experiment = JSON.parse(fs.readFileSync('./labs/音叉振动频率的测量.json', 'utf8'))
+experiment = JSON.parse(fs.readFileSync('./labs/平凸透镜曲率半径的测量.json', 'utf8'))
 
 // std_input = { 'f_0': 98 }
 std_input = {}
