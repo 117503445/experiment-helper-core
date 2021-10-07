@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/117503445/experiment-helper-core/issues"
   },
-  "homepage": "https://github.com/117503445/experiment-helper-core#readme"
+  "homepage": "https://github.com/117503445/experiment-helper-core#readme",
+  "dependencies": {
+    "mathjs": "^9.5.0"
+  }
 }
