@@ -1,10 +1,10 @@
 {
   "name": "experiment-helper-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Core of experiment helper",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require babel-core/register"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,10 @@
   "homepage": "https://github.com/117503445/experiment-helper-core#readme",
   "dependencies": {
     "mathjs": "^9.5.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "mocha": "^9.1.2"
   }
 }

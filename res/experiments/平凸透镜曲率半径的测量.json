@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "name": "平凸透镜曲率半径的测量",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1"
+  },
+  "logic": {
+    "functions": {
+      "this_D_m2_diff": "(function(arr){let arr_r = [];for (let i = 0; i < 5; i++) {arr_r.push(arr[i] - arr[i + 5]);}return arr_r;})"
+    },
+    "variables": [
+      {
+        "name": "d_yiqi",
+        "comment": "仪器不确定度",
+        "source": {
+          "type": "input",
+          "default": 0.004
+        }
+      },
+      {
+        "name": "λ",
+        "comment": "波长",
+        "source": {
+          "type": "input",
+          "default": 589.3
+        }
+      },
+      {
+        "name": "D_l",
+        "comment": "D 左",
+        "source": {
+          "type": "input",
+          "default": [19.987, 20.069, 20.153, 20.251, 20.348, 20.421, 20.523, 20.625, 20.728, 20.831]
+        }
+      },
+      {
+        "name": "D_r",
+        "comment": "D 右",
+        "source": {
+          "type": "input",
+          "default": [27.138, 27.061, 26.971, 26.866, 26.783, 26.685, 26.595, 26.487, 26.379, 26.268]
+        }
+      },
+      {
+        "name": "D_m",
+        "comment": "m 级 暗环直径",
+        "source": {
+          "type": "mathjs",
+          "expression": "D_r-D_l"
+        }
+      },
+      {
+        "name": "D_m2",
+        "comment": "m 级 暗环直径的平方",
+        "source": {
+          "type": "mathjs",
+          "expression": "D_m.^2"
+        }
+      },
+      {
+        "name": "D_m2_diff",
+        "comment": "m 级 暗环直径的平方的差分",
+        "source": {
+          "type": "mathjs",
+          "expression": "this_D_m2_diff(D_m2)"
+        }
+      },
+      {
+        "name": "D_m2_diff_a",
+        "comment": "m 级 暗环直径的平方的差分的平均值 mm^2",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "D_m2_diff_u",
+        "comment": "m 级 暗环直径的平方的差分的不确定度 mm^2",
+        "source": {
+          "type": "mathjs",
+          "expression": "sqrt(sum((D_m2_diff-mean(D_m2_diff)).^2)/5 + (d_yiqi*sqrt(3))^2)"
+        }
+      },
+      {
+        "name": "R",
+        "comment": "曲率半径 m",
+        "source": {
+          "type": "mathjs",
+          "expression": "D_m2_diff_a / (4 * 5 * λ * 0.001)"
+        }
+      },
+      {
+        "name": "R_u",
+        "comment": "曲率半径的不确定度 mm",
+        "source": {
+          "type": "mathjs",
+          "expression": "D_m2_diff_u / (4 * 5 * λ) * 1000000"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "input-textbox",
+      "properties": {
+        "variableName": "d_yiqi",
+        "frontText": "𝚫仪=",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "input-textbox",
+      "properties": {
+        "variableName": "λ",
+        "frontText": "λ=",
+        "backText": " nm"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 6,
+        "height": 11,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["暗环/𝑘", "𝐷左", "𝐷右", "𝐷ₘ/𝑚𝑚", "𝐷²ₘ", "𝐷²ₘ-𝐷²ₘ₋₅"],
+            "start": [1, 1],
+            "end": [1, 6]
+          },
+          {
+            "type": "constant",
+            "value": [20, 19, 18, 17, 16, 15, 14, 13, 12, 11],
+            "start": [2, 1],
+            "end": [11, 1]
+          },
+          {
+            "type": "variable",
+            "name": "D_l",
+            "start": [2, 2],
+            "end": [11, 2]
+          },
+          {
+            "type": "variable",
+            "name": "D_r",
+            "start": [2, 3],
+            "end": [11, 3]
+          },
+          {
+            "type": "variable",
+            "name": "D_m",
+            "start": [2, 4],
+            "end": [11, 4]
+          },
+          {
+            "type": "variable",
+            "name": "D_m2",
+            "start": [2, 5],
+            "end": [11, 5]
+          },
+          {
+            "type": "variable",
+            "name": "D_m2_diff",
+            "start": [2, 6],
+            "end": [11, 6]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output-textbox",
+      "properties": {
+        "variableName": "D_m2_diff_a",
+        "frontText": "𝐷²ₘ-𝐷²ₘ₋₅平均值",
+        "backText": "𝑚𝑚²"
+      }
+    },
+    {
+      "type": "output-textbox",
+      "properties": {
+        "variableName": "D_m2_diff_u",
+        "frontText": "𝐷²ₘ-𝐷²ₘ₋₅A类不确定度",
+        "backText": "𝑚𝑚²"
+      }
+    },
+    {
+      "type": "output-textbox",
+      "properties": {
+        "variableName": "R_u",
+        "frontText": "R综合不确定度",
+        "backText": "𝑚𝑚"
+      }
+    },
+    {
+      "type": "output-textbox",
+      "properties": {
+        "variableName": "R",
+        "frontText": "曲率半径：𝑅=",
+        "backText": "𝑚"
+      }
+    }
+  ]
+}

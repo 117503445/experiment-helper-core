@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "name": "音叉振动频率的测量",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "𝝆",
+        "comment": "弦线密度",
+        "source": {
+          "type": "input",
+          "default": 0.00356
+        }
+      },
+      {
+        "name": "g",
+        "comment": " 重力加速度",
+        "source": {
+          "type": "input",
+          "default": 9.8
+        }
+      },
+      {
+        "name": "f_0",
+        "comment": "音叉频率标准值",
+        "source": {
+          "type": "input",
+          "default": 100
+        }
+      },
+      {
+        "name": "m",
+        "comment": "砝码质量",
+        "source": {
+          "type": "input",
+          "default": [25, 50, 100, 125, 175]
+        }
+      },
+      {
+        "name": "n",
+        "comment": "波腹数",
+        "source": {
+          "type": "input",
+          "default": [6, 5, 4, 3, 2]
+        }
+      },
+      {
+        "name": "L",
+        "comment": "弦线长",
+        "source": {
+          "type": "input",
+          "default": [76.9, 88, 102.6, 84.5, 67.4]
+        }
+      },
+      {
+        "name": "sqrt_m",
+        "comment": "砝码质量的开方",
+        "source": {
+          "type": "mathjs",
+          "expression": "sqrt(m)"
+        }
+      },
+      {
+        "name": "λ",
+        "comment": "波长",
+        "source": {
+          "type": "mathjs",
+          "expression": "L./n*2"
+        }
+      },
+      {
+        "name": "f",
+        "comment": "频率",
+        "source": {
+          "type": "mathjs",
+          "expression": "10./λ.*sqrt(m.*g./𝝆)"
+        }
+      },
+      {
+        "name": "v",
+        "comment": "波速",
+        "source": {
+          "type": "mathjs",
+          "expression": "λ.*f/100"
+        }
+      },
+      {
+        "name": "f_a",
+        "comment": "平均频率",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(f)"
+        }
+      },
+      {
+        "name": "Δf",
+        "comment": "频率误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(f_a-f_0)"
+        }
+      },
+      {
+        "name": "f_result",
+        "comment": "频率实验结果",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(string(round(f_a,3)),\"±\",string(round(Δf,2)))"
+        }
+      },
+      {
+        "name": "E",
+        "comment": "相对误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "Δf/f_0*100"
+        }
+      }
+    ]
+  },
+  "ui": {}
+}
