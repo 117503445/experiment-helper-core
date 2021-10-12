@@ -122,5 +122,119 @@
       }
     ]
   },
-  "ui": {}
+  "ui": [
+    {
+      "type": "input-textbox",
+      "properties": {
+        "variableName": "𝝆",
+        "frontText": "弦线密度𝝆=",
+        "backText": "𝑔/𝑐𝑚"
+      }
+    },
+    {
+      "type": "input-textbox",
+      "properties": {
+        "variableName": "g",
+        "frontText": "重力加速度g=",
+        "backText": "𝑚/𝑠²"
+      }
+    },
+    {
+      "type": "input-textbox",
+      "properties": {
+        "variableName": "f_0",
+        "frontText": "音叉频率标准值𝑓₀=",
+        "backText": "𝐻𝑧"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 7,
+        "height": 6,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["砝码质量𝑚/𝑔", "波腹数", "弦线长L/𝑐𝑚", "√𝑚", "波长", "波速", "频率"],
+            "start": [1, 1],
+            "end": [1, 7]
+          },
+          {
+            "type": "variable",
+            "name": "m",
+            "start": [2, 1],
+            "end": [6, 1]
+          },
+          {
+            "type": "variable",
+            "name": "n",
+            "start": [2, 2],
+            "end": [6, 2]
+          },
+          {
+            "type": "variable",
+            "name": "L",
+            "start": [2, 3],
+            "end": [6, 3]
+          },
+          {
+            "type": "variable",
+            "name": "sqrt_m",
+            "start": [2, 4],
+            "end": [6, 4]
+          },
+          {
+            "type": "variable",
+            "name": "λ",
+            "start": [2, 5],
+            "end": [6, 5]
+          },
+          {
+            "type": "variable",
+            "name": "v",
+            "start": [2, 6],
+            "end": [6, 6]
+          },
+          {
+            "type": "variable",
+            "name": "f",
+            "start": [2, 7],
+            "end": [6, 7]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output-textbox",
+      "properties": {
+        "variableName": "f_a",
+        "frontText": "平均频率: 𝑓_average=",
+        "backText": " 𝐻𝑧"
+      }
+    },
+    {
+      "type": "output-textbox",
+      "properties": {
+        "variableName": "Δf",
+        "frontText": "频率误差: Δ𝑓=",
+        "backText": " 𝐻𝑧"
+      }
+    },
+    {
+      "type": "output-textbox",
+      "properties": {
+        "variableName": "f_result",
+        "frontText": "实验结果: 𝑓=",
+        "backText": " 𝐻𝑧"
+      }
+    },
+    {
+      "type": "output-textbox",
+      "properties": {
+        "variableName": "E",
+        "frontText": "相对误差: 𝐸=Δ𝑓/𝑓₀=",
+        "backText": " 𝐻𝑧"
+      }
+    }
+  ]
 }
