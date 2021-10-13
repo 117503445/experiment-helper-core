@@ -3,7 +3,8 @@
     "name": "刚体转动惯量的测量",
     "author": "117503445",
     "contributors": [],
-    "version": "0.0.1"
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-13 23:56"
   },
   "logic": {
     "functions": {},
