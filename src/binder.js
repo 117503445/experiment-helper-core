@@ -25,8 +25,13 @@ export class Binder {
     this.experiment = experiment;
     this.dictNameVariable = getDictNameVariable(experiment["logic"]["variables"]);
   }
-
-  getLabItems() {
+  /**
+   * 根据 Binder 的 experiment 获取 labItems
+   *
+   * @param {boolean} tableHasValue table 组件中是否值。初始化时，传入 true。实现一键清空时，传入 false。
+   * @return {Object} 返回 labItems
+   */
+  getLabItems(tableHasValue) {
     let experiment = deepCopy(this.experiment);
 
     const dictNameVariable = getDictNameVariable(experiment["logic"]["variables"]);
@@ -49,32 +54,35 @@ export class Binder {
             continue;
           }
 
-          let defaultValue;
-          if (bind["type"] == "variable") {
-            defaultValue = dictNameVariable[bind["name"]]["source"]["default"];
-          } else if (bind["type"] == "constant") {
-            defaultValue = bind["value"];
+          if (tableHasValue) {
+            let defaultValue;
+            if (bind["type"] == "variable") {
+              defaultValue = dictNameVariable[bind["name"]]["source"]["default"];
+            } else if (bind["type"] == "constant") {
+              defaultValue = bind["value"];
+            }
+
+            if (bind["start"][0] == bind["end"][0] && bind["start"][1] == bind["end"][1]) {
+              let x = bind["start"][0];
+              let y = bind["start"][1];
+              values[posToIndex(x, y, expItem["properties"]["width"])]["value"] = defaultValue;
+            } else if (bind["start"][0] == bind["end"][0]) {
+              let x = bind["start"][0];
+              for (let j = 0; j < defaultValue.length; j++) {
+                let y = bind["start"][1] + j;
+                values[posToIndex(x, y, expItem["properties"]["width"])]["value"] = defaultValue[j]; // todo convert to string
+              }
+            } else if (bind["start"][1] == bind["end"][1]) {
+              let y = bind["start"][1];
+              for (let j = 0; j < defaultValue.length; j++) {
+                let x = bind["start"][0] + j;
+                values[posToIndex(x, y, expItem["properties"]["width"])]["value"] = defaultValue[j];
+              }
+            } else {
+              console.error("start end 不合法", bind);
+            }
           }
 
-          if (bind["start"][0] == bind["end"][0] && bind["start"][1] == bind["end"][1]) {
-            let x = bind["start"][0];
-            let y = bind["start"][1];
-            values[posToIndex(x, y, expItem["properties"]["width"])]["value"] = defaultValue;
-          } else if (bind["start"][0] == bind["end"][0]) {
-            let x = bind["start"][0];
-            for (let j = 0; j < defaultValue.length; j++) {
-              let y = bind["start"][1] + j;
-              values[posToIndex(x, y, expItem["properties"]["width"])]["value"] = defaultValue[j]; // todo convert to string
-            }
-          } else if (bind["start"][1] == bind["end"][1]) {
-            let y = bind["start"][1];
-            for (let j = 0; j < defaultValue.length; j++) {
-              let x = bind["start"][0] + j;
-              values[posToIndex(x, y, expItem["properties"]["width"])]["value"] = defaultValue[j];
-            }
-          } else {
-            console.error("start end 不合法", bind);
-          }
           // delete labItem.properties.binds;
         }
         labItem["properties"]["values"] = values;

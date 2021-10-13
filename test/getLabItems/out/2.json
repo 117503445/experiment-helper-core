@@ -1,0 +1,518 @@
+[
+  {
+    "properties": {
+      "variableName": "K_H_1",
+      "frontText": "K_H = ",
+      "backText": "/(A.T)",
+      "value": 38.65
+    },
+    "type": "input-textbox",
+    "id": 0
+  },
+  {
+    "properties": {
+      "width": 10,
+      "height": 5,
+      "binds": [
+        {
+          "type": "constant",
+          "value": ["0.20", "0.30", "0.40", "0.50", "0.60", "0.70", "0.80", "0.90", "1.00"],
+          "start": [1, 2],
+          "end": [1, 10]
+        },
+        {
+          "type": "constant",
+          "value": ["励磁电流 I_m/A", "(+B,+I)U_1/mV", "(+B,-I)U_2/mV", "U_H/mV", "B/T"],
+          "start": [1, 1],
+          "end": [5, 1]
+        },
+        {
+          "type": "variable",
+          "name": "U_1_1",
+          "start": [2, 2],
+          "end": [2, 10]
+        },
+        {
+          "type": "variable",
+          "name": "U_2_1",
+          "start": [3, 2],
+          "end": [3, 10]
+        },
+        {
+          "type": "variable",
+          "name": "U_H_1",
+          "start": [4, 2],
+          "end": [4, 10]
+        },
+        {
+          "type": "variable",
+          "name": "B_1",
+          "start": [5, 2],
+          "end": [5, 10]
+        }
+      ],
+      "values": [
+        {
+          "id": 0,
+          "value": ""
+        },
+        {
+          "id": 1,
+          "value": ""
+        },
+        {
+          "id": 2,
+          "value": ""
+        },
+        {
+          "id": 3,
+          "value": ""
+        },
+        {
+          "id": 4,
+          "value": ""
+        },
+        {
+          "id": 5,
+          "value": ""
+        },
+        {
+          "id": 6,
+          "value": ""
+        },
+        {
+          "id": 7,
+          "value": ""
+        },
+        {
+          "id": 8,
+          "value": ""
+        },
+        {
+          "id": 9,
+          "value": ""
+        },
+        {
+          "id": 10,
+          "value": ""
+        },
+        {
+          "id": 11,
+          "value": ""
+        },
+        {
+          "id": 12,
+          "value": ""
+        },
+        {
+          "id": 13,
+          "value": ""
+        },
+        {
+          "id": 14,
+          "value": ""
+        },
+        {
+          "id": 15,
+          "value": ""
+        },
+        {
+          "id": 16,
+          "value": ""
+        },
+        {
+          "id": 17,
+          "value": ""
+        },
+        {
+          "id": 18,
+          "value": ""
+        },
+        {
+          "id": 19,
+          "value": ""
+        },
+        {
+          "id": 20,
+          "value": ""
+        },
+        {
+          "id": 21,
+          "value": ""
+        },
+        {
+          "id": 22,
+          "value": ""
+        },
+        {
+          "id": 23,
+          "value": ""
+        },
+        {
+          "id": 24,
+          "value": ""
+        },
+        {
+          "id": 25,
+          "value": ""
+        },
+        {
+          "id": 26,
+          "value": ""
+        },
+        {
+          "id": 27,
+          "value": ""
+        },
+        {
+          "id": 28,
+          "value": ""
+        },
+        {
+          "id": 29,
+          "value": ""
+        },
+        {
+          "id": 30,
+          "value": ""
+        },
+        {
+          "id": 31,
+          "value": ""
+        },
+        {
+          "id": 32,
+          "value": ""
+        },
+        {
+          "id": 33,
+          "value": ""
+        },
+        {
+          "id": 34,
+          "value": ""
+        },
+        {
+          "id": 35,
+          "value": ""
+        },
+        {
+          "id": 36,
+          "value": ""
+        },
+        {
+          "id": 37,
+          "value": ""
+        },
+        {
+          "id": 38,
+          "value": ""
+        },
+        {
+          "id": 39,
+          "value": ""
+        },
+        {
+          "id": 40,
+          "value": ""
+        },
+        {
+          "id": 41,
+          "value": ""
+        },
+        {
+          "id": 42,
+          "value": ""
+        },
+        {
+          "id": 43,
+          "value": ""
+        },
+        {
+          "id": 44,
+          "value": ""
+        },
+        {
+          "id": 45,
+          "value": ""
+        },
+        {
+          "id": 46,
+          "value": ""
+        },
+        {
+          "id": 47,
+          "value": ""
+        },
+        {
+          "id": 48,
+          "value": ""
+        },
+        {
+          "id": 49,
+          "value": ""
+        }
+      ]
+    },
+    "type": "table",
+    "id": 1
+  },
+  {
+    "properties": {
+      "variableName": "K_H_2",
+      "frontText": "K_H = ",
+      "backText": "/(A.T)",
+      "value": 38.65
+    },
+    "type": "input-textbox",
+    "id": 2
+  },
+  {
+    "properties": {
+      "width": 10,
+      "height": 5,
+      "binds": [
+        {
+          "type": "constant",
+          "value": ["0.20", "0.30", "0.40", "0.50", "0.60", "0.70", "0.80", "0.90", "1.00"],
+          "start": [1, 2],
+          "end": [1, 10]
+        },
+        {
+          "type": "constant",
+          "value": ["励磁电流 I_m/A", "(+B,+I)U_1/mV", "(+B,-I)U_2/mV", "U_H/mV", "B/T"],
+          "start": [1, 1],
+          "end": [5, 1]
+        },
+        {
+          "type": "variable",
+          "name": "U_1_2",
+          "start": [2, 2],
+          "end": [2, 10]
+        },
+        {
+          "type": "variable",
+          "name": "U_2_2",
+          "start": [3, 2],
+          "end": [3, 10]
+        },
+        {
+          "type": "variable",
+          "name": "U_H_2",
+          "start": [4, 2],
+          "end": [4, 10]
+        },
+        {
+          "type": "variable",
+          "name": "B_2",
+          "start": [5, 2],
+          "end": [5, 10]
+        }
+      ],
+      "values": [
+        {
+          "id": 0,
+          "value": ""
+        },
+        {
+          "id": 1,
+          "value": ""
+        },
+        {
+          "id": 2,
+          "value": ""
+        },
+        {
+          "id": 3,
+          "value": ""
+        },
+        {
+          "id": 4,
+          "value": ""
+        },
+        {
+          "id": 5,
+          "value": ""
+        },
+        {
+          "id": 6,
+          "value": ""
+        },
+        {
+          "id": 7,
+          "value": ""
+        },
+        {
+          "id": 8,
+          "value": ""
+        },
+        {
+          "id": 9,
+          "value": ""
+        },
+        {
+          "id": 10,
+          "value": ""
+        },
+        {
+          "id": 11,
+          "value": ""
+        },
+        {
+          "id": 12,
+          "value": ""
+        },
+        {
+          "id": 13,
+          "value": ""
+        },
+        {
+          "id": 14,
+          "value": ""
+        },
+        {
+          "id": 15,
+          "value": ""
+        },
+        {
+          "id": 16,
+          "value": ""
+        },
+        {
+          "id": 17,
+          "value": ""
+        },
+        {
+          "id": 18,
+          "value": ""
+        },
+        {
+          "id": 19,
+          "value": ""
+        },
+        {
+          "id": 20,
+          "value": ""
+        },
+        {
+          "id": 21,
+          "value": ""
+        },
+        {
+          "id": 22,
+          "value": ""
+        },
+        {
+          "id": 23,
+          "value": ""
+        },
+        {
+          "id": 24,
+          "value": ""
+        },
+        {
+          "id": 25,
+          "value": ""
+        },
+        {
+          "id": 26,
+          "value": ""
+        },
+        {
+          "id": 27,
+          "value": ""
+        },
+        {
+          "id": 28,
+          "value": ""
+        },
+        {
+          "id": 29,
+          "value": ""
+        },
+        {
+          "id": 30,
+          "value": ""
+        },
+        {
+          "id": 31,
+          "value": ""
+        },
+        {
+          "id": 32,
+          "value": ""
+        },
+        {
+          "id": 33,
+          "value": ""
+        },
+        {
+          "id": 34,
+          "value": ""
+        },
+        {
+          "id": 35,
+          "value": ""
+        },
+        {
+          "id": 36,
+          "value": ""
+        },
+        {
+          "id": 37,
+          "value": ""
+        },
+        {
+          "id": 38,
+          "value": ""
+        },
+        {
+          "id": 39,
+          "value": ""
+        },
+        {
+          "id": 40,
+          "value": ""
+        },
+        {
+          "id": 41,
+          "value": ""
+        },
+        {
+          "id": 42,
+          "value": ""
+        },
+        {
+          "id": 43,
+          "value": ""
+        },
+        {
+          "id": 44,
+          "value": ""
+        },
+        {
+          "id": 45,
+          "value": ""
+        },
+        {
+          "id": 46,
+          "value": ""
+        },
+        {
+          "id": 47,
+          "value": ""
+        },
+        {
+          "id": 48,
+          "value": ""
+        },
+        {
+          "id": 49,
+          "value": ""
+        }
+      ]
+    },
+    "type": "table",
+    "id": 3
+  }
+]
