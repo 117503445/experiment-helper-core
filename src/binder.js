@@ -85,7 +85,7 @@ export class Binder {
             console.error("start end 不合法", bind);
           }
 
-          // delete labItem.properties.binds;
+          delete labItem.properties.binds;
         }
         labItem["properties"]["values"] = values;
       }
@@ -101,12 +101,11 @@ export class Binder {
   getStdInput(labItems) {
     let stdInput = {};
 
-    for (const c of labItems) {
-      p("c", c);
+    labItems.forEach((c, i) => {
       if (isTextBox(c["type"])) {
         stdInput[c["properties"]["variableName"]] = c["properties"]["value"];
       } else if (c["type"] == "table") {
-        for (const bind of c["properties"]["binds"]) {
+        for (const bind of this.experiment["ui"][i]["properties"]["binds"]) {
           if (bind["type"] != "variable" || this.dictNameVariable[bind["name"]]["source"]["type"] != "input") {
             continue;
           }
@@ -134,18 +133,21 @@ export class Binder {
           stdInput[bind["name"]] = value;
         }
       }
-    }
-    p("std_input", stdInput);
+    });
+
+    // p("std_input", stdInput);
     return stdInput;
   }
 
-  calculateLabItems(stdInput, labItems) {
+  calculateLabItems(labItems) {
     let experiment = deepCopy(this.experiment);
 
+    let stdInput = this.getStdInput(labItems);
     let result = execute(experiment["logic"], stdInput);
-    for (const c of labItems) {
+
+    labItems.forEach((c, i) => {
       if (c["type"] == "table") {
-        for (const bind of c["properties"]["binds"]) {
+        for (const bind of this.experiment["ui"][i]["properties"]["binds"]) {
           if (bind["type"] != "variable" || this.dictNameVariable[bind["name"]]["source"]["type"] == "input") {
             continue;
           }
@@ -174,6 +176,6 @@ export class Binder {
       } else if (c["type"] == "output-textbox") {
         c["properties"]["value"] = result[c["properties"]["variableName"]];
       }
-    }
+    });
   }
 }

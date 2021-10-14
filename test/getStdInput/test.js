@@ -1,8 +1,8 @@
 /*
  * @Author: HaoTian Qi
- * @Date: 2021-10-14 00:22:33
+ * @Date: 2021-10-14 10:02:23
  * @Description:
- * @LastEditTime: 2021-10-14 10:02:57
+ * @LastEditTime: 2021-10-14 10:36:09
  * @LastEditors: HaoTian Qi
  */
 
@@ -13,15 +13,13 @@ let experiments = require("../../src/experiments").experiments;
 const fs = require("fs");
 // fs.writeFileSync("./tmp/1.json", JSON.stringify(items, null, 2));
 
-describe("getLabItems", function () {
+describe("getStdInput", function () {
   let exp = experiments["霍尔效应实验"];
   let binder = new Binder(exp);
-  it("Table 有值", function () {
+  it("1.json", function () {
     let items = binder.getLabItems(true);
-    assert.equal(JSON.stringify(items), JSON.stringify(require("./out/1.json")));
-  });
-  it("Table 无值", function () {
-    let items = binder.getLabItems(false);
-    assert.equal(JSON.stringify(items), JSON.stringify(require("./out/2.json")));
+    let stdInput = binder.getStdInput(items);
+    fs.writeFileSync("./tmp/1.json", JSON.stringify(stdInput, null, 2));
+    // assert.equal(JSON.stringify(stdInput), JSON.stringify(require("./out/1.json")));
   });
 });

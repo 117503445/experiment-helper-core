@@ -2,9 +2,9 @@
     "meta": {
       "name": "霍尔效应实验",
       "author": "117503445",
-      "contributors": [],
+      "contributors": ["尘与风"],
       "version": "0.0.1",
-      "LastEditTime": "2021-10-13 19:45"
+      "LastEditTime": "2021-10-14 09:49"
     },
     "logic": {
       "functions": {},
