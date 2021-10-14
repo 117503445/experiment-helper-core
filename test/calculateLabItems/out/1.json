@@ -6,8 +6,15 @@
       "backText": "/(A.T)",
       "value": 38.65
     },
-    "type": "input-textbox",
+    "type": "input",
     "id": 0
+  },
+  {
+    "properties": {
+      "text": "工作电流 I = 10 mA"
+    },
+    "type": "textbox",
+    "id": 1
   },
   {
     "properties": {
@@ -217,7 +224,7 @@
       ]
     },
     "type": "table",
-    "id": 1
+    "id": 2
   },
   {
     "properties": {
@@ -226,8 +233,15 @@
       "backText": "/(A.T)",
       "value": 38.65
     },
-    "type": "input-textbox",
-    "id": 2
+    "type": "input",
+    "id": 3
+  },
+  {
+    "properties": {
+      "text": "励磁电流 I_m = 500 mA"
+    },
+    "type": "textbox",
+    "id": 4
   },
   {
     "properties": {
@@ -437,6 +451,6 @@
       ]
     },
     "type": "table",
-    "id": 3
+    "id": 5
   }
 ]

@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-13 23:56"
+    "LastEditTime": "2021-10-14 11:03"
   },
   "logic": {
     "functions": {},
@@ -125,7 +125,7 @@
   },
   "ui": [
     {
-      "type": "input-textbox",
+      "type": "input",
       "properties": {
         "variableName": "𝝆",
         "frontText": "弦线密度𝝆=",
@@ -133,7 +133,7 @@
       }
     },
     {
-      "type": "input-textbox",
+      "type": "input",
       "properties": {
         "variableName": "g",
         "frontText": "重力加速度g=",
@@ -141,7 +141,7 @@
       }
     },
     {
-      "type": "input-textbox",
+      "type": "input",
       "properties": {
         "variableName": "f_0",
         "frontText": "音叉频率标准值𝑓₀=",
@@ -206,7 +206,7 @@
       }
     },
     {
-      "type": "output-textbox",
+      "type": "output",
       "properties": {
         "variableName": "f_a",
         "frontText": "平均频率: 𝑓_average=",
@@ -214,7 +214,7 @@
       }
     },
     {
-      "type": "output-textbox",
+      "type": "output",
       "properties": {
         "variableName": "Δf",
         "frontText": "频率误差: Δ𝑓=",
@@ -222,7 +222,7 @@
       }
     },
     {
-      "type": "output-textbox",
+      "type": "output",
       "properties": {
         "variableName": "f_result",
         "frontText": "实验结果: 𝑓=",
@@ -230,7 +230,7 @@
       }
     },
     {
-      "type": "output-textbox",
+      "type": "output",
       "properties": {
         "variableName": "E",
         "frontText": "相对误差: 𝐸=Δ𝑓/𝑓₀=",

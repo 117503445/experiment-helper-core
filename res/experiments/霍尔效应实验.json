@@ -1,211 +1,222 @@
 {
-    "meta": {
-      "name": "霍尔效应实验",
-      "author": "117503445",
-      "contributors": ["尘与风"],
-      "version": "0.0.1",
-      "LastEditTime": "2021-10-14 09:49"
-    },
-    "logic": {
-      "functions": {},
-      "variables": [
-        {
-          "name": "K_H_1",
-          "comment": "灵敏度1",
-          "source": {
-            "type": "input",
-            "default": 38.65
-          }
-        },
-        {
-          "name": "U_1_1",
-          "comment": "正霍尔电压",
-          "source": {
-            "type": "input",
-            "default": [8.248, 20.104, 32.113, 44.061, 55.915, 67.823, 79.592, 91.285, 103.702]
-          }
-        },
-        {
-          "name": "U_2_1",
-          "comment": "负霍尔电压",
-          "source": {
-            "type": "input",
-            "default": [8.563, 20.596, 32.396, 44.496, 56.323, 67.91, 80.135, 91.723, 104.31]
-          }
-        },
-        {
-          "name": "U_H_1",
-          "comment": "霍尔电压",
-          "source": {
-            "type": "mathjs",
-            "expression": "0.5 * (U_1_1 + abs(U_2_1))"
-          }
-        },
-        {
-          "name": "B_1",
-          "comment": "磁感应强度",
-          "source": {
-            "type": "mathjs",
-            "expression": "U_1_1 / (K_H_1 * 10)"
-          }
-        },
-        {
-          "name": "K_H_2",
-          "comment": "灵敏度2",
-          "source": {
-            "type": "input",
-            "default": 38.65
-          }
-        },
-        {
-          "name": "I",
-          "comment": "表二 工作电流",
-          "source": {
-            "type": "input",
-            "default": [2,3,4,5,6,7,8,9,10]
-          }
-        },
-        {
-          "name": "U_1_2",
-          "comment": "正霍尔电压",
-          "source": {
-            "type": "input",
-            "default": [9.021, 13.538, 17.782, 22.165, 26.581, 30.972, 35.213, 39.496, 44.704]
-          }
-        },
-        {
-          "name": "U_2_2",
-          "comment": "负霍尔电压",
-          "source": {
-            "type": "input",
-            "default": [8.875, 13.354, 17.65, 22.212, 26.73, 31.01, 35.461, 39.915, 44.283]
-          }
-        },
-        {
-          "name": "U_H_2",
-          "comment": "霍尔电压",
-          "source": {
-            "type": "mathjs",
-            "expression": "0.5 * (U_1_2 + abs(U_2_2))"
-          }
-        },
-        {
-          "name": "B_2",
-          "comment": "磁感应强度",
-          "source": {
-            "type": "mathjs",
-            "expression": "U_1_2 ./ I / (K_H_2)"
-          }
-        }
-      ]
-    },
-    "ui": [
+  "meta": {
+    "name": "霍尔效应实验",
+    "author": "117503445",
+    "contributors": ["尘与风"],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-14 11:03"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
       {
-        "type": "input-textbox",
-        "properties": {
-          "variableName": "K_H_1",
-          "frontText": "K_H = ",
-          "backText": "/(A.T)"
+        "name": "K_H_1",
+        "comment": "灵敏度1",
+        "source": {
+          "type": "input",
+          "default": 38.65
         }
       },
       {
-        "type": "table",
-        "properties": {
-          "width": 10,
-          "height": 5,
-          "binds": [
-            {
-              "type": "constant",
-              "value": ["0.20", "0.30", "0.40", "0.50", "0.60", "0.70", "0.80", "0.90", "1.00"],
-              "start": [1, 2],
-              "end": [1, 10]
-            },
-            {
-              "type": "constant",
-              "value": ["励磁电流 I_m/A", "(+B,+I)U_1/mV", "(+B,-I)U_2/mV", "U_H/mV", "B/T"],
-              "start": [1, 1],
-              "end": [5, 1]
-            },
-            {
-              "type": "variable",
-              "name": "U_1_1",
-              "start": [2, 2],
-              "end": [2, 10]
-            },
-            {
-              "type": "variable",
-              "name": "U_2_1",
-              "start": [3, 2],
-              "end": [3, 10]
-            },
-            {
-              "type": "variable",
-              "name": "U_H_1",
-              "start": [4, 2],
-              "end": [4, 10]
-            },
-            {
-              "type": "variable",
-              "name": "B_1",
-              "start": [5, 2],
-              "end": [5, 10]
-            }
-          ]
+        "name": "U_1_1",
+        "comment": "正霍尔电压",
+        "source": {
+          "type": "input",
+          "default": [8.248, 20.104, 32.113, 44.061, 55.915, 67.823, 79.592, 91.285, 103.702]
         }
       },
       {
-        "type": "input-textbox",
-        "properties": {
-          "variableName": "K_H_2",
-          "frontText": "K_H = ",
-          "backText": "/(A.T)"
+        "name": "U_2_1",
+        "comment": "负霍尔电压",
+        "source": {
+          "type": "input",
+          "default": [8.563, 20.596, 32.396, 44.496, 56.323, 67.91, 80.135, 91.723, 104.31]
         }
       },
       {
-        "type": "table",
-        "properties": {
-          "width": 10,
-          "height": 5,
-          "binds": [
-            {
-              "type": "constant",
-              "value": ["0.20", "0.30", "0.40", "0.50", "0.60", "0.70", "0.80", "0.90", "1.00"],
-              "start": [1, 2],
-              "end": [1, 10]
-            },
-            {
-              "type": "constant",
-              "value": ["励磁电流 I_m/A", "(+B,+I)U_1/mV", "(+B,-I)U_2/mV", "U_H/mV", "B/T"],
-              "start": [1, 1],
-              "end": [5, 1]
-            },
-            {
-              "type": "variable",
-              "name": "U_1_2",
-              "start": [2, 2],
-              "end": [2, 10]
-            },
-            {
-              "type": "variable",
-              "name": "U_2_2",
-              "start": [3, 2],
-              "end": [3, 10]
-            },
-            {
-              "type": "variable",
-              "name": "U_H_2",
-              "start": [4, 2],
-              "end": [4, 10]
-            },
-            {
-              "type": "variable",
-              "name": "B_2",
-              "start": [5, 2],
-              "end": [5, 10]
-            }
-          ]
+        "name": "U_H_1",
+        "comment": "霍尔电压",
+        "source": {
+          "type": "mathjs",
+          "expression": "0.5 * (U_1_1 + abs(U_2_1))"
+        }
+      },
+      {
+        "name": "B_1",
+        "comment": "磁感应强度",
+        "source": {
+          "type": "mathjs",
+          "expression": "U_1_1 / (K_H_1 * 10)"
+        }
+      },
+      {
+        "name": "K_H_2",
+        "comment": "灵敏度2",
+        "source": {
+          "type": "input",
+          "default": 38.65
+        }
+      },
+      {
+        "name": "I",
+        "comment": "表二 工作电流",
+        "source": {
+          "type": "input",
+          "default": [2, 3, 4, 5, 6, 7, 8, 9, 10]
+        }
+      },
+      {
+        "name": "U_1_2",
+        "comment": "正霍尔电压",
+        "source": {
+          "type": "input",
+          "default": [9.021, 13.538, 17.782, 22.165, 26.581, 30.972, 35.213, 39.496, 44.704]
+        }
+      },
+      {
+        "name": "U_2_2",
+        "comment": "负霍尔电压",
+        "source": {
+          "type": "input",
+          "default": [8.875, 13.354, 17.65, 22.212, 26.73, 31.01, 35.461, 39.915, 44.283]
+        }
+      },
+      {
+        "name": "U_H_2",
+        "comment": "霍尔电压",
+        "source": {
+          "type": "mathjs",
+          "expression": "0.5 * (U_1_2 + abs(U_2_2))"
+        }
+      },
+      {
+        "name": "B_2",
+        "comment": "磁感应强度",
+        "source": {
+          "type": "mathjs",
+          "expression": "U_1_2 ./ I / (K_H_2)"
         }
       }
     ]
-  }
-  
+  },
+  "ui": [
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "K_H_1",
+        "frontText": "K_H = ",
+        "backText": "/(A.T)"
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "工作电流 I = 10 mA"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 10,
+        "height": 5,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["0.20", "0.30", "0.40", "0.50", "0.60", "0.70", "0.80", "0.90", "1.00"],
+            "start": [1, 2],
+            "end": [1, 10]
+          },
+          {
+            "type": "constant",
+            "value": ["励磁电流 I_m/A", "(+B,+I)U_1/mV", "(+B,-I)U_2/mV", "U_H/mV", "B/T"],
+            "start": [1, 1],
+            "end": [5, 1]
+          },
+          {
+            "type": "variable",
+            "name": "U_1_1",
+            "start": [2, 2],
+            "end": [2, 10]
+          },
+          {
+            "type": "variable",
+            "name": "U_2_1",
+            "start": [3, 2],
+            "end": [3, 10]
+          },
+          {
+            "type": "variable",
+            "name": "U_H_1",
+            "start": [4, 2],
+            "end": [4, 10]
+          },
+          {
+            "type": "variable",
+            "name": "B_1",
+            "start": [5, 2],
+            "end": [5, 10]
+          }
+        ]
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "K_H_2",
+        "frontText": "K_H = ",
+        "backText": "/(A.T)"
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "励磁电流 I_m = 500 mA"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 10,
+        "height": 5,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["0.20", "0.30", "0.40", "0.50", "0.60", "0.70", "0.80", "0.90", "1.00"],
+            "start": [1, 2],
+            "end": [1, 10]
+          },
+          {
+            "type": "constant",
+            "value": ["励磁电流 I_m/A", "(+B,+I)U_1/mV", "(+B,-I)U_2/mV", "U_H/mV", "B/T"],
+            "start": [1, 1],
+            "end": [5, 1]
+          },
+          {
+            "type": "variable",
+            "name": "U_1_2",
+            "start": [2, 2],
+            "end": [2, 10]
+          },
+          {
+            "type": "variable",
+            "name": "U_2_2",
+            "start": [3, 2],
+            "end": [3, 10]
+          },
+          {
+            "type": "variable",
+            "name": "U_H_2",
+            "start": [4, 2],
+            "end": [4, 10]
+          },
+          {
+            "type": "variable",
+            "name": "B_2",
+            "start": [5, 2],
+            "end": [5, 10]
+          }
+        ]
+      }
+    }
+  ]
+}

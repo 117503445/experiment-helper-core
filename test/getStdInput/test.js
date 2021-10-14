@@ -2,7 +2,7 @@
  * @Author: HaoTian Qi
  * @Date: 2021-10-14 10:02:23
  * @Description:
- * @LastEditTime: 2021-10-14 10:36:09
+ * @LastEditTime: 2021-10-14 11:20:55
  * @LastEditors: HaoTian Qi
  */
 
@@ -19,7 +19,7 @@ describe("getStdInput", function () {
   it("1.json", function () {
     let items = binder.getLabItems(true);
     let stdInput = binder.getStdInput(items);
-    fs.writeFileSync("./tmp/1.json", JSON.stringify(stdInput, null, 2));
-    // assert.equal(JSON.stringify(stdInput), JSON.stringify(require("./out/1.json")));
+    // fs.writeFileSync("./tmp/1.json", JSON.stringify(stdInput, null, 2));
+    assert.equal(JSON.stringify(stdInput), JSON.stringify(require("./out/1.json")));
   });
 });

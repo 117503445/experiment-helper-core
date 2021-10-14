@@ -2,7 +2,7 @@
 import { execute } from "./executor";
 import { p, deepCopy } from "./util";
 function isTextBox(type) {
-  return type == "input-textbox" || type == "output-textbox";
+  return type == "input" || type == "output";
 }
 
 function posToIndex(x, y, width) {
@@ -173,7 +173,7 @@ export class Binder {
             console.error("start end 不合法", bind);
           }
         }
-      } else if (c["type"] == "output-textbox") {
+      } else if (c["type"] == "output") {
         c["properties"]["value"] = result[c["properties"]["variableName"]];
       }
     });
