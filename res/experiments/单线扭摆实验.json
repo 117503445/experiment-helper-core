@@ -1,0 +1,370 @@
+{
+  "meta": {
+    "name": "单线扭摆实验",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-15 12:48"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "l",
+        "comment": "长度",
+        "source": {
+          "type": "input",
+          "default": 538.5
+        }
+      },
+      {
+        "name": "m",
+        "comment": "圆环质量",
+        "source": {
+          "type": "input",
+          "default": 485
+        }
+      },
+      {
+        "name": "R_1",
+        "comment": "圆环内半径",
+        "source": {
+          "type": "input",
+          "default": 50.1
+        }
+      },
+      {
+        "name": "R_2",
+        "comment": "圆环外半径",
+        "source": {
+          "type": "input",
+          "default": 60.05
+        }
+      },
+      {
+        "name": "T_0",
+        "comment": "摆盘时间",
+        "source": {
+          "type": "input",
+          "default": [47.56, 47.87, 47.59, 47.81, 47.72]
+        }
+      },
+      {
+        "name": "T_0_a",
+        "comment": "摆盘时间平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "T_0_t",
+        "comment": "摆盘周期",
+        "source": {
+          "type": "mathjs",
+          "expression": "T_0_a / 20"
+        }
+      },
+      {
+        "name": "T",
+        "comment": "摆盘圆环时间",
+        "source": {
+          "type": "input",
+          "default": [78.35, 78.41, 78.5, 78.38, 78.63]
+        }
+      },
+      {
+        "name": "T_a",
+        "comment": "摆盘圆环时间平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "T_t",
+        "comment": "摆盘圆环周期",
+        "source": {
+          "type": "mathjs",
+          "expression": "T_a / 20"
+        }
+      },
+      {
+        "name": "l_heng",
+        "comment": "横向长度",
+        "source": {
+          "type": "input",
+          "default": [0.792, 0.803, 0.802]
+        }
+      },
+      {
+        "name": "l_heng_a",
+        "comment": "横向长度平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "l_zong",
+        "comment": "纵向长度",
+        "source": {
+          "type": "input",
+          "default": [0.811, 0.793, 0.791]
+        }
+      },
+      {
+        "name": "l_zong_a",
+        "comment": "纵向长度平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "d",
+        "comment": "直径",
+        "source": {
+          "type": "mathjs",
+          "expression": "(l_heng_a+l_zong_a)/2"
+        }
+      },
+      {
+        "name": "F",
+        "comment": "扭转模量",
+        "source": {
+          "type": "mathjs",
+          "expression": "pi * d ^ 4 * 7.9 * 10^10 / (32 * l) / 1000000"
+        }
+      },
+      {
+        "name": "J_0",
+        "comment": "圆台转动惯量",
+        "source": {
+          "type": "mathjs",
+          "expression": "F * T_0_t^2 / (4 * pi^2)"
+        }
+      },
+      {
+        "name": "J",
+        "comment": "摆+环转动惯量",
+        "source": {
+          "type": "mathjs",
+          "expression": "F*T_t^2/ (4 * pi^2)"
+        }
+      },
+      {
+        "name": "J_1",
+        "comment": "圆环转动惯量",
+        "source": {
+          "type": "mathjs",
+          "expression": "J-J_0"
+        }
+      },
+      {
+        "name": "J_1_lilun",
+        "comment": "𝐽₁理论值",
+        "source": {
+          "type": "mathjs",
+          "expression": "0.5 * m * (R_1^2 + R_2^2) / 1000000"
+        }
+      },
+      {
+        "name": "E",
+        "comment": "相对误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs((J_1_lilun-J_1)/J_1)*100"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "table",
+      "properties": {
+        "width": 8,
+        "height": 3,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["①", "②", "③", "④", "⑤", "平均值", "单次周期"],
+            "start": [1, 2],
+            "end": [1, 8]
+          },
+          {
+            "type": "constant",
+            "value": ["振动时间(20次)", "摆盘𝑇₀", "摆盘+圆环𝑇"],
+            "start": [1, 1],
+            "end": [3, 1]
+          },
+          {
+            "type": "variable",
+            "name": "T_0",
+            "start": [2, 2],
+            "end": [2, 6]
+          },
+          {
+            "type": "variable",
+            "name": "T_0_a",
+            "start": [2, 7],
+            "end": [2, 7]
+          },
+          {
+            "type": "variable",
+            "name": "T_0_t",
+            "start": [2, 8],
+            "end": [2, 8]
+          },
+          {
+            "type": "variable",
+            "name": "T",
+            "start": [3, 2],
+            "end": [3, 6]
+          },
+          {
+            "type": "variable",
+            "name": "T_a",
+            "start": [3, 7],
+            "end": [3, 7]
+          },
+          {
+            "type": "variable",
+            "name": "T_t",
+            "start": [3, 8],
+            "end": [3, 8]
+          }
+        ]
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "l",
+        "frontText": "长度：𝑙=",
+        "backText": " 𝑚𝑚"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "m",
+        "frontText": "圆环质量:𝑚=",
+        "backText": "𝑔"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 5,
+        "height": 3,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["上部", "中部", "下部", "平均值"],
+            "start": [1, 2],
+            "end": [1, 5]
+          },
+          {
+            "type": "constant",
+            "value": ["横向", "纵向"],
+            "start": [2, 1],
+            "end": [3, 1]
+          },
+          {
+            "type": "variable",
+            "name": "l_heng",
+            "start": [2, 2],
+            "end": [2, 4]
+          },
+          {
+            "type": "variable",
+            "name": "l_heng_a",
+            "start": [2, 5],
+            "end": [2, 5]
+          },
+          {
+            "type": "variable",
+            "name": "l_zong",
+            "start": [3, 2],
+            "end": [3, 4]
+          },
+          {
+            "type": "variable",
+            "name": "l_zong_a",
+            "start": [3, 5],
+            "end": [3, 5]
+          }
+        ]
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "R_1",
+        "frontText": "𝑅₁=",
+        "backText": " 𝑚𝑚"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "R_2",
+        "frontText": "𝑅₂=",
+        "backText": " 𝑚𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d",
+        "frontText": "直径: 𝑑=",
+        "backText": " 𝑚𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "F",
+        "frontText": "𝐹=",
+        "backText": "×10^-3 kg*m^2"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "J_0",
+        "frontText": "圆台转动惯量: 𝐽₀=",
+        "backText": "×10^-3 kg*m^2"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "J",
+        "frontText": "摆+环转动惯量: 𝐽=",
+        "backText": "×10^-3 kg*m^2"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "J_1",
+        "frontText": "圆环转动惯量: 𝐽₁=",
+        "backText": "×10^-3 kg*m^2"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "J_1_lilun",
+        "frontText": "𝐽₁理论值",
+        "backText": "×10^-3 kg*m^2"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "E",
+        "frontText": "相对误差: 𝐸=",
+        "backText": "%"
+      }
+    }
+  ]
+}

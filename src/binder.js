@@ -31,7 +31,7 @@ export class Binder {
    * @param {boolean} tableInputHasValue table 组件中 变量输入格 是否有值。初始化时，传入 true。实现一键清空时，传入 false。
    * @return {Object} 返回 labItems
    */
-  getLabItems(tableInputHasValue) {
+  getLabItems(tableInputHasValue = true) {
     let experiment = deepCopy(this.experiment);
 
     const dictNameVariable = getDictNameVariable(experiment["logic"]["variables"]);
@@ -139,11 +139,15 @@ export class Binder {
     return stdInput;
   }
 
-  calculateLabItems(labItems) {
+  getStdOutput(labItems) {
     let experiment = deepCopy(this.experiment);
-
     let stdInput = this.getStdInput(labItems);
-    let result = execute(experiment["logic"], stdInput);
+    let stdOutput = execute(experiment["logic"], stdInput);
+    return stdOutput;
+  }
+
+  calculateLabItems(labItems) {
+    let stdOutput = this.getStdOutput(labItems);
 
     labItems.forEach((c, i) => {
       if (c["type"] == "table") {
@@ -151,7 +155,7 @@ export class Binder {
           if (bind["type"] != "variable" || this.dictNameVariable[bind["name"]]["source"]["type"] == "input") {
             continue;
           }
-          let value = result[bind["name"]];
+          let value = stdOutput[bind["name"]];
           if (bind["start"][0] == bind["end"][0] && bind["start"][1] == bind["end"][1]) {
             let x = bind["start"][0];
             let y = bind["start"][1];
@@ -174,7 +178,7 @@ export class Binder {
           }
         }
       } else if (c["type"] == "output") {
-        c["properties"]["value"] = result[c["properties"]["variableName"]];
+        c["properties"]["value"] = stdOutput[c["properties"]["variableName"]];
       }
     });
   }
