@@ -41,57 +41,137 @@ export class Binder {
     for (const expItem of experiment["ui"]) {
       let labItem = { properties: expItem["properties"], type: expItem["type"] }; // 1个 lab-item 组件 对应的数据
 
-      if (isTextBox(expItem["type"])) {
-        let name = expItem["properties"]["variableName"];
-        labItem["properties"]["value"] = dictNameVariable[name]["source"]["default"];
-      } else if (expItem["type"] === "table") {
-        let values = [];
-        for (let j = 0; j < expItem["properties"]["width"] * expItem["properties"]["height"]; j++) {
-          values.push({ id: j, value: "" });
-        }
-        for (const bind of expItem["properties"]["binds"]) {
-          if (bind["type"] == "variable" && dictNameVariable[bind["name"]]["source"]["type"] != "input") {
-            continue;
+      switch (expItem["type"]) {
+        case "input":
+          let name = expItem["properties"]["variableName"];
+          labItem["properties"]["default"] = dictNameVariable[name]["source"]["default"];
+          labItem["properties"]["value"] = "";
+          labItem["properties"]["readonly"] = false;
+          break;
+        case "output":
+          labItem["properties"]["default"] = "#";
+          labItem["properties"]["value"] = "";
+          labItem["properties"]["readonly"] = true;
+          break;
+        case "textbox":
+          break;
+        case "table":
+          let grids = [];
+          for (let j = 0; j < expItem["properties"]["width"] * expItem["properties"]["height"]; j++) {
+            grids.push({ id: j, type: "undefined" });
+            // 单元格 type : input output constant undefined
           }
+          for (const bind of expItem["properties"]["binds"]) {
+            // if (bind["type"] == "variable" && dictNameVariable[bind["name"]]["source"]["type"] != "input") {
+            //   continue;
+            // }
 
-          if (bind["type"] == "variable" && !tableInputHasValue) {
-            continue;
-          }
+            // if (bind["type"] == "variable" && !tableInputHasValue) { // todo
+            //   continue;
+            // }
 
-          let defaultValue;
-          if (bind["type"] == "variable") {
-            defaultValue = dictNameVariable[bind["name"]]["source"]["default"];
-          } else if (bind["type"] == "constant") {
-            defaultValue = bind["value"];
-          }
+            console.log("bind", bind);
 
-          if (bind["start"][0] == bind["end"][0] && bind["start"][1] == bind["end"][1]) {
-            let x = bind["start"][0];
-            let y = bind["start"][1];
-            values[posToIndex(x, y, expItem["properties"]["width"])]["value"] = defaultValue;
-          } else if (bind["start"][0] == bind["end"][0]) {
-            let x = bind["start"][0];
-            for (let j = 0; j < defaultValue.length; j++) {
-              let y = bind["start"][1] + j;
-              values[posToIndex(x, y, expItem["properties"]["width"])]["value"] = defaultValue[j]; // todo convert to string
+            let readonly;
+            let type;
+
+            let defaultValue;
+            switch (bind["type"]) {
+              case "variable":
+                if (dictNameVariable[bind["name"]]["source"]["type"] == "input") {
+                  type = "input";
+                  defaultValue = dictNameVariable[bind["name"]]["source"]["default"];
+                } else {
+                  type = "output";
+                }
+                break;
+              case "constant":
+                type = "constant";
+                defaultValue = bind["value"];
+                break;
+              default:
+                console.error("unsupport bind type", bind);
             }
-          } else if (bind["start"][1] == bind["end"][1]) {
-            let y = bind["start"][1];
-            for (let j = 0; j < defaultValue.length; j++) {
-              let x = bind["start"][0] + j;
-              values[posToIndex(x, y, expItem["properties"]["width"])]["value"] = defaultValue[j];
-            }
-          } else {
-            console.error("start end 不合法", bind);
-          }
+            console.log("bind type", type);
 
+            if (bind["start"][0] == bind["end"][0] && bind["start"][1] == bind["end"][1]) {
+              let x = bind["start"][0];
+              let y = bind["start"][1];
+
+              let g = grids[posToIndex(x, y, expItem["properties"]["width"])];
+
+              g["type"] = type;
+
+              switch (type) {
+                case "input":
+                  g["default"] = defaultValue;
+                  g["value"] = "";
+                  break;
+                case "output":
+                  g["value"] = "#";
+                  break;
+                case "constant":
+                  g["value"] = defaultValue;
+                  break;
+              }
+            } else if (bind["start"][0] == bind["end"][0]) {
+              let x = bind["start"][0];
+              for (let j = 0; j < bind["end"][1] - bind["start"][1] + 1; j++) {
+                let y = bind["start"][1] + j;
+                let g = grids[posToIndex(x, y, expItem["properties"]["width"])];
+
+                g["readonly"] = readonly;
+                g["type"] = type;
+
+                switch (type) {
+                  case "input":
+                    g["default"] = defaultValue[j];
+                    g["value"] = "";
+                    break;
+                  case "output":
+                    g["value"] = "#";
+                    break;
+                  case "constant":
+                    g["value"] = defaultValue[j];
+                    break;
+                }
+              }
+            } else if (bind["start"][1] == bind["end"][1]) {
+              let y = bind["start"][1];
+              for (let j = 0; j < bind["end"][0] - bind["start"][0] + 1; j++) {
+                let x = bind["start"][0] + j;
+                let g = grids[posToIndex(x, y, expItem["properties"]["width"])];
+
+                g["readonly"] = readonly;
+                g["type"] = type;
+
+                switch (type) {
+                  case "input":
+                    g["default"] = defaultValue[j];
+                    g["value"] = "";
+                    break;
+                  case "output":
+                    g["value"] = "#";
+                    break;
+                  case "constant":
+                    g["value"] = defaultValue[j];
+                    break;
+                }
+              }
+            } else {
+              console.error("start end 不合法", bind);
+            }
+          }
+          labItem["properties"]["grids"] = grids;
           delete labItem.properties.binds;
-        }
-        labItem["properties"]["values"] = values;
+          break;
+        default:
+          console.error("unsupport UI type", x);
       }
 
       labItems.push(labItem);
     }
+
     for (let i = 0; i < labItems.length; i++) {
       labItems[i]["id"] = i;
     }
