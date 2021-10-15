@@ -16,6 +16,21 @@ describe("dev", function () {
 
     let stdInput = binder.getStdInput(labItems);
     let result = execute(binder.experiment["logic"], stdInput);
+    // fs.writeFileSync("./tmp/result.json", JSON.stringify(result, null, 2));
+
+    binder.calculateLabItems(labItems);
+
+    // fs.writeFileSync("./tmp/labItems.json", JSON.stringify(labItems, null, 2));
+  });
+
+  it("重力加速度的测量", function () {
+    let exp = experiments["重力加速度的测量"];
+    let binder = new Binder(exp);
+
+    let labItems = binder.getLabItems();
+
+    let stdInput = binder.getStdInput(labItems);
+    let result = execute(binder.experiment["logic"], stdInput);
     fs.writeFileSync("./tmp/result.json", JSON.stringify(result, null, 2));
 
     binder.calculateLabItems(labItems);
