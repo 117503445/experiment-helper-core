@@ -48,8 +48,7 @@ export class Binder {
           labItem["properties"]["value"] = "";
           break;
         case "output":
-          labItem["properties"]["default"] = "#";
-          labItem["properties"]["value"] = "";
+          labItem["properties"]["value"] = "#";
           break;
         case "textbox":
           break;
@@ -209,19 +208,19 @@ export class Binder {
           if (bind["start"][0] == bind["end"][0] && bind["start"][1] == bind["end"][1]) {
             let x = bind["start"][0];
             let y = bind["start"][1];
-            c["properties"]["values"][posToIndex(x, y, c["properties"]["width"])]["value"] = value;
+            c["properties"]["grids"][posToIndex(x, y, c["properties"]["width"])]["value"] = value;
           } else if (bind["start"][0] == bind["end"][0]) {
             let x = bind["start"][0];
             for (let j = 0; j < bind["end"][1] - bind["start"][1] + 1; j++) {
               let y = bind["start"][1] + j;
-              c["properties"]["values"][posToIndex(x, y, c["properties"]["width"])]["value"] = value[j];
+              c["properties"]["grids"][posToIndex(x, y, c["properties"]["width"])]["value"] = value[j];
             }
           } else if (bind["start"][1] == bind["end"][1]) {
             let y = bind["start"][1];
             for (let j = 0; j < bind["end"][0] - bind["start"][0] + 1; j++) {
               let x = bind["start"][0] + j;
 
-              c["properties"]["values"][posToIndex(x, y, c["properties"]["width"])]["value"] = value[j];
+              c["properties"]["grids"][posToIndex(x, y, c["properties"]["width"])]["value"] = value[j];
             }
           } else {
             console.error("start end 不合法", bind);
