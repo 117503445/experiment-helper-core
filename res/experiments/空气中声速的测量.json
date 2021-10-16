@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "name": "空气中声速的测量",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-16 13:41"
+  },
+  "logic": {
+    "functions": {
+      "get_λ": "(function(arr){let arr_r = [];for (let i = 0; i < 6; i++) {arr_r.push((arr[i+6] - arr[i])/3);}return arr_r;})"
+    },
+    "variables": [
+      {
+        "name": "t",
+        "comment": "室温",
+        "source": {
+          "type": "input",
+          "default": 21
+        }
+      },
+      {
+        "name": "T",
+        "comment": "开尔文温度",
+        "source": {
+          "type": "mathjs",
+          "expression": "273.15 + t"
+        }
+      },
+      {
+        "name": "v_0",
+        "comment": "室温理论速度",
+        "source": {
+          "type": "mathjs",
+          "expression": "331.45*sqrt(T/273.15)"
+        }
+      },
+      {
+        "name": "f",
+        "comment": "频率",
+        "source": {
+          "type": "input",
+          "default": 35.211
+        }
+      },
+      {
+        "name": "f_d_yiqi",
+        "comment": "频率不确定度(仪器) Δ𝑓",
+        "source": {
+          "type": "input",
+          "default": 0.185
+        }
+      },
+      {
+        "name": "l_d_yiqi",
+        "comment": "距离不确定度(仪器) ΔL",
+        "source": {
+          "type": "input",
+          "default": 0.017
+        }
+      },
+      {
+        "name": "l",
+        "comment": "距离",
+        "source": {
+          "type": "input",
+          "default": [151.5, 156.32, 161.2, 165.94, 171.22, 176.18, 181.02, 186.24, 191.1, 196.26, 201.04, 205.88]
+        }
+      },
+      {
+        "name": "λ",
+        "comment": "波长",
+        "source": {
+          "type": "mathjs",
+          "expression": "get_λ(l)"
+        }
+      },
+      {
+        "name": "λ_a",
+        "comment": "波长平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "λ_ua",
+        "comment": "波长不确定度",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "v",
+        "comment": "平均声速",
+        "source": {
+          "type": "mathjs",
+          "expression": "λ_a * f"
+        }
+      },
+      {
+        "name": "v_u_re",
+        "comment": "声速相对不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "sqrt( (f_d_yiqi/f)^2 + (λ_ua/λ_a)^2 )"
+        }
+      },
+      {
+        "name": "v_d",
+        "comment": "声速误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "v * v_u_re"
+        }
+      },
+      {
+        "name": "v_result",
+        "comment": "声速实验结果",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(string(round(v,3)),\"±\",string(round(v_d,2)))"
+        }
+      },
+      {
+        "name": "v_d_re",
+        "comment": "声速相对误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(v-v_0)/v*100"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "t",
+        "frontText": "室温𝑡= ",
+        "backText": "℃"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "f",
+        "frontText": "频率𝑓= ",
+        "backText": "𝑘𝐻𝑧"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "f_d_yiqi",
+        "frontText": "频率不确定度(仪器) Δ𝑓=",
+        "backText": "𝑘𝐻𝑧"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "l_d_yiqi",
+        "frontText": "距离不确定度(仪器) ΔL= ",
+        "backText": "𝑚𝑚"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 3,
+        "height": 13,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["i", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+            "start": [1, 1],
+            "end": [13, 1]
+          },
+          {
+            "type": "variable",
+            "name": "l",
+            "start": [2, 2],
+            "end": [13, 2]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "T",
+        "frontText": "开尔文温度T=",
+        "backText": "K"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "v_0",
+        "frontText": "当前理论声速：𝑣₀=",
+        "backText": "𝑚/𝑠"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "λ_a",
+        "frontText": "平均波长：𝜆_average = ",
+        "backText": "𝑚𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "λ_ua",
+        "frontText": "波长不确定度：Δ𝜆= ",
+        "backText": "𝑚𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "v",
+        "frontText": "v_average",
+        "backText": "𝑚/𝑠"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "v_u_re",
+        "frontText": "声速相对不确定度 Δ𝑣/𝑣=",
+        "backText": "𝑚/𝑠"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "v_d",
+        "frontText": "声速误差",
+        "backText": "𝑚/𝑠"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "v_result",
+        "frontText": "实验结果：𝑣=",
+        "backText": "𝑚/𝑠"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "v_d_re",
+        "frontText": "相对误差：𝐸=",
+        "backText": "%"
+      }
+    }
+  ]
+}

@@ -7,22 +7,23 @@ let experiments = require("../../src/experiments").experiments;
 const fs = require("fs");
 // fs.writeFileSync("./tmp/1.json", JSON.stringify(items, null, 2));
 
-fs.mkdirSync("./tmp/dev");
-describe("dev", function () {
-  it("build", function () {
-    let exp = experiments["空气中声速的测量"];
+let dev = require("../../res/experiments/debug.json");
+fs.mkdirSync("./tmp/debug");
+describe("debug", function () {
+  it("debug.json", function () {
+    let exp = dev;
     let binder = new Binder(exp);
 
     let labItems = binder.getLabItems(true);
-    fs.writeFileSync("./tmp/dev/0-labItems.json", JSON.stringify(labItems, null, 2));
+    fs.writeFileSync("./tmp/debug/0-labItems.json", JSON.stringify(labItems, null, 2));
 
     let stdInput = binder.getStdInput(labItems);
-    fs.writeFileSync("./tmp/dev/stdInput.json", JSON.stringify(stdInput, null, 2));
+    fs.writeFileSync("./tmp/debug/stdInput.json", JSON.stringify(stdInput, null, 2));
 
     let stdOutput = binder.getStdOutput(labItems);
-    fs.writeFileSync("./tmp/dev/stdOutput.json", JSON.stringify(stdOutput, null, 2));
+    fs.writeFileSync("./tmp/debug/stdOutput.json", JSON.stringify(stdOutput, null, 2));
 
     binder.calculateLabItems(labItems);
-    fs.writeFileSync("./tmp/dev/1-labItems.json", JSON.stringify(labItems, null, 2));
+    fs.writeFileSync("./tmp/debug/1-labItems.json", JSON.stringify(labItems, null, 2));
   });
 });
