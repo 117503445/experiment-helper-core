@@ -28,10 +28,10 @@ export class Binder {
   /**
    * 根据 Binder 的 experiment 获取 labItems
    *
-   * @param {boolean} tableInputHasValue table 组件中 变量输入格 是否有值。初始化时，传入 true。实现一键清空时，传入 false。
+   * @param {boolean} tableInputHasDefaultValue table 组件中 变量输入格 是否有 default。初始化时，传入 true。实现一键清空时，传入 false。
    * @return {Object} 返回 labItems
    */
-  getLabItems(tableInputHasValue = true) {
+  getLabItems(tableInputHasDefaultValue = true) {
     let experiment = deepCopy(this.experiment);
 
     const dictNameVariable = getDictNameVariable(experiment["logic"]["variables"]);
@@ -60,16 +60,6 @@ export class Binder {
             // 单元格 type : input output constant undefined
           }
           for (const bind of expItem["properties"]["binds"]) {
-            // if (bind["type"] == "variable" && dictNameVariable[bind["name"]]["source"]["type"] != "input") {
-            //   continue;
-            // }
-
-            // if (bind["type"] == "variable" && !tableInputHasValue) { // todo
-            //   continue;
-            // }
-
-            // console.log("bind", bind);
-
             let type;
 
             let defaultValue;
@@ -78,6 +68,13 @@ export class Binder {
                 if (dictNameVariable[bind["name"]]["source"]["type"] == "input") {
                   type = "input";
                   defaultValue = dictNameVariable[bind["name"]]["source"]["default"];
+                  if (!tableInputHasDefaultValue) {
+                    if (Array.isArray(defaultValue)) {
+                      defaultValue = defaultValue.map(() => "");
+                    } else {
+                      defaultValue = "";
+                    }
+                  }
                 } else {
                   type = "output";
                 }
@@ -89,69 +86,40 @@ export class Binder {
               default:
                 console.error("unsupport bind type", bind);
             }
-            console.log("bind type", type);
 
-            if (bind["start"][0] == bind["end"][0] && bind["start"][1] == bind["end"][1]) {
-              let x = bind["start"][0];
-              let y = bind["start"][1];
-
+            function processG(x, y, v) {
               let g = grids[posToIndex(x, y, expItem["properties"]["width"])];
 
               g["type"] = type;
-
               switch (type) {
                 case "input":
-                  g["default"] = defaultValue;
+                  g["default"] = v;
                   g["value"] = "";
                   break;
                 case "output":
                   g["value"] = "#";
                   break;
                 case "constant":
-                  g["value"] = defaultValue;
+                  g["value"] = v;
                   break;
               }
+            }
+
+            if (bind["start"][0] == bind["end"][0] && bind["start"][1] == bind["end"][1]) {
+              let x = bind["start"][0];
+              let y = bind["start"][1];
+              processG(x, y, defaultValue);
             } else if (bind["start"][0] == bind["end"][0]) {
               let x = bind["start"][0];
               for (let j = 0; j < bind["end"][1] - bind["start"][1] + 1; j++) {
                 let y = bind["start"][1] + j;
-                let g = grids[posToIndex(x, y, expItem["properties"]["width"])];
-
-                g["type"] = type;
-
-                switch (type) {
-                  case "input":
-                    g["default"] = defaultValue[j];
-                    g["value"] = "";
-                    break;
-                  case "output":
-                    g["value"] = "#";
-                    break;
-                  case "constant":
-                    g["value"] = defaultValue[j];
-                    break;
-                }
+                processG(x, y, defaultValue ? defaultValue[j] : undefined);
               }
             } else if (bind["start"][1] == bind["end"][1]) {
               let y = bind["start"][1];
               for (let j = 0; j < bind["end"][0] - bind["start"][0] + 1; j++) {
                 let x = bind["start"][0] + j;
-                let g = grids[posToIndex(x, y, expItem["properties"]["width"])];
-
-                g["type"] = type;
-
-                switch (type) {
-                  case "input":
-                    g["default"] = defaultValue[j];
-                    g["value"] = "";
-                    break;
-                  case "output":
-                    g["value"] = "#";
-                    break;
-                  case "constant":
-                    g["value"] = defaultValue[j];
-                    break;
-                }
+                processG(x, y, defaultValue ? defaultValue[j] : undefined);
               }
             } else {
               console.error("start end 不合法", bind);

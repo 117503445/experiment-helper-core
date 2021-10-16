@@ -12,7 +12,7 @@ describe("dev", function () {
     let exp = experiments["重力加速度的测量"];
     let binder = new Binder(exp);
 
-    let labItems = binder.getLabItems();
+    let labItems = binder.getLabItems(true);
     fs.writeFileSync("./tmp/0-labItems.json", JSON.stringify(labItems, null, 2));
 
     let stdInput = binder.getStdOutput(labItems);
