@@ -17,11 +17,13 @@ describe("dev", function () {
     let labItems = binder.getLabItems(true);
     fs.writeFileSync("./tmp/0-labItems.json", JSON.stringify(labItems, null, 2));
 
-    let stdInput = binder.getStdOutput(labItems);
+    let stdInput = binder.getStdInput(labItems);
     fs.writeFileSync("./tmp/stdInput.json", JSON.stringify(stdInput, null, 2));
 
-    binder.calculateLabItems(labItems);
+    let stdOutput = binder.getStdOutput(labItems);
+    fs.writeFileSync("./tmp/stdOutput.json", JSON.stringify(stdOutput, null, 2));
 
+    binder.calculateLabItems(labItems);
     fs.writeFileSync("./tmp/1-labItems.json", JSON.stringify(labItems, null, 2));
   });
 });

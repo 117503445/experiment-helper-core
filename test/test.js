@@ -2,14 +2,18 @@
  * @Author: HaoTian Qi
  * @Date: 2021-10-09 21:49:31
  * @Description:
- * @LastEditTime: 2021-10-16 01:17:09
+ * @LastEditTime: 2021-10-16 11:00:40
  * @LastEditors: HaoTian Qi
  */
 
 const fs = require("fs");
-if (!fs.existsSync("./tmp")) {
-  fs.mkdirSync("./tmp");
+
+let dirTmp = "./tmp";
+
+if (fs.existsSync(dirTmp)) {
+  fs.rmdirSync(dirTmp, { recursive: true });
 }
+fs.mkdirSync(dirTmp);
 
 // require("./getLabItems/test");
 // require("./getStdInput/test");

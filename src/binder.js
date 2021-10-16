@@ -145,8 +145,10 @@ export class Binder {
     let stdInput = {};
 
     labItems.forEach((c, i) => {
-      if (isTextBox(c["type"])) {
-        stdInput[c["properties"]["variableName"]] = c["properties"]["value"];
+      if (c["type"] == "input") {
+        stdInput[c["properties"]["variableName"]] = c["properties"]["value"]
+          ? c["properties"]["value"]
+          : c["properties"]["default"];
       } else if (c["type"] == "table") {
         for (const bind of this.experiment["ui"][i]["properties"]["binds"]) {
           if (bind["type"] != "variable" || this.dictNameVariable[bind["name"]]["source"]["type"] != "input") {
@@ -154,21 +156,27 @@ export class Binder {
           }
           let value = [];
 
+          function getGridValue(x, y) {
+            let g = c["properties"]["grids"][posToIndex(x, y, c["properties"]["width"])];
+            let v = g["value"] ? g["value"] : g["default"];
+            return v;
+          }
+
           if (bind["start"][0] == bind["end"][0] && bind["start"][1] == bind["end"][1]) {
             let x = bind["start"][0];
             let y = bind["start"][1];
-            value = c["properties"]["values"][posToIndex(x, y, c["properties"]["width"])]["value"];
+            value = getGridValue(x, y);
           } else if (bind["start"][0] == bind["end"][0]) {
             let x = bind["start"][0];
             for (let j = 0; j < bind["end"][1] - bind["start"][1] + 1; j++) {
               let y = bind["start"][1] + j;
-              value.push(c["properties"]["values"][posToIndex(x, y, c["properties"]["width"])]["value"]);
+              value.push(getGridValue(x, y));
             }
           } else if (bind["start"][1] == bind["end"][1]) {
             let y = bind["start"][1];
             for (let j = 0; j < bind["end"][0] - bind["start"][0] + 1; j++) {
               let x = bind["start"][0] + j;
-              value.push(c["properties"]["values"][posToIndex(x, y, c["properties"]["width"])]["value"]);
+              value.push(getGridValue(x, y));
             }
           } else {
             console.error("start end 不合法", bind);
@@ -178,7 +186,6 @@ export class Binder {
       }
     });
 
-    // p("std_input", stdInput);
     return stdInput;
   }
 
