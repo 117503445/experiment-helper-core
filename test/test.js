@@ -2,7 +2,7 @@
  * @Author: HaoTian Qi
  * @Date: 2021-10-09 21:49:31
  * @Description:
- * @LastEditTime: 2021-10-16 13:52:19
+ * @LastEditTime: 2021-10-16 23:21:04
  * @LastEditors: HaoTian Qi
  */
 
@@ -19,5 +19,5 @@ fs.mkdirSync(dirTmp);
 // require("./getStdInput/test");
 // require("./calculateLabItems/test");
 
-// require("./debug/test");
-require("./dev/test");
+require("./debug/test");
+// require("./dev/test");

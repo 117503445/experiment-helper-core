@@ -10,20 +10,37 @@ const fs = require("fs");
 let dev = require("../../res/experiments/debug.json");
 fs.mkdirSync("./tmp/debug");
 describe("debug", function () {
-  it("debug.json", function () {
+  it("default", function () {
     let exp = dev;
     let binder = new Binder(exp);
 
     let labItems = binder.getLabItems(true);
-    fs.writeFileSync("./tmp/debug/0-labItems.json", JSON.stringify(labItems, null, 2));
+    fs.writeFileSync("./tmp/debug/default-0-labItems.json", JSON.stringify(labItems, null, 2));
 
     let stdInput = binder.getStdInput(labItems);
-    fs.writeFileSync("./tmp/debug/stdInput.json", JSON.stringify(stdInput, null, 2));
+    fs.writeFileSync("./tmp/debug/default-1-stdInput.json", JSON.stringify(stdInput, null, 2));
 
     let stdOutput = binder.getStdOutput(labItems);
-    fs.writeFileSync("./tmp/debug/stdOutput.json", JSON.stringify(stdOutput, null, 2));
+    fs.writeFileSync("./tmp/debug/default-2-stdOutput.json", JSON.stringify(stdOutput, null, 2));
 
     binder.calculateLabItems(labItems);
-    fs.writeFileSync("./tmp/debug/1-labItems.json", JSON.stringify(labItems, null, 2));
+    fs.writeFileSync("./tmp/debug/default-3-calculate.json", JSON.stringify(labItems, null, 2));
+  });
+  it("clear", function () {
+    let exp = dev;
+    let binder = new Binder(exp);
+
+    let labItems = binder.getLabItems(false);
+
+    fs.writeFileSync("./tmp/debug/clear-0-labItems.json", JSON.stringify(labItems, null, 2));
+
+    let stdInput = binder.getStdInput(labItems);
+    fs.writeFileSync("./tmp/debug/clear-1-stdInput.json", JSON.stringify(stdInput, null, 2));
+
+    // let stdOutput = binder.getStdOutput(labItems);
+    // fs.writeFileSync("./tmp/debug/clear-2-stdOutput.json", JSON.stringify(stdOutput, null, 2));
+
+    // binder.calculateLabItems(labItems);
+    // fs.writeFileSync("./tmp/debug/clear-3-calculate.json", JSON.stringify(labItems, null, 2));
   });
 });

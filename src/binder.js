@@ -1,4 +1,7 @@
 // TODO UI 限制小数位数
+const mathjs = require("mathjs");
+const math = mathjs.create(mathjs.all, { number: "BigNumber" });
+
 import { execute } from "./executor";
 import { p, deepCopy } from "./util";
 function isTextBox(type) {
@@ -44,7 +47,7 @@ export class Binder {
       switch (expItem["type"]) {
         case "input":
           let name = expItem["properties"]["variableName"];
-          labItem["properties"]["default"] = dictNameVariable[name]["source"]["default"];
+          labItem["properties"]["default"] = math.string(dictNameVariable[name]["source"]["default"]);
           labItem["properties"]["value"] = "";
           break;
         case "output":
@@ -73,6 +76,8 @@ export class Binder {
                     } else {
                       defaultValue = "";
                     }
+                  } else {
+                    defaultValue = defaultValue.map((item) => math.string(item));
                   }
                 } else {
                   type = "output";
