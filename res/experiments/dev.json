@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "name": "dev",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-16 10:18"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "a",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": 100
+        }
+      },
+      {
+        "name": "b",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [1, 2, 3]
+        }
+      },
+      {
+        "name": "c",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "a*b"
+        }
+      },
+      {
+        "name": "c_a",
+        "comment": "平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "dev"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "a",
+        "frontText": "a = ",
+        "backText": "m"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 3,
+        "height": 3,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["①", "②", "③"],
+            "start": [1, 1],
+            "end": [1, 3]
+          },
+          {
+            "type": "variable",
+            "name": "b",
+            "start": [2, 1],
+            "end": [2, 3]
+          },
+          {
+            "type": "variable",
+            "name": "c",
+            "start": [3, 1],
+            "end": [3, 3]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "c_a",
+        "frontText": "c_a = ",
+        "backText": "m"
+      }
+    }
+  ]
+}

@@ -7,9 +7,11 @@ let experiments = require("../../src/experiments").experiments;
 const fs = require("fs");
 // fs.writeFileSync("./tmp/1.json", JSON.stringify(items, null, 2));
 
+let dev = require("../../res/experiments/dev.json");
+
 describe("dev", function () {
-  it("重力加速度的测量", function () {
-    let exp = experiments["重力加速度的测量"];
+  it("dev.json", function () {
+    let exp = dev;
     let binder = new Binder(exp);
 
     let labItems = binder.getLabItems(true);
