@@ -46,12 +46,10 @@ export class Binder {
           let name = expItem["properties"]["variableName"];
           labItem["properties"]["default"] = dictNameVariable[name]["source"]["default"];
           labItem["properties"]["value"] = "";
-          labItem["properties"]["readonly"] = false;
           break;
         case "output":
           labItem["properties"]["default"] = "#";
           labItem["properties"]["value"] = "";
-          labItem["properties"]["readonly"] = true;
           break;
         case "textbox":
           break;
@@ -70,9 +68,8 @@ export class Binder {
             //   continue;
             // }
 
-            console.log("bind", bind);
+            // console.log("bind", bind);
 
-            let readonly;
             let type;
 
             let defaultValue;
@@ -120,7 +117,6 @@ export class Binder {
                 let y = bind["start"][1] + j;
                 let g = grids[posToIndex(x, y, expItem["properties"]["width"])];
 
-                g["readonly"] = readonly;
                 g["type"] = type;
 
                 switch (type) {
@@ -142,7 +138,6 @@ export class Binder {
                 let x = bind["start"][0] + j;
                 let g = grids[posToIndex(x, y, expItem["properties"]["width"])];
 
-                g["readonly"] = readonly;
                 g["type"] = type;
 
                 switch (type) {
