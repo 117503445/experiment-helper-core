@@ -7,14 +7,16 @@
     "LastEditTime": "2021-10-16 10:18"
   },
   "logic": {
-    "functions": {},
+    "functions": {
+      "addIndex": "(function(arr){var arr_r = [];for (var i = 0; i < 3; i++) {arr_r.push(parseFloat(arr[i])+i);}return arr_r;})"
+    },
     "variables": [
       {
         "name": "a",
         "comment": "",
         "source": {
           "type": "input",
-          "default": 100
+          "default": 5
         }
       },
       {
@@ -22,7 +24,7 @@
         "comment": "",
         "source": {
           "type": "input",
-          "default": [1, 2, 3]
+          "default": [0.1, 0.2, 0.3]
         }
       },
       {
@@ -38,6 +40,14 @@
         "comment": "平均值",
         "source": {
           "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "d",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "addIndex(c)"
         }
       }
     ]
@@ -89,6 +99,14 @@
       "properties": {
         "variableName": "c_a",
         "frontText": "c_a = ",
+        "backText": "m"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d",
+        "frontText": "d = ",
         "backText": "m"
       }
     }

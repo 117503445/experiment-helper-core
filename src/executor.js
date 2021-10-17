@@ -1,5 +1,6 @@
 const mathjs = require("mathjs");
 const math = mathjs.create(mathjs.all, { number: "BigNumber" });
+import { Interpreter } from "eval5";
 
 function getParser(functions) {
   function smartlab_ua(arr) {
@@ -40,8 +41,9 @@ function getParser(functions) {
     parser.set(fName, internal[fName]);
   }
 
+  const interpreter = new Interpreter();
   for (let fName in functions) {
-    parser.set(fName, eval(functions[fName]));
+    parser.set(fName, interpreter.evaluate(functions[fName]));
   }
 
   return parser;
@@ -53,16 +55,29 @@ export function execute(logic, std_input) {
   let stdOutput = {};
 
   for (let x of logic["variables"]) {
+    let value;
     switch (x["source"]["type"]) {
       case "input":
         if (x["name"] in std_input) {
-          x["value"] = std_input[x["name"]];
+          value = std_input[x["name"]];
         } else {
-          x["value"] = x["source"]["default"];
+          value = x["source"]["default"];
         }
+        parser.set(x["name"], math.bignumber(value));
+        stdOutput[x["name"]] = math.string(math.round(value, 3));
+
         break;
       case "mathjs":
-        x["value"] = parser.evaluate(x["source"]["expression"]);
+        value = parser.evaluate(x["source"]["expression"]);
+
+        if (typeof value != "string") {
+          parser.set(x["name"], math.bignumber(value));
+          stdOutput[x["name"]] = math.string(math.round(value, 3));
+        } else {
+          parser.set(x["name"], value);
+          stdOutput[x["name"]] = value;
+        }
+
         break;
       case "mathjs-suffix":
         let x_name = x["name"];
@@ -82,20 +97,23 @@ export function execute(logic, std_input) {
           default:
             console.error("mathjs-suffix: unsupport fun", x);
         }
-        x["value"] = parser.evaluate(expression);
+        value = parser.evaluate(expression);
+
+        if (typeof value != "string") {
+          parser.set(x["name"], math.bignumber(value));
+          stdOutput[x["name"]] = math.string(math.round(value, 3));
+        } else {
+          parser.set(x["name"], value);
+          stdOutput[x["name"]] = value;
+        }
+
         break;
       default:
         console.error("unsupport source type", x);
     }
-
-    if (typeof x["value"] != "string") {
-      stdOutput[x["name"]] = math.string(math.round(x["value"], 3));
-      parser.set(x["name"], math.bignumber(x["value"]));
-    } else {
-      stdOutput[x["name"]] = x["value"];
-      parser.set(x["name"], x["value"]);
-    }
   }
+
+  // console.log(parser.getAll());
 
   return stdOutput;
 }

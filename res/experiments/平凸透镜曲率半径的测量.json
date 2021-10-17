@@ -4,11 +4,11 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-14 11:03"
+    "LastEditTime": "2021-10-17 16:59"
   },
   "logic": {
     "functions": {
-      "this_D_m2_diff": "(function(arr){let arr_r = [];for (let i = 0; i < 5; i++) {arr_r.push(arr[i] - arr[i + 5]);}return arr_r;})"
+      "this_D_m2_diff": "(function(arr){var arr_r = [];for (var i = 0; i < 5; i++) {arr_r.push(parseFloat(arr[i]) - parseFloat(arr[i + 5]));}return arr_r;})"
     },
     "variables": [
       {

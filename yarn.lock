@@ -2,17 +2,39 @@
 # yarn lockfile v1
 
 
-"@babel/runtime@^7.15.4":
+"@babel/runtime@^7.15.4", "@babel/runtime@^7.8.4":
   version "7.15.4"
   resolved "https://registry.nlark.com/@babel/runtime/download/@babel/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha1-/RfRa/34eObdAtGXU6OfqKjZyEo=
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@types/acorn@^4.0.5":
+  version "4.0.6"
+  resolved "https://registry.nlark.com/@types/acorn/download/@types/acorn-4.0.6.tgz?cache=0&sync_timestamp=1629706537757&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Facorn%2Fdownload%2F%40types%2Facorn-4.0.6.tgz#d61ca5480300ac41a7d973dd5b84d0a591154a22"
+  integrity sha1-1hylSAMArEGn2XPdW4TQpZEVSiI=
+  dependencies:
+    "@types/estree" "*"
+
+"@types/estree@*":
+  version "0.0.50"
+  resolved "https://registry.nlark.com/@types/estree/download/@types/estree-0.0.50.tgz#1e0caa9364d3fccd2931c3ed96fdbeaa5d4cca83"
+  integrity sha1-Hgyqk2TT/M0pMcPtlv2+ql1MyoM=
+
+"@types/estree@0.0.41":
+  version "0.0.41"
+  resolved "https://registry.nlark.com/@types/estree/download/@types/estree-0.0.41.tgz#fd90754150b57432b72bf560530500597ff04421"
+  integrity sha1-/ZB1QVC1dDK3K/VgUwUAWX/wRCE=
+
 "@ungap/promise-all-settled@1.1.2":
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/@ungap/promise-all-settled/download/@ungap/promise-all-settled-1.1.2.tgz#aa58042711d6e3275dd37dc597e5d31e8c290a44"
   integrity sha1-qlgEJxHW4ydd033Fl+XTHowpCkQ=
+
+acorn@^7.1.0:
+  version "7.4.1"
+  resolved "https://registry.nlark.com/acorn/download/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
+  integrity sha1-/q7SVZc9LndVW4PbwIhRpsY1IPo=
 
 ansi-colors@4.1.1:
   version "4.1.1"
@@ -674,6 +696,16 @@ esutils@^2.0.2:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/esutils/download/esutils-2.0.3.tgz#74d2eb4de0b8da1293711910d50775b9b710ef64"
   integrity sha1-dNLrTeC42hKTcRkQ1Qd1ubcQ72Q=
+
+eval5@^1.4.6:
+  version "1.4.6"
+  resolved "https://registry.nlark.com/eval5/download/eval5-1.4.6.tgz#d94bb910b7c52aafa41f54cc6047a696a90ab065"
+  integrity sha1-2Uu5ELfFKq+kH1TMYEemlqkKsGU=
+  dependencies:
+    "@babel/runtime" "^7.8.4"
+    "@types/acorn" "^4.0.5"
+    "@types/estree" "0.0.41"
+    acorn "^7.1.0"
 
 fill-range@^7.0.1:
   version "7.0.1"
