@@ -11,7 +11,7 @@ function tableGridsFlat(items) {
   for (const item of items) {
     if (item["type"] == "table") {
       let grids = [];
-      for (let i = 0; i < item["properties"]["height"]; i++) {
+      for (let i = 0; i < item["properties"]["width"]; i++) {
         grids.push([]);
       }
       for (const g of item["properties"]["grids"]) {
