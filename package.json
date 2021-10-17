@@ -1,6 +1,6 @@
 {
   "name": "experiment-helper-core",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "Core of experiment helper",
   "main": "index.js",
   "scripts": {

@@ -23,7 +23,7 @@ describe("debug", function () {
     let stdOutput = binder.getStdOutput(labItems);
     fs.writeFileSync("./tmp/debug/default-2-stdOutput.json", JSON.stringify(stdOutput, null, 2));
 
-    binder.calculateLabItems(labItems);
+    labItems = binder.calculateLabItems(labItems);
     fs.writeFileSync("./tmp/debug/default-3-calculate.json", JSON.stringify(labItems, null, 2));
   });
   it("clear", function () {

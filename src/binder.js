@@ -3,9 +3,44 @@ const mathjs = require("mathjs");
 const math = mathjs.create(mathjs.all, { number: "BigNumber" });
 
 import { execute } from "./executor";
-import { p, deepCopy, posToIndex } from "./util";
-function isTextBox(type) {
-  return type == "input" || type == "output";
+import { p, deepCopy, posToIndex, IndexToPos } from "./util";
+
+// 展开 Grids，一维变二维
+function tableGridsFlat(items) {
+  items = deepCopy(items);
+  for (const item of items) {
+    if (item["type"] == "table") {
+      let grids = [];
+      for (let i = 0; i < item["properties"]["height"]; i++) {
+        grids.push([]);
+      }
+      for (const g of item["properties"]["grids"]) {
+        let index = g["id"];
+        let { x, y } = IndexToPos(index, item["properties"]["width"]);
+        grids[y - 1][x - 1] = g;
+      }
+      item["properties"]["grids"] = grids;
+    }
+  }
+  return items;
+}
+
+// 合并 Grids，二维变一维
+function tableGridsConcat(items) {
+  items = deepCopy(items);
+  for (const item of items) {
+    if (item["type"] == "table") {
+      let grids = [];
+      for (const gArray of item["properties"]["grids"]) {
+        for (const g of gArray) {
+          let index = g["id"];
+          grids[index] = g;
+        }
+      }
+      item["properties"]["grids"] = grids;
+    }
+  }
+  return items;
 }
 
 function getDictNameVariable(variables) {
@@ -135,10 +170,14 @@ export class Binder {
     for (let i = 0; i < labItems.length; i++) {
       labItems[i]["id"] = i;
     }
+
+    labItems = tableGridsFlat(labItems);
     return labItems;
   }
 
   getStdInput(labItems) {
+    labItems = tableGridsConcat(labItems);
+
     let stdInput = {};
 
     labItems.forEach((c, i) => {
@@ -195,7 +234,7 @@ export class Binder {
 
   calculateLabItems(labItems) {
     let stdOutput = this.getStdOutput(labItems);
-
+    labItems = tableGridsConcat(labItems);
     labItems.forEach((c, i) => {
       if (c["type"] == "table") {
         for (const bind of this.experiment["ui"][i]["properties"]["binds"]) {
@@ -228,5 +267,8 @@ export class Binder {
         c["properties"]["value"] = stdOutput[c["properties"]["variableName"]];
       }
     });
+
+    labItems = tableGridsFlat(labItems);
+    return labItems;
   }
 }

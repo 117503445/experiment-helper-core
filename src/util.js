@@ -14,4 +14,10 @@ function posToIndex(x, y, width) {
   return y - 1 + (x - 1) * width;
 }
 
-export { p, deepCopy, posToIndex };
+function IndexToPos(index, width) {
+  let y = (index % width) + 1;
+  let x = (index - y + 1) / width + 1;
+  return {x,y};
+}
+
+export { p, deepCopy, posToIndex, IndexToPos };
