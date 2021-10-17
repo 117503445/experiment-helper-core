@@ -7,4 +7,11 @@ function p(...params) {
 function deepCopy(data) {
   return JSON.parse(JSON.stringify(data));
 }
-export { p, deepCopy };
+function posToIndex(x, y, width) {
+  if (y > width || y < 0) {
+    console.error("不合法的 y", y);
+  }
+  return y - 1 + (x - 1) * width;
+}
+
+export { p, deepCopy, posToIndex };

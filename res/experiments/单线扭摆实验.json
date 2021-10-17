@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-15 12:48"
+    "LastEditTime": "2021-10-17 20:30"
   },
   "logic": {
     "functions": {},
@@ -257,8 +257,8 @@
         "binds": [
           {
             "type": "constant",
-            "value": ["上部", "中部", "下部", "平均值"],
-            "start": [1, 2],
+            "value": ["", "上部", "中部", "下部", "平均值"],
+            "start": [1, 1],
             "end": [1, 5]
           },
           {

@@ -2,7 +2,7 @@
  * @Author: HaoTian Qi
  * @Date: 2021-10-09 21:49:31
  * @Description:
- * @LastEditTime: 2021-10-16 23:21:04
+ * @LastEditTime: 2021-10-17 18:39:49
  * @LastEditors: HaoTian Qi
  */
 
@@ -21,3 +21,5 @@ fs.mkdirSync(dirTmp);
 
 require("./debug/test");
 // require("./dev/test");
+
+require("./exp/test");

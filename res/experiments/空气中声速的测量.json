@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-17 17:55"
+    "LastEditTime": "2021-10-17 20:31"
   },
   "logic": {
     "functions": {
@@ -177,10 +177,28 @@
             "end": [13, 1]
           },
           {
+            "type": "constant",
+            "value": ["L_i/mm", "λ_i/mm"],
+            "start": [1, 2],
+            "end": [1, 3]
+          },
+          {
             "type": "variable",
             "name": "l",
             "start": [2, 2],
             "end": [13, 2]
+          },
+          {
+            "type": "variable",
+            "name": "λ",
+            "start": [2, 3],
+            "end": [7, 3]
+          },
+          {
+            "type": "constant",
+            "value": ["", "", "", "", "", ""],
+            "start": [8, 3],
+            "end": [13, 3]
           }
         ]
       }

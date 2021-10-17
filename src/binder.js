@@ -3,16 +3,9 @@ const mathjs = require("mathjs");
 const math = mathjs.create(mathjs.all, { number: "BigNumber" });
 
 import { execute } from "./executor";
-import { p, deepCopy } from "./util";
+import { p, deepCopy, posToIndex } from "./util";
 function isTextBox(type) {
   return type == "input" || type == "output";
-}
-
-function posToIndex(x, y, width) {
-  if (y > width || y < 0) {
-    console.error("不合法的 y", y);
-  }
-  return y - 1 + (x - 1) * width;
 }
 
 function getDictNameVariable(variables) {
@@ -59,7 +52,7 @@ export class Binder {
           let grids = [];
           for (let j = 0; j < expItem["properties"]["width"] * expItem["properties"]["height"]; j++) {
             grids.push({ id: j, type: "undefined" });
-            // 单元格 type : input output constant undefined
+            // 单元格 type : input output constant
           }
           for (const bind of expItem["properties"]["binds"]) {
             let type;
