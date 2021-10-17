@@ -4,11 +4,11 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-17 17:06"
+    "LastEditTime": "2021-10-17 17:55"
   },
   "logic": {
     "functions": {
-      "get_λ": "(function(arr){var arr_r = [];for (var i = 0; i < 6; i++) {arr_r.push((parseFloat(arr[i+6]) - parseFloat(arr[i])/3));}return arr_r;})"
+      "get_λ": "(function(arr){var arr_r = [];for (var i = 0; i < 6; i++) {arr_r.push((parseFloat(arr[i+6]) - parseFloat(arr[i]))/3);}return arr_r;})"
     },
     "variables": [
       {
