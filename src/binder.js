@@ -10,16 +10,17 @@ function tableGridsFlat(items) {
   items = deepCopy(items);
   for (const item of items) {
     if (item["type"] == "table") {
-      let grids = [];
+      let columns = [];
       for (let i = 0; i < item["properties"]["width"]; i++) {
-        grids.push([]);
+        columns.push({ id: i, grids: [] });
       }
       for (const g of item["properties"]["grids"]) {
         let index = g["id"];
         let { x, y } = IndexToPos(index, item["properties"]["width"]);
-        grids[y - 1][x - 1] = g;
+        columns[y - 1]['grids'][x - 1] = g;
       }
-      item["properties"]["grids"] = grids;
+      item["properties"]["columns"] = columns;
+      delete item.properties.grids;
     }
   }
   return items;
@@ -31,8 +32,8 @@ function tableGridsConcat(items) {
   for (const item of items) {
     if (item["type"] == "table") {
       let grids = [];
-      for (const gArray of item["properties"]["grids"]) {
-        for (const g of gArray) {
+      for (const gArray of item["properties"]["columns"]) {
+        for (const g of gArray['grids']) {
           let index = g["id"];
           grids[index] = g;
         }
