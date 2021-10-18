@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "name": "三棱镜顶角的测量",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-18 13:26"
+  },
+  "logic": {
+    "functions": {
+      "degree2minuteArr": "(function(arr){var arr_r = [];for (var i = 0; i < arr.length; i++) {var n = arr[i];  var x = parseInt(n); var y = parseInt((n * 100) % 100); arr_r.push( 60 * x + y);} return arr_r;})",
+      "fix": "(function(arr){var arr_r = [];for (var i = 0; i < arr.length; i++) {var n = arr[i];  arr_r.push( Math.min(21600-n,n));} return arr_r;})",
+      "minute2degreeArr": "(function(arr){var arr_r = [];for (var i = 0; i < arr.length; i++) {var n = arr[i];  var y = String(n % 60).padStart(2, \"0\");var x = (n - y) / 60; arr_r.push( String(x)+\".\"+y);} return arr_r;})",
+      "minute2degree": "(function(n){ var y = String(n % 60).padStart(2, \"0\"); var x = (n - y) / 60; return String(x)+\"°\"+y+\"'\"; })"
+    },
+    "variables": [
+      {
+        "name": "b_d",
+        "comment": "仪器不确定度 Δ𝘉",
+        "source": {
+          "type": "input",
+          "default": 1
+        }
+      },
+      {
+        "name": "θ_A_1",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": ["298.20", "279.50", "278.07", "304.14"]
+        }
+      },
+      {
+        "name": "θ_A_1_m",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "degree2minuteArr(θ_A_1)"
+        }
+      },
+      {
+        "name": "θ_B_1",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": ["118.00", "99.44", "98.01", "124.20"]
+        }
+      },
+      {
+        "name": "θ_B_1_m",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "degree2minuteArr(θ_B_1)"
+        }
+      },
+      {
+        "name": "θ_A_2",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": ["178.14", "160.20", "158.14", "183.47"]
+        }
+      },
+      {
+        "name": "θ_A_2_m",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "degree2minuteArr(θ_A_2)"
+        }
+      },
+      {
+        "name": "θ_B_2",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": ["358.14", "340.2", "338.15", "3.47"]
+        }
+      },
+      {
+        "name": "θ_B_2_m",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "degree2minuteArr(θ_B_2)"
+        }
+      },
+      {
+        "name": "θ_A",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(θ_A_1_m - θ_A_2_m)"
+        }
+      },
+      {
+        "name": "θ_A_fix",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "fix(θ_A)"
+        }
+      },
+      {
+        "name": "θ_B",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(θ_B_1_m - θ_B_2_m)"
+        }
+      },
+      {
+        "name": "θ_B_fix",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "fix(θ_B)"
+        }
+      },
+      {
+        "name": "α",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "round(0.25 * (θ_A_fix + θ_B_fix))"
+        }
+      },
+      {
+        "name": "α_a",
+        "comment": "α 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "α_a_str",
+        "comment": "α 平均值 角度",
+        "source": {
+          "type": "mathjs",
+          "expression": "minute2degree(α_a)"
+        }
+      },
+      {
+        "name": "α_str",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "minute2degreeArr(α)"
+        }
+      },
+      {
+        "name": "α_ua",
+        "comment": "",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "α_u",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "sqrt( α_ua^2 + b_d^2/3)"
+        }
+      },
+      {
+        "name": "α_result",
+        "comment": "实验结果",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(α_a_str,\"±\",string(round(α_u,2)),\"'\")"
+        }
+      },
+      {
+        "name": "α_d_re",
+        "comment": "相对误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "α_u/α_a*100"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "b_d",
+        "frontText": "仪器不确定度Δ𝘉= ",
+        "backText": "分"
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "约定角度表示格式:23°02' ⇔ 23.02\n 23°20' ⇔ 23.20 23°00' ⇔ 23.00"
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "本实验自动修复零点越过问题，输入原始数据即可"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 6,
+        "height": 5,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["序号", "𝜽𝘈⁻¹", "𝜽𝘉⁻¹", "𝜽𝘈⁺¹", "𝜽𝘉⁺¹", "αᵢ"],
+            "start": [1, 1],
+            "end": [1, 6]
+          },
+          {
+            "type": "constant",
+            "value": ["①", "②", "③", "④"],
+            "start": [2, 1],
+            "end": [5, 1]
+          },
+          {
+            "type": "variable",
+            "name": "θ_A_1",
+            "start": [2, 2],
+            "end": [5, 2]
+          },
+          {
+            "type": "variable",
+            "name": "θ_B_1",
+            "start": [2, 3],
+            "end": [5, 3]
+          },
+          {
+            "type": "variable",
+            "name": "θ_A_2",
+            "start": [2, 4],
+            "end": [5, 4]
+          },
+          {
+            "type": "variable",
+            "name": "θ_B_2",
+            "start": [2, 5],
+            "end": [5, 5]
+          },
+          {
+            "type": "variable",
+            "name": "α_str",
+            "start": [2, 6],
+            "end": [5, 6]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "α_a_str",
+        "frontText": "平均角度 ",
+        "backText": ""
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "α_ua",
+        "frontText": "A类不确定度 ",
+        "backText": "'"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "α_u",
+        "frontText": "总不确定度 ",
+        "backText": "'"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "α_result",
+        "frontText": "实验结果 ",
+        "backText": ""
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "α_d_re",
+        "frontText": "相对误差 ",
+        "backText": "%"
+      }
+    }
+  ]
+}

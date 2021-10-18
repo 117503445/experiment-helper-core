@@ -36,7 +36,7 @@ describe("exp", function () {
         let stdOutput = binder.getStdOutput(labItems);
         fs.writeFileSync(path + "2-stdOutput.json", JSON.stringify(stdOutput, null, 2));
 
-        binder.calculateLabItems(labItems);
+        labItems = binder.calculateLabItems(labItems);
         fs.writeFileSync(path + "3-calculate.json", JSON.stringify(labItems, null, 2));
       });
     });
