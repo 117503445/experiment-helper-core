@@ -31,15 +31,8 @@
         "name": "c",
         "comment": "",
         "source": {
-          "type": "mathjs",
-          "expression": "a*b"
-        }
-      },
-      {
-        "name": "c_a",
-        "comment": "平均值",
-        "source": {
-          "type": "mathjs-suffix"
+          "type": "input",
+          "default": [0.0001, 0.0002, 0.0003]
         }
       },
       {
@@ -47,7 +40,22 @@
         "comment": "",
         "source": {
           "type": "mathjs",
-          "expression": "addIndex(c)"
+          "expression": "a*b+c"
+        }
+      },
+      {
+        "name": "d_a",
+        "comment": "d 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "e",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "addIndex(d)"
         }
       }
     ]
@@ -71,7 +79,7 @@
       "type": "table",
       "properties": {
         "width": 3,
-        "height": 3,
+        "height": 5,
         "binds": [
           {
             "type": "constant",
@@ -90,6 +98,18 @@
             "name": "c",
             "start": [3, 1],
             "end": [3, 3]
+          },
+          {
+            "type": "variable",
+            "name": "d",
+            "start": [4, 1],
+            "end": [4, 3]
+          },
+          {
+            "type": "variable",
+            "name": "e",
+            "start": [5, 1],
+            "end": [5, 3]
           }
         ]
       }
@@ -97,16 +117,8 @@
     {
       "type": "output",
       "properties": {
-        "variableName": "c_a",
-        "frontText": "c_a = ",
-        "backText": "m"
-      }
-    },
-    {
-      "type": "output",
-      "properties": {
-        "variableName": "d",
-        "frontText": "d = ",
+        "variableName": "d_a",
+        "frontText": "d_a = ",
         "backText": "m"
       }
     }

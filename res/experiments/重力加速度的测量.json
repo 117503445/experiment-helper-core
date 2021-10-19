@@ -4,7 +4,7 @@
       "author": "117503445",
       "contributors": [],
       "version": "0.0.1",
-      "LastEditTime": "2021-10-15 15:17"
+      "LastEditTime": "2021-10-19 13:33"
     },
     "logic": {
       "functions": {},
@@ -29,8 +29,8 @@
           "name": "g_0",
           "comment": "西安理论重力加速度",
           "source": {
-            "type": "input",
-            "default": 9.797
+            "type": "mathjs",
+            "expression": "9.797"
           }
         },
         {

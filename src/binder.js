@@ -17,7 +17,7 @@ function tableGridsFlat(items) {
       for (const g of item["properties"]["grids"]) {
         let index = g["id"];
         let { x, y } = IndexToPos(index, item["properties"]["width"]);
-        columns[y - 1]['grids'][x - 1] = g;
+        columns[y - 1]["grids"][x - 1] = g;
       }
       item["properties"]["columns"] = columns;
       delete item.properties.grids;
@@ -33,7 +33,7 @@ function tableGridsConcat(items) {
     if (item["type"] == "table") {
       let grids = [];
       for (const gArray of item["properties"]["columns"]) {
-        for (const g of gArray['grids']) {
+        for (const g of gArray["grids"]) {
           let index = g["id"];
           grids[index] = g;
         }
@@ -76,7 +76,9 @@ export class Binder {
       switch (expItem["type"]) {
         case "input":
           let name = expItem["properties"]["variableName"];
-          labItem["properties"]["default"] = math.string(dictNameVariable[name]["source"]["default"]);
+          labItem["properties"]["default"] = math.format(dictNameVariable[name]["source"]["default"], {
+            notation: "fixed"
+          });
           labItem["properties"]["value"] = "";
           break;
         case "output":
@@ -106,7 +108,7 @@ export class Binder {
                       defaultValue = "";
                     }
                   } else {
-                    defaultValue = defaultValue.map((item) => math.string(item));
+                    defaultValue = defaultValue.map((item) => math.format(item, { notation: "fixed" }));
                   }
                 } else {
                   type = "output";
@@ -236,36 +238,73 @@ export class Binder {
   calculateLabItems(labItems) {
     let stdOutput = this.getStdOutput(labItems);
     labItems = tableGridsConcat(labItems);
+
     labItems.forEach((c, i) => {
+      let precision = 3;
+
+      function format(value, precision) {
+        if (typeof value == "string") {
+          return value;
+        }
+        return math.string(math.round(math.bignumber(value), precision));
+      }
+
       if (c["type"] == "table") {
         for (const bind of this.experiment["ui"][i]["properties"]["binds"]) {
           if (bind["type"] != "variable" || this.dictNameVariable[bind["name"]]["source"]["type"] == "input") {
             continue;
           }
+
+          // output bind
+
+          if (typeof bind["precision"] == "number") {
+            precision = bind["precision"];
+          }
+
           let value = stdOutput[bind["name"]];
+
           if (bind["start"][0] == bind["end"][0] && bind["start"][1] == bind["end"][1]) {
             let x = bind["start"][0];
             let y = bind["start"][1];
-            c["properties"]["grids"][posToIndex(x, y, c["properties"]["width"])]["value"] = value;
+            c["properties"]["grids"][posToIndex(x, y, c["properties"]["width"])]["value"] = format(value, precision);
           } else if (bind["start"][0] == bind["end"][0]) {
             let x = bind["start"][0];
             for (let j = 0; j < bind["end"][1] - bind["start"][1] + 1; j++) {
               let y = bind["start"][1] + j;
-              c["properties"]["grids"][posToIndex(x, y, c["properties"]["width"])]["value"] = value[j];
+              // if (typeof value[j] == "undefined") {
+              //   console.log(bind);
+              //   console.log(value);
+              //   console.log(j);
+              // }
+              c["properties"]["grids"][posToIndex(x, y, c["properties"]["width"])]["value"] = format(
+                value[j],
+                precision
+              );
             }
           } else if (bind["start"][1] == bind["end"][1]) {
             let y = bind["start"][1];
             for (let j = 0; j < bind["end"][0] - bind["start"][0] + 1; j++) {
               let x = bind["start"][0] + j;
-
-              c["properties"]["grids"][posToIndex(x, y, c["properties"]["width"])]["value"] = value[j];
+              // if (typeof value[j] == "undefined") {
+              //   console.log(bind);
+              //   console.log(value);
+              //   console.log(j);
+              // }
+              c["properties"]["grids"][posToIndex(x, y, c["properties"]["width"])]["value"] = format(
+                value[j],
+                precision
+              );
             }
           } else {
             console.error("start end 不合法", bind);
           }
         }
       } else if (c["type"] == "output") {
-        c["properties"]["value"] = stdOutput[c["properties"]["variableName"]];
+        if (typeof c["precision"] == "number") {
+          precision = bind["precision"];
+        }
+
+        c["properties"]["value"] = format(stdOutput[c["properties"]["variableName"]], precision);
       }
     });
 

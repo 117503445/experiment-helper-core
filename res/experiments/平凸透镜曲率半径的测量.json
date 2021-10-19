@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-17 16:59"
+    "LastEditTime": "2021-10-19 13:33"
   },
   "logic": {
     "functions": {
@@ -163,6 +163,12 @@
             "type": "variable",
             "name": "D_m2_diff",
             "start": [2, 6],
+            "end": [6, 6]
+          },
+          {
+            "type": "constant",
+            "value": ["", "", "", "", ""],
+            "start": [7, 6],
             "end": [11, 6]
           }
         ]

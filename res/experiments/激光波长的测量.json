@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "name": "激光波长的测量",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-19 13:33"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "d_yiqi",
+        "comment": "仪器不确定度Δ仪",
+        "source": {
+          "type": "input",
+          "default": 0.0001
+        }
+      },
+      {
+        "name": "N",
+        "comment": "干涉条纹数",
+        "source": {
+          "type": "input",
+          "default": 50
+        }
+      },
+      {
+        "name": "λ_0",
+        "comment": "波长理论值",
+        "source": {
+          "type": "input",
+          "default": 632.8
+        }
+      },
+      {
+        "name": "l_1",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [48.79866, 48.81455, 48.83125, 48.84721, 48.86272, 48.87865, 48.895, 48.91145]
+        }
+      },
+      {
+        "name": "l_2",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [48.8141, 48.83089, 48.84668, 48.862, 48.87792, 48.89401, 48.91075, 48.9263]
+        }
+      },
+      {
+        "name": "d",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(l_1-l_2)"
+        }
+      },
+      {
+        "name": "λ",
+        "comment": "实测波长",
+        "source": {
+          "type": "mathjs",
+          "expression": "2*d/N*1000000"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "d_yiqi",
+        "frontText": "仪器不确定度 Δ仪= ",
+        "backText": "𝑚𝑚"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "N",
+        "frontText": "干涉条纹数 𝑁= ",
+        "backText": "条"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "λ_0",
+        "frontText": "标准值 λ₀= ",
+        "backText": "𝑛𝑚"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 5,
+        "height": 9,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["序号", "𝑙₁/𝑚𝑚", "𝑙₂/𝑚𝑚", "𝑑=|𝑙₁-𝑙₂|/𝑚𝑚", "λ𝑖/𝑛𝑚"],
+            "start": [1, 1],
+            "end": [1, 5]
+          },
+          {
+            "type": "constant",
+            "value": ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧"],
+            "start": [2, 1],
+            "end": [9, 1]
+          },
+          {
+            "type": "variable",
+            "name": "l_1",
+            "start": [2, 2],
+            "end": [9, 2]
+          },
+          {
+            "type": "variable",
+            "name": "l_2",
+            "start": [2, 3],
+            "end": [9, 3]
+          },
+          {
+            "type": "variable",
+            "name": "d",
+            "start": [2, 4],
+            "end": [9, 4],
+            "precision": 4
+          },
+          {
+            "type": "variable",
+            "name": "λ",
+            "start": [2, 5],
+            "end": [9, 5]
+          }
+        ]
+      }
+    }
+  ]
+}

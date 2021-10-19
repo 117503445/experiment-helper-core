@@ -9,10 +9,9 @@ const check = require("../../src/check").check;
 const Result = require("../../src/check").Result;
 // fs.writeFileSync("./tmp/1.json", JSON.stringify(items, null, 2));
 
-fs.mkdirSync("./tmp/exp");
 describe("exp", function () {
   for (let name in experiments) {
-    let path = "./tmp/exp/" + name + "/";
+    let path = "./tmp/" + name + "/";
     fs.mkdirSync(path);
     describe(name, () => {
       let exp = experiments[name];

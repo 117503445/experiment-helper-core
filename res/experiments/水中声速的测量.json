@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-17 20:31"
+    "LastEditTime": "2021-10-19 13:33"
   },
   "logic": {
     "functions": {
@@ -192,12 +192,12 @@
             "type": "variable",
             "name": "λ",
             "start": [2, 3],
-            "end": [7, 3]
+            "end": [6, 3]
           },
           {
             "type": "constant",
             "value": ["", "", "", "", "", ""],
-            "start": [8, 3],
+            "start": [7, 3],
             "end": [11, 3]
           }
         ]

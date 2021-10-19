@@ -64,15 +64,13 @@ export function execute(logic, std_input) {
           value = x["source"]["default"];
         }
         parser.set(x["name"], math.bignumber(value));
-        stdOutput[x["name"]] = math.string(math.round(value, 3));
-
         break;
       case "mathjs":
         value = parser.evaluate(x["source"]["expression"]);
 
         if (typeof value != "string") {
           parser.set(x["name"], math.bignumber(value));
-          stdOutput[x["name"]] = math.string(math.round(value, 3));
+          stdOutput[x["name"]] = math.number(value);
         } else {
           parser.set(x["name"], value);
           stdOutput[x["name"]] = value;
@@ -101,7 +99,7 @@ export function execute(logic, std_input) {
 
         if (typeof value != "string") {
           parser.set(x["name"], math.bignumber(value));
-          stdOutput[x["name"]] = math.string(math.round(value, 3));
+          stdOutput[x["name"]] = math.number(value);
         } else {
           parser.set(x["name"], value);
           stdOutput[x["name"]] = value;
