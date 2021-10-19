@@ -64,6 +64,52 @@
           "type": "mathjs",
           "expression": "2*d/N*1000000"
         }
+      },
+      {
+        "name": "λ_a",
+        "comment": "λ 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "δ",
+        "comment": "绝对误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(λ_a-λ_0)"
+        }
+      },
+      {
+        "name": "E",
+        "comment": "相对误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "δ/λ_0*100"
+        }
+      },
+      {
+        "name": "d_ua",
+        "comment": "d A类不确定度",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "d_u",
+        "comment": "d 综合不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "smartlab_u(d,d_yiqi)"
+        }
+      },
+      {
+        "name": "d_λ",
+        "comment": "λ 综合不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "2*d_u*1000000 / N"
+        }
       }
     ]
   },
@@ -127,7 +173,7 @@
             "name": "d",
             "start": [2, 4],
             "end": [9, 4],
-            "precision": 4
+            "precision": 5
           },
           {
             "type": "variable",
@@ -136,6 +182,56 @@
             "end": [9, 5]
           }
         ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "λ_a",
+        "frontText": "λ平均值：",
+        "backText": "𝑚𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "δ",
+        "frontText": "绝对误差δ：",
+        "backText": "𝑚𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "E",
+        "frontText": "相对误差𝐸: ",
+        "backText": " %"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_ua",
+        "frontText": "𝑑的A类不确定度: ",
+        "backText": "𝑚𝑚",
+        "precision": 6
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_u",
+        "frontText": "𝑑的综合不确定度Δ𝑑: ",
+        "backText": "𝑚𝑚",
+        "precision": 6
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_λ",
+        "frontText": "λ的不确定度Δλ: ",
+        "backText": " 𝑛𝑚"
       }
     }
   ]

@@ -300,8 +300,9 @@ export class Binder {
           }
         }
       } else if (c["type"] == "output") {
-        if (typeof c["precision"] == "number") {
-          precision = bind["precision"];
+        if (typeof c["properties"]["precision"] == "number") {
+          precision = c["properties"]["precision"];
+          delete c["properties"]["precision"];
         }
 
         c["properties"]["value"] = format(stdOutput[c["properties"]["variableName"]], precision);
