@@ -1,0 +1,427 @@
+{
+  "meta": {
+    "name": "光栅光谱的测量",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-20 13:06"
+  },
+  "logic": {
+    "functions": {
+      "degree2minuteArr": "(function(arr){var arr_r = [];for (var i = 0; i < arr.length; i++) {var n = arr[i];  var x = parseInt(n); var y = parseInt((n * 100) % 100); arr_r.push( 60 * x + y);} return arr_r;})",
+      "fix": "(function(arr){var arr_r = [];for (var i = 0; i < arr.length; i++) {var n = arr[i];  arr_r.push( Math.min(21600-n,n));} return arr_r;})",
+      "minute2degreeArr": "(function(arr){var arr_r = [];for (var i = 0; i < arr.length; i++) {var n = arr[i];  var y = String(n % 60).padStart(2, \"0\");var x = (n - y) / 60; arr_r.push( String(x)+\".\"+y);} return arr_r;})",
+      "minute2degree": "(function(n){ var y = String(n % 60).padStart(2, \"0\"); var x = (n - y) / 60; return String(x)+\"°\"+y+\"'\"; })",
+      "get_𝜑_lv_a": "(function(arr){ var sum = 0; for(var i = 2; i< arr.length;i++){sum+= Number(arr[i]);} return Math.round(sum/3); })"
+    },
+    "variables": [
+      {
+        "name": "λ",
+        "comment": "绿色谱线波长 λ",
+        "source": {
+          "type": "input",
+          "default": 546.1
+        }
+      },
+      {
+        "name": "b_d",
+        "comment": "仪器不确定度 Δ𝘉",
+        "source": {
+          "type": "input",
+          "default": 1
+        }
+      },
+      {
+        "name": "θ_A_1",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [260.35, 260.31, 260, 260.01, 259.55]
+        }
+      },
+      {
+        "name": "θ_A_1_m",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "degree2minuteArr(θ_A_1)"
+        }
+      },
+      {
+        "name": "θ_B_1",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [80.35, 80.31, 80, 80.02, 79.54]
+        }
+      },
+      {
+        "name": "θ_B_1_m",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "degree2minuteArr(θ_B_1)"
+        }
+      },
+      {
+        "name": "θ_A_2",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [240.42, 240.45, 241.18, 241.19, 240.22]
+        }
+      },
+      {
+        "name": "θ_A_2_m",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "degree2minuteArr(θ_A_2)"
+        }
+      },
+      {
+        "name": "θ_B_2",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [60.39, 60.41, 61.14, 61.16, 62.19]
+        }
+      },
+      {
+        "name": "θ_B_2_m",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "degree2minuteArr(θ_B_2)"
+        }
+      },
+      {
+        "name": "θ_A",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(θ_A_1_m - θ_A_2_m)"
+        }
+      },
+      {
+        "name": "θ_A_fix",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "fix(θ_A)"
+        }
+      },
+      {
+        "name": "θ_B",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(θ_B_1_m - θ_B_2_m)"
+        }
+      },
+      {
+        "name": "θ_B_fix",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "fix(θ_B)"
+        }
+      },
+      {
+        "name": "𝜑",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "round(0.25 * (θ_A_fix + θ_B_fix))"
+        }
+      },
+      {
+        "name": "𝜑_str",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "minute2degreeArr(𝜑)"
+        }
+      },
+      {
+        "name": "𝜑_lv_a",
+        "comment": "𝜑 绿光 平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "get_𝜑_lv_a(𝜑)"
+        }
+      },
+      {
+        "name": "𝜑_lv_a_str",
+        "comment": "𝜑 绿光 平均值 str",
+        "source": {
+          "type": "mathjs",
+          "expression": "minute2degree(𝜑_lv_a)"
+        }
+      },
+      {
+        "name": "d_1",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "λ/sin(𝜑[3]/60/180*pi)/1000"
+        }
+      },
+      {
+        "name": "d_2",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "λ/sin(𝜑[4]/60/180*pi)/1000"
+        }
+      },
+      {
+        "name": "d_3",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "λ/sin(𝜑[5]/60/180*pi)/1000"
+        }
+      },
+      {
+        "name": "d",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "[d_1,d_2,d_3]"
+        }
+      },
+      {
+        "name": "d_minute",
+        "comment": "d 的 minute 形式",
+        "source": {
+          "type": "mathjs",
+          "expression": "[𝜑[3],𝜑[4],𝜑[5]]"
+        }
+      },
+      {
+        "name": "d_minute_a",
+        "comment": "d 的 minute 形式 平均",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "d_a",
+        "comment": "d 平均",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "d_r_u",
+        "comment": "d 相对不确定",
+        "source": {
+          "type": "mathjs",
+          "expression": "(bignumber(smartlab_u(d_minute, b_d))/60*0.000291) / tan(d_minute_a/60*pi/180)"
+        }
+      },
+      {
+        "name": "d_r_u_percent",
+        "comment": "d 相对不确定 百分比",
+        "source": {
+          "type": "mathjs",
+          "expression": "d_r_u * 100"
+        }
+      },
+      {
+        "name": "d_u",
+        "comment": "d 误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "d_a * d_r_u"
+        }
+      },
+      {
+        "name": "d_result",
+        "comment": "d 实验结果",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(string(round(d_a,2)),\"x10⁻⁶±\",string(round(d_u*1000,1)))"
+        }
+      },
+      {
+        "name": "λ_yellow_1",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "sin(𝜑[1]/60/180*pi)*d_a*1000"
+        }
+      },
+      {
+        "name": "λ_yellow_2",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "sin(𝜑[2]/60/180*pi)*d_a*1000"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "λ",
+        "frontText": "绿色谱线波长 𝜆= ",
+        "backText": "𝑛𝑚"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "b_d",
+        "frontText": "仪器不确定度Δ𝘉= ",
+        "backText": "分"
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "约定角度表示格式:23°02' ⇔ 23.02\n 23°20' ⇔ 23.20 23°00' ⇔ 23.00"
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "本实验自动修复零点越过问题，输入原始数据即可"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 6,
+        "height": 6,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["", "𝜽𝘈⁻¹", "𝜽𝘉⁻¹", "𝜽𝘈⁺¹", "𝜽𝘉⁺¹", "αᵢ"],
+            "start": [1, 1],
+            "end": [1, 6]
+          },
+          {
+            "type": "constant",
+            "value": ["黄2光", "黄1光", "绿光1", "绿光2", "绿光3"],
+            "start": [2, 1],
+            "end": [6, 1]
+          },
+          {
+            "type": "variable",
+            "name": "θ_A_1",
+            "start": [2, 2],
+            "end": [6, 2]
+          },
+          {
+            "type": "variable",
+            "name": "θ_B_1",
+            "start": [2, 3],
+            "end": [6, 3]
+          },
+          {
+            "type": "variable",
+            "name": "θ_A_2",
+            "start": [2, 4],
+            "end": [6, 4]
+          },
+          {
+            "type": "variable",
+            "name": "θ_B_2",
+            "start": [2, 5],
+            "end": [6, 5]
+          },
+          {
+            "type": "variable",
+            "name": "𝜑_str",
+            "start": [2, 6],
+            "end": [6, 6]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "𝜑_lv_a_str",
+        "frontText": "𝜑 绿光 平均值",
+        "backText": ""
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_1",
+        "frontText": "光栅常数1: 𝑑₁=",
+        "backText": "x10⁻⁶ 𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_2",
+        "frontText": "光栅常数2: 𝑑₂=",
+        "backText": "x10⁻⁶ 𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_3",
+        "frontText": "光栅常数3: 𝑑₃=",
+        "backText": "x10⁻⁶ 𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_a",
+        "frontText": "光栅常数平均: 𝑑_average",
+        "backText": "x10⁻⁶ 𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_r_u",
+        "frontText": "光栅常数相对不确定度：Δ𝑑/𝑑=",
+        "backText": "%"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_r_u_percent",
+        "frontText": "光栅常数误差：Δ𝑑=",
+        "backText": "x10⁻⁹ 𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_result",
+        "frontText": "实验结果：𝑑=",
+        "backText": "x10⁻⁹ 𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "λ_yellow_1",
+        "frontText": "黄光波长1: 𝜆₁=",
+        "backText": "𝑛𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "λ_yellow_2",
+        "frontText": "黄光波长2: 𝜆₂=",
+        "backText": "𝑛𝑚"
+      }
+    }
+  ]
+}

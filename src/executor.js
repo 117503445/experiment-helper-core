@@ -1,5 +1,5 @@
 const mathjs = require("mathjs");
-const math = mathjs.create(mathjs.all, { number: "BigNumber" });
+const math = mathjs.create(mathjs.all, { number: "BigNumber",matrix: 'Array', });
 import { Interpreter } from "eval5";
 
 function getParser(functions) {
