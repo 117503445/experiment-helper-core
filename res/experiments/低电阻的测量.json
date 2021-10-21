@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "name": "低电阻的测量",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-21 11:14"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "R_1",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": 1000
+        }
+      },
+      {
+        "name": "R_3",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": 100
+        }
+      },
+      {
+        "name": "d",
+        "comment": "金属丝直径",
+        "source": {
+          "type": "input",
+          "default": [3.958, 3.955, 3.956, 3.951, 3.953, 3.952]
+        }
+      },
+      {
+        "name": "d_a",
+        "comment": "d 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "d_ua",
+        "comment": "d A类不确定度",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "d_u",
+        "comment": "d 不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "smartlab_u(d,0.001)"
+        }
+      },
+      {
+        "name": "d_result",
+        "comment": "d 结果 str",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(string(round(d_a,6)),\"±\",string(round(d_u,6)))"
+        }
+      },
+      {
+        "name": "L",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [100.0, 140.0, 180.0, 220.0, 260.0, 300.0, 340.0, 380.0]
+        }
+      },
+      {
+        "name": "R_n_zheng",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [0.00558, 0.00775, 0.01, 0.01224, 0.01446, 0.0167, 0.01891, 0.02127]
+        }
+      },
+      {
+        "name": "R_n_fan",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [0.00565, 0.00787, 0.0115, 0.01236, 0.01466, 0.01686, 0.01916, 0.02139]
+        }
+      },
+      {
+        "name": "R_n_a",
+        "comment": "R_n 平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "(R_n_zheng + R_n_fan) / 2"
+        }
+      },
+      {
+        "name": "R_x",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "R_n_a * R_3 / R_1 * 1000"
+        }
+      },
+      {
+        "name": "R_x_ua",
+        "comment": "R_x A类不确定度",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "R_x_a",
+        "comment": "R_x 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "𝛒",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "pi*d_a^2*R_x*100./(4*L)"
+        }
+      },
+      {
+        "name": "𝛒_a",
+        "comment": "𝛒平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "𝛒_u",
+        "comment": "𝛒 不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "sqrt(4 * (d_u/d_a)^2 + (R_x_ua / R_x_a)^2) * 𝛒_a"
+        }
+      },
+      {
+        "name": "𝛒_result",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(string(round(𝛒_a,6)),\"±\",string(round(𝛒_u,6)))"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "R_1",
+        "frontText": "𝑅₁= ",
+        "backText": " 𝛀"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "R_3",
+        "frontText": "𝑅₃= ",
+        "backText": " 𝛀"
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "金属丝长度测量数据表"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 7,
+        "height": 2,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["①", "②", "③", "④", "⑤", "⑥"],
+            "start": [1, 2],
+            "end": [1, 7]
+          },
+          {
+            "type": "constant",
+            "value": ["序号", "直径 𝑑/𝑚𝑚"],
+            "start": [1, 1],
+            "end": [2, 1]
+          },
+          {
+            "type": "variable",
+            "name": "d",
+            "start": [2, 2],
+            "end": [2, 7]
+          }
+        ]
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "金属丝长度测量数据表"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 9,
+        "height": 7,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["序号", "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧"],
+            "start": [1, 1],
+            "end": [1, 9]
+          },
+          {
+            "type": "constant",
+            "value": ["长度 𝐿/𝑚𝑚", "𝑅ₙ正/𝛀", "𝑅ₙ反/𝛀", "𝑅ₙ平均/𝛀", "𝑅ₓ/×10⁻³ 𝛀", "𝛒 /×10⁻⁸ 𝛀·𝑀"],
+            "start": [2, 1],
+            "end": [7, 1]
+          },
+          {
+            "type": "variable",
+            "name": "L",
+            "start": [2, 2],
+            "end": [2, 9]
+          },
+          {
+            "type": "variable",
+            "name": "R_n_zheng",
+            "start": [3, 2],
+            "end": [3, 9]
+          },
+          {
+            "type": "variable",
+            "name": "R_n_fan",
+            "start": [4, 2],
+            "end": [4, 9]
+          },
+          {
+            "type": "variable",
+            "name": "R_n_a",
+            "start": [5, 2],
+            "end": [5, 9]
+          },
+          {
+            "type": "variable",
+            "name": "R_x",
+            "start": [6, 2],
+            "end": [6, 9]
+          },
+          {
+            "type": "variable",
+            "name": "𝛒",
+            "start": [7, 2],
+            "end": [7, 9]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_result",
+        "frontText": "平均直径：",
+        "backText": "𝑚𝑚"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_ua",
+        "frontText": "直径的A类不确定度：",
+        "backText": "𝑚𝑚",
+        "precision": 6
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "R_x_ua",
+        "frontText": "𝑅ₓ的A类不确定度：",
+        "backText": " ×10⁻³ 𝛀",
+        "precision": 6
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "𝛒_result",
+        "frontText": "平均电阻率：",
+        "backText": "×10⁻⁸ 𝛀·𝑀"
+      }
+    }
+  ]
+}
