@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "name": "电子元件伏安特性的测量",
+    "author": "117503445",
+    "contributors": ["尘与风"],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-22 09:37"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "I_1",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [5.4, 11.5, 17.9, 24.7, 31.6, 38.1, 44.9, 51.3, 58.0, 65.4]
+        }
+      },
+      {
+        "name": "U_1",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [0.54, 1.15, 1.79, 2.48, 3.16, 3.81, 4.49, 5.13, 5.8, 6.52]
+        }
+      },
+      {
+        "name": "R_1",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "U_1 ./ I_1 * 1000"
+        }
+      },
+      {
+        "name": "I_2",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [27.8, 38.0, 46.8, 54.9, 62.4, 69.2, 75.8, 81.5, 87.6, 93.0]
+        }
+      },
+      {
+        "name": "U_2",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [0.88, 1.81, 2.77, 3.74, 4.72, 5.66, 6.65, 7.57, 8.59, 9.54]
+        }
+      },
+      {
+        "name": "R_2",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "U_2 ./ I_2 * 1000"
+        }
+      },
+
+      {
+        "name": "I_3",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [0.8, 2.63, 4.39, 6.33, 8.21, 10.19, 12.04, 15.84]
+        }
+      },
+      {
+        "name": "U_3",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [0.572, 0.629, 0.653, 0.67, 0.681, 0.691, 0.698, 0.71]
+        }
+      },
+      {
+        "name": "R_3",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "U_3 ./ I_3"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "测量线性电阻元件的伏安特性"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 12,
+        "height": 4,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["U_s/v", "I/mA", "U/V", "R/Ω"],
+            "start": [1, 1],
+            "end": [4, 1]
+          },
+          {
+            "type": "constant",
+            "value": ["0", "0", "0", "/"],
+            "start": [1, 2],
+            "end": [4, 2]
+          },
+          {
+            "type": "constant",
+            "value": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            "start": [1, 3],
+            "end": [1, 12]
+          },
+          {
+            "type": "variable",
+            "name": "I_1",
+            "start": [2, 3],
+            "end": [2, 12]
+          },
+          {
+            "type": "variable",
+            "name": "U_1",
+            "start": [3, 3],
+            "end": [3, 12]
+          },
+          {
+            "type": "variable",
+            "name": "R_1",
+            "start": [4, 3],
+            "end": [4, 12],
+            "precision": 0
+          }
+        ]
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "测量非线性电阻元件的伏安特性"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 12,
+        "height": 4,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["U_s/V", "灯泡电流I/mA", "灯泡电阻计算/Ω", "灯泡电压U/V"],
+            "start": [1, 1],
+            "end": [4, 1]
+          },
+          {
+            "type": "constant",
+            "value": ["0", "0", "/", "0"],
+            "start": [1, 2],
+            "end": [4, 2]
+          },
+          {
+            "type": "constant",
+            "value": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            "start": [1, 3],
+            "end": [1, 12]
+          },
+          {
+            "type": "variable",
+            "name": "I_2",
+            "start": [2, 3],
+            "end": [2, 12]
+          },
+          {
+            "type": "variable",
+            "name": "R_2",
+            "start": [3, 3],
+            "end": [3, 12]
+          },
+          {
+            "type": "variable",
+            "name": "U_2",
+            "start": [4, 3],
+            "end": [4, 12],
+            "precision": 0
+          }
+        ]
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "测量二极管的伏安特性"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 9,
+        "height": 3,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["I/mA", "U/V", "电阻计算值 R/kΩ"],
+            "start": [1, 1],
+            "end": [3, 1]
+          },
+          {
+            "type": "variable",
+            "name": "I_3",
+            "start": [1, 2],
+            "end": [1, 9]
+          },
+          {
+            "type": "variable",
+            "name": "U_3",
+            "start": [2, 2],
+            "end": [2, 9]
+          },
+          {
+            "type": "variable",
+            "name": "R_3",
+            "start": [3, 2],
+            "end": [3, 9],
+            "precision": 3
+          }
+        ]
+      }
+    }
+  ]
+}
