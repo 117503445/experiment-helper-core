@@ -1,411 +1,649 @@
 {
-    "meta": {
-      "name": "重力加速度的测量",
-      "author": "117503445",
-      "contributors": [],
-      "version": "0.0.1",
-      "LastEditTime": "2021-10-19 13:33"
-    },
-    "logic": {
-      "functions": {},
-      "variables": [
-        {
-          "name": "x_c",
-          "comment": "质心位置",
-          "source": {
-            "type": "input",
-            "default": 7.06
-          }
-        },
-        {
-          "name": "x_i",
-          "comment": "支点位置",
-          "source": {
-            "type": "input",
-            "default": [18.0, 15.98, 13.97, 12.0, 10.02, 7.98, 5.99, 4.0, 2.03]
-          }
-        },
-        {
-          "name": "g_0",
-          "comment": "西安理论重力加速度",
-          "source": {
-            "type": "mathjs",
-            "expression": "9.797"
-          }
-        },
-        {
-          "name": "t_1",
-          "comment": "",
-          "source": {
-            "type": "input",
-            "default": [13.09, 12.82, 13.04, 13.09, 12.97, 13.07, 13.07, 13.03]
-          }
-        },
-        {
-          "name": "t_1_a",
-          "comment": "t_1 单周期平均值",
-          "source": {
-            "type": "mathjs",
-            "expression": "mean(t_1)/10"
-          }
-        },
-        {
-          "name": "t_2",
-          "comment": "",
-          "source": {
-            "type": "input",
-            "default": [12.66, 12.94, 12.83, 12.88, 12.37, 12.56, 12.76, 12.67]
-          }
-        },
-        {
-          "name": "t_2_a",
-          "comment": "t_2 单周期平均值",
-          "source": {
-            "type": "mathjs",
-            "expression": "mean(t_2)/10"
-          }
-        },
-        {
-          "name": "t_3",
-          "comment": "",
-          "source": {
-            "type": "input",
-            "default": [12.9, 12.85, 12.62, 12.87, 12.91, 13.0, 12.8, 12.94]
-          }
-        },
-        {
-          "name": "t_3_a",
-          "comment": "t_3 单周期平均值",
-          "source": {
-            "type": "mathjs",
-            "expression": "mean(t_3)/10"
-          }
-        },
-        {
-          "name": "t_4",
-          "comment": "",
-          "source": {
-            "type": "input",
-            "default": [12.94, 12.9, 12.97, 13.15, 13.0, 12.97, 12.85, 12.75]
-          }
-        },
-        {
-          "name": "t_4_a",
-          "comment": "t_4 单周期平均值",
-          "source": {
-            "type": "mathjs",
-            "expression": "mean(t_4)/10"
-          }
-        },
-        {
-          "name": "t_5",
-          "comment": "",
-          "source": {
-            "type": "input",
-            "default": [12.97, 13.03, 13.03, 13.0, 13.04, 13.06, 13.0, 13.03]
-          }
-        },
-        {
-          "name": "t_5_a",
-          "comment": "t_5 单周期平均值",
-          "source": {
-            "type": "mathjs",
-            "expression": "mean(t_5)/10"
-          }
-        },
-        {
-          "name": "t_6",
-          "comment": "",
-          "source": {
-            "type": "input",
-            "default": [12.91, 13.23, 13.0, 13.03, 13.0, 13.04, 13.06, 13.0]
-          }
-        },
-        {
-          "name": "t_6_a",
-          "comment": "t_6 单周期平均值",
-          "source": {
-            "type": "mathjs",
-            "expression": "mean(t_6)/10"
-          }
-        },
-        {
-          "name": "t_7",
-          "comment": "",
-          "source": {
-            "type": "input",
-            "default": [13.64, 13.6, 13.47, 13.62, 13.59, 13.79, 13.5, 13.53]
-          }
-        },
-        {
-          "name": "t_7_a",
-          "comment": "t_7 单周期平均值",
-          "source": {
-            "type": "mathjs",
-            "expression": "mean(t_7)/10"
-          }
-        },
-        {
-          "name": "t_8",
-          "comment": "",
-          "source": {
-            "type": "input",
-            "default": [14.1, 14.09, 13.81, 14.07, 14.01, 14.16, 14.01, 14.22]
-          }
-        },
-        {
-          "name": "t_8_a",
-          "comment": "t_8 单周期平均值",
-          "source": {
-            "type": "mathjs",
-            "expression": "mean(t_8)/10"
-          }
-        },
-        {
-          "name": "t_9",
-          "comment": "",
-          "source": {
-            "type": "input",
-            "default": [15.13, 15.47, 15.34, 15.54, 15.44, 15.28, 15.03, 15.2]
-          }
-        },
-        {
-          "name": "t_9_a",
-          "comment": "t_9 单周期平均值",
-          "source": {
-            "type": "mathjs",
-            "expression": "mean(t_9)/10"
-          }
-        },
-        {
-          "name": "h",
-          "comment": "",
-          "source": {
-            "type": "mathjs",
-            "expression": "x_i+x_c"
-          }
-        },
-        {
-          "name": "g",
-          "comment": "实验测得重力加速度",
-          "source": {
-            "type": "mathjs",
-            "expression": "4*pi^2*(h[1]^2-h[9]^2)/(h[1]*t_1_a^2-h[9]*t_9_a^2) /100"
-          }
-        },
-        {
-          "name": "d_g",
-          "comment": "绝对误差",
-          "source": {
-            "type": "mathjs",
-            "expression": "abs(g - g_0)"
-          }
-        },
-        {
-          "name": "e_g",
-          "comment": "相对误差",
-          "source": {
-            "type": "mathjs",
-            "expression": "d_g/g_0*100"
-          }
-        }
-      ]
-    },
-    "ui": [
+  "meta": {
+    "name": "重力加速度的测量",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-22 20:24"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
       {
-        "type": "input",
-        "properties": {
-          "variableName": "x_c",
-          "frontText": "质心位置=",
-          "backText": " 𝑐𝑚(填入绝对值即可)"
+        "name": "x_c",
+        "comment": "质心位置",
+        "source": {
+          "type": "input",
+          "default": 7.06
         }
       },
       {
-        "type": "table",
-        "properties": {
-          "width": 10,
-          "height": 12,
-          "binds": [
-            {
-              "type": "constant",
-              "value": ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"],
-              "start": [1, 2],
-              "end": [1, 10]
-            },
-            {
-              "type": "constant",
-              "value": [
-                "序号",
-                "支点位置/𝑐𝑚",
-                "10周期1",
-                "10周期2",
-                "10周期3",
-                "10周期4",
-                "10周期5",
-                "10周期6",
-                "10周期7",
-                "10周期8",
-                "单周期平均",
-                "𝘩/𝑐𝑚"
-              ],
-              "start": [1, 1],
-              "end": [12, 1]
-            },
-            {
-              "type": "variable",
-              "name": "x_i",
-              "start": [2, 2],
-              "end": [2, 10]
-            },
-            {
-              "type": "variable",
-              "name": "t_1",
-              "start": [3, 2],
-              "end": [10, 2]
-            },
-            {
-              "type": "variable",
-              "name": "t_1_a",
-              "start": [11, 2],
-              "end": [11, 2]
-            },
-            {
-              "type": "variable",
-              "name": "t_2",
-              "start": [3, 3],
-              "end": [10, 3]
-            },
-            {
-              "type": "variable",
-              "name": "t_2_a",
-              "start": [11, 3],
-              "end": [11, 3]
-            },
-            {
-              "type": "variable",
-              "name": "t_3",
-              "start": [3, 4],
-              "end": [10, 4]
-            },
-            {
-              "type": "variable",
-              "name": "t_3_a",
-              "start": [11, 4],
-              "end": [11, 4]
-            },
-            {
-              "type": "variable",
-              "name": "t_4",
-              "start": [3, 5],
-              "end": [10, 5]
-            },
-            {
-              "type": "variable",
-              "name": "t_4_a",
-              "start": [11, 5],
-              "end": [11, 5]
-            },
-            {
-              "type": "variable",
-              "name": "t_5",
-              "start": [3, 6],
-              "end": [10, 6]
-            },
-            {
-              "type": "variable",
-              "name": "t_5_a",
-              "start": [11, 6],
-              "end": [11, 6]
-            },
-            {
-              "type": "variable",
-              "name": "t_6",
-              "start": [3, 7],
-              "end": [10, 7]
-            },
-            {
-              "type": "variable",
-              "name": "t_6_a",
-              "start": [11, 7],
-              "end": [11, 7]
-            },
-            {
-              "type": "variable",
-              "name": "t_7",
-              "start": [3, 8],
-              "end": [10, 8]
-            },
-            {
-              "type": "variable",
-              "name": "t_7_a",
-              "start": [11, 8],
-              "end": [11, 8]
-            },
-            {
-              "type": "variable",
-              "name": "t_8",
-              "start": [3, 9],
-              "end": [10, 9]
-            },
-            {
-              "type": "variable",
-              "name": "t_8_a",
-              "start": [11, 9],
-              "end": [11, 9]
-            },
-            {
-              "type": "variable",
-              "name": "t_9",
-              "start": [3, 10],
-              "end": [10, 10]
-            },
-            {
-              "type": "variable",
-              "name": "t_9_a",
-              "start": [11, 10],
-              "end": [11, 10]
-            },
-            {
-              "type": "variable",
-              "name": "h",
-              "start": [12, 2],
-              "end": [12, 10]
-            }
+        "name": "x_i",
+        "comment": "支点位置",
+        "source": {
+          "type": "input",
+          "default": [
+            18.0,
+            15.98,
+            13.97,
+            12.0,
+            10.02,
+            7.98,
+            5.99,
+            4.0,
+            2.03
           ]
         }
       },
       {
-        "type": "output",
-        "properties": {
-          "variableName": "g_0",
-          "frontText": "西安理论重力加速度: 𝘨₀= ",
-          "backText": " m/s^2"
+        "name": "g_0",
+        "comment": "西安理论重力加速度",
+        "source": {
+          "type": "mathjs",
+          "expression": "9.797"
         }
       },
       {
-        "type": "output",
-        "properties": {
-          "variableName": "g",
-          "frontText": "实验测得重力加速度: 𝘨 = ",
-          "backText": "m/s^2"
+        "name": "t_1",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [
+            13.09,
+            12.82,
+            13.04,
+            13.09,
+            12.97,
+            13.07,
+            13.07,
+            13.03
+          ]
         }
       },
       {
-        "type": "output",
-        "properties": {
-          "variableName": "d_g",
-          "frontText": "绝对误差: Δ𝘨 = ",
-          "backText": "m/s^2"
+        "name": "t_1_a",
+        "comment": "t_1 单周期平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(t_1)/10"
         }
       },
       {
-        "type": "output",
-        "properties": {
-          "variableName": "e_g",
-          "frontText": "相对误差: 𝐸=Δ𝘨/𝘨₀= ",
-          "backText": "%"
+        "name": "t_2",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [
+            12.66,
+            12.94,
+            12.83,
+            12.88,
+            12.37,
+            12.56,
+            12.76,
+            12.67
+          ]
+        }
+      },
+      {
+        "name": "t_2_a",
+        "comment": "t_2 单周期平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(t_2)/10"
+        }
+      },
+      {
+        "name": "t_3",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [
+            12.9,
+            12.85,
+            12.62,
+            12.87,
+            12.91,
+            13.0,
+            12.8,
+            12.94
+          ]
+        }
+      },
+      {
+        "name": "t_3_a",
+        "comment": "t_3 单周期平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(t_3)/10"
+        }
+      },
+      {
+        "name": "t_4",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [
+            12.94,
+            12.9,
+            12.97,
+            13.15,
+            13.0,
+            12.97,
+            12.85,
+            12.75
+          ]
+        }
+      },
+      {
+        "name": "t_4_a",
+        "comment": "t_4 单周期平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(t_4)/10"
+        }
+      },
+      {
+        "name": "t_5",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [
+            12.97,
+            13.03,
+            13.03,
+            13.0,
+            13.04,
+            13.06,
+            13.0,
+            13.03
+          ]
+        }
+      },
+      {
+        "name": "t_5_a",
+        "comment": "t_5 单周期平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(t_5)/10"
+        }
+      },
+      {
+        "name": "t_6",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [
+            12.91,
+            13.23,
+            13.0,
+            13.03,
+            13.0,
+            13.04,
+            13.06,
+            13.0
+          ]
+        }
+      },
+      {
+        "name": "t_6_a",
+        "comment": "t_6 单周期平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(t_6)/10"
+        }
+      },
+      {
+        "name": "t_7",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [
+            13.64,
+            13.6,
+            13.47,
+            13.62,
+            13.59,
+            13.79,
+            13.5,
+            13.53
+          ]
+        }
+      },
+      {
+        "name": "t_7_a",
+        "comment": "t_7 单周期平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(t_7)/10"
+        }
+      },
+      {
+        "name": "t_8",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [
+            14.1,
+            14.09,
+            13.81,
+            14.07,
+            14.01,
+            14.16,
+            14.01,
+            14.22
+          ]
+        }
+      },
+      {
+        "name": "t_8_a",
+        "comment": "t_8 单周期平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(t_8)/10"
+        }
+      },
+      {
+        "name": "t_9",
+        "comment": "",
+        "source": {
+          "type": "input",
+          "default": [
+            15.13,
+            15.47,
+            15.34,
+            15.54,
+            15.44,
+            15.28,
+            15.03,
+            15.2
+          ]
+        }
+      },
+      {
+        "name": "t_9_a",
+        "comment": "t_9 单周期平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(t_9)/10"
+        }
+      },
+      {
+        "name": "h",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "x_i+x_c"
+        }
+      },
+      {
+        "name": "g",
+        "comment": "实验测得重力加速度",
+        "source": {
+          "type": "mathjs",
+          "expression": "4*pi^2*(h[1]^2-h[9]^2)/(h[1]*t_1_a^2-h[9]*t_9_a^2) /100"
+        }
+      },
+      {
+        "name": "d_g",
+        "comment": "绝对误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(g - g_0)"
+        }
+      },
+      {
+        "name": "e_g",
+        "comment": "相对误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "d_g/g_0*100"
         }
       }
     ]
-  }
-  
+  },
+  "ui": [
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "x_c",
+        "frontText": "质心位置=",
+        "backText": " 𝑐𝑚(填入绝对值即可)"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 10,
+        "height": 12,
+        "binds": [
+          {
+            "type": "constant",
+            "value": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤",
+              "⑥",
+              "⑦",
+              "⑧",
+              "⑨"
+            ],
+            "start": [
+              1,
+              2
+            ],
+            "end": [
+              1,
+              10
+            ]
+          },
+          {
+            "type": "constant",
+            "value": [
+              "序号",
+              "支点位置/𝑐𝑚",
+              "10周期1",
+              "10周期2",
+              "10周期3",
+              "10周期4",
+              "10周期5",
+              "10周期6",
+              "10周期7",
+              "10周期8",
+              "单周期平均",
+              "𝘩/𝑐𝑚"
+            ],
+            "start": [
+              1,
+              1
+            ],
+            "end": [
+              12,
+              1
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "x_i",
+            "start": [
+              2,
+              2
+            ],
+            "end": [
+              2,
+              10
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_1",
+            "start": [
+              3,
+              2
+            ],
+            "end": [
+              10,
+              2
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_1_a",
+            "start": [
+              11,
+              2
+            ],
+            "end": [
+              11,
+              2
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_2",
+            "start": [
+              3,
+              3
+            ],
+            "end": [
+              10,
+              3
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_2_a",
+            "start": [
+              11,
+              3
+            ],
+            "end": [
+              11,
+              3
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_3",
+            "start": [
+              3,
+              4
+            ],
+            "end": [
+              10,
+              4
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_3_a",
+            "start": [
+              11,
+              4
+            ],
+            "end": [
+              11,
+              4
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_4",
+            "start": [
+              3,
+              5
+            ],
+            "end": [
+              10,
+              5
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_4_a",
+            "start": [
+              11,
+              5
+            ],
+            "end": [
+              11,
+              5
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_5",
+            "start": [
+              3,
+              6
+            ],
+            "end": [
+              10,
+              6
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_5_a",
+            "start": [
+              11,
+              6
+            ],
+            "end": [
+              11,
+              6
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_6",
+            "start": [
+              3,
+              7
+            ],
+            "end": [
+              10,
+              7
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_6_a",
+            "start": [
+              11,
+              7
+            ],
+            "end": [
+              11,
+              7
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_7",
+            "start": [
+              3,
+              8
+            ],
+            "end": [
+              10,
+              8
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_7_a",
+            "start": [
+              11,
+              8
+            ],
+            "end": [
+              11,
+              8
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_8",
+            "start": [
+              3,
+              9
+            ],
+            "end": [
+              10,
+              9
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_8_a",
+            "start": [
+              11,
+              9
+            ],
+            "end": [
+              11,
+              9
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_9",
+            "start": [
+              3,
+              10
+            ],
+            "end": [
+              10,
+              10
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "t_9_a",
+            "start": [
+              11,
+              10
+            ],
+            "end": [
+              11,
+              10
+            ]
+          },
+          {
+            "type": "variable",
+            "name": "h",
+            "start": [
+              12,
+              2
+            ],
+            "end": [
+              12,
+              10
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "g_0",
+        "frontText": "西安理论重力加速度: 𝘨₀= ",
+        "backText": " m/s^2"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "g",
+        "frontText": "实验测得重力加速度: 𝘨 = ",
+        "backText": "m/s^2"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_g",
+        "frontText": "绝对误差: Δ𝘨 = ",
+        "backText": "m/s^2"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "e_g",
+        "frontText": "相对误差: 𝐸=Δ𝘨/𝘨₀= ",
+        "backText": "%"
+      }
+    },
+    {
+      "type": "image",
+      "properties": {
+        "src": "https://experiment-helper-static.oss-cn-hangzhou.aliyuncs.com/images/公式/重力加速度的测量.png"
+      }
+    }
+  ]
+}

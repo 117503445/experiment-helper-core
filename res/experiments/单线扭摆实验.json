@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-17 20:30"
+    "LastEditTime": "2021-10-22 20:24"
   },
   "logic": {
     "functions": {},
@@ -46,7 +46,13 @@
         "comment": "摆盘时间",
         "source": {
           "type": "input",
-          "default": [47.56, 47.87, 47.59, 47.81, 47.72]
+          "default": [
+            47.56,
+            47.87,
+            47.59,
+            47.81,
+            47.72
+          ]
         }
       },
       {
@@ -69,7 +75,13 @@
         "comment": "摆盘圆环时间",
         "source": {
           "type": "input",
-          "default": [78.35, 78.41, 78.5, 78.38, 78.63]
+          "default": [
+            78.35,
+            78.41,
+            78.5,
+            78.38,
+            78.63
+          ]
         }
       },
       {
@@ -92,7 +104,11 @@
         "comment": "横向长度",
         "source": {
           "type": "input",
-          "default": [0.792, 0.803, 0.802]
+          "default": [
+            0.792,
+            0.803,
+            0.802
+          ]
         }
       },
       {
@@ -107,7 +123,11 @@
         "comment": "纵向长度",
         "source": {
           "type": "input",
-          "default": [0.811, 0.793, 0.791]
+          "default": [
+            0.811,
+            0.793,
+            0.791
+          ]
         }
       },
       {
@@ -184,51 +204,111 @@
         "binds": [
           {
             "type": "constant",
-            "value": ["①", "②", "③", "④", "⑤", "平均值", "单次周期"],
-            "start": [1, 2],
-            "end": [1, 8]
+            "value": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤",
+              "平均值",
+              "单次周期"
+            ],
+            "start": [
+              1,
+              2
+            ],
+            "end": [
+              1,
+              8
+            ]
           },
           {
             "type": "constant",
-            "value": ["振动时间(20次)", "摆盘𝑇₀", "摆盘+圆环𝑇"],
-            "start": [1, 1],
-            "end": [3, 1]
+            "value": [
+              "振动时间(20次)",
+              "摆盘𝑇₀",
+              "摆盘+圆环𝑇"
+            ],
+            "start": [
+              1,
+              1
+            ],
+            "end": [
+              3,
+              1
+            ]
           },
           {
             "type": "variable",
             "name": "T_0",
-            "start": [2, 2],
-            "end": [2, 6]
+            "start": [
+              2,
+              2
+            ],
+            "end": [
+              2,
+              6
+            ]
           },
           {
             "type": "variable",
             "name": "T_0_a",
-            "start": [2, 7],
-            "end": [2, 7]
+            "start": [
+              2,
+              7
+            ],
+            "end": [
+              2,
+              7
+            ]
           },
           {
             "type": "variable",
             "name": "T_0_t",
-            "start": [2, 8],
-            "end": [2, 8]
+            "start": [
+              2,
+              8
+            ],
+            "end": [
+              2,
+              8
+            ]
           },
           {
             "type": "variable",
             "name": "T",
-            "start": [3, 2],
-            "end": [3, 6]
+            "start": [
+              3,
+              2
+            ],
+            "end": [
+              3,
+              6
+            ]
           },
           {
             "type": "variable",
             "name": "T_a",
-            "start": [3, 7],
-            "end": [3, 7]
+            "start": [
+              3,
+              7
+            ],
+            "end": [
+              3,
+              7
+            ]
           },
           {
             "type": "variable",
             "name": "T_t",
-            "start": [3, 8],
-            "end": [3, 8]
+            "start": [
+              3,
+              8
+            ],
+            "end": [
+              3,
+              8
+            ]
           }
         ]
       }
@@ -257,39 +337,84 @@
         "binds": [
           {
             "type": "constant",
-            "value": ["", "上部", "中部", "下部", "平均值"],
-            "start": [1, 1],
-            "end": [1, 5]
+            "value": [
+              "",
+              "上部",
+              "中部",
+              "下部",
+              "平均值"
+            ],
+            "start": [
+              1,
+              1
+            ],
+            "end": [
+              1,
+              5
+            ]
           },
           {
             "type": "constant",
-            "value": ["横向", "纵向"],
-            "start": [2, 1],
-            "end": [3, 1]
+            "value": [
+              "横向",
+              "纵向"
+            ],
+            "start": [
+              2,
+              1
+            ],
+            "end": [
+              3,
+              1
+            ]
           },
           {
             "type": "variable",
             "name": "l_heng",
-            "start": [2, 2],
-            "end": [2, 4]
+            "start": [
+              2,
+              2
+            ],
+            "end": [
+              2,
+              4
+            ]
           },
           {
             "type": "variable",
             "name": "l_heng_a",
-            "start": [2, 5],
-            "end": [2, 5]
+            "start": [
+              2,
+              5
+            ],
+            "end": [
+              2,
+              5
+            ]
           },
           {
             "type": "variable",
             "name": "l_zong",
-            "start": [3, 2],
-            "end": [3, 4]
+            "start": [
+              3,
+              2
+            ],
+            "end": [
+              3,
+              4
+            ]
           },
           {
             "type": "variable",
             "name": "l_zong_a",
-            "start": [3, 5],
-            "end": [3, 5]
+            "start": [
+              3,
+              5
+            ],
+            "end": [
+              3,
+              5
+            ]
           }
         ]
       }
@@ -364,6 +489,12 @@
         "variableName": "E",
         "frontText": "相对误差: 𝐸=",
         "backText": "%"
+      }
+    },
+    {
+      "type": "image",
+      "properties": {
+        "src": "https://experiment-helper-static.oss-cn-hangzhou.aliyuncs.com/images/公式/单线扭摆实验.png"
       }
     }
   ]

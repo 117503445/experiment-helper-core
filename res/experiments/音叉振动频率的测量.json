@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-14 11:03"
+    "LastEditTime": "2021-10-22 20:24"
   },
   "logic": {
     "functions": {},
@@ -38,7 +38,13 @@
         "comment": "砝码质量",
         "source": {
           "type": "input",
-          "default": [25, 50, 100, 125, 175]
+          "default": [
+            25,
+            50,
+            100,
+            125,
+            175
+          ]
         }
       },
       {
@@ -46,7 +52,13 @@
         "comment": "波腹数",
         "source": {
           "type": "input",
-          "default": [6, 5, 4, 3, 2]
+          "default": [
+            6,
+            5,
+            4,
+            3,
+            2
+          ]
         }
       },
       {
@@ -54,7 +66,13 @@
         "comment": "弦线长",
         "source": {
           "type": "input",
-          "default": [76.9, 88, 102.6, 84.5, 67.4]
+          "default": [
+            76.9,
+            88,
+            102.6,
+            84.5,
+            67.4
+          ]
         }
       },
       {
@@ -156,51 +174,107 @@
         "binds": [
           {
             "type": "constant",
-            "value": ["砝码质量𝑚/𝑔", "波腹数", "弦线长L/𝑐𝑚", "√𝑚", "波长", "波速", "频率"],
-            "start": [1, 1],
-            "end": [1, 7]
+            "value": [
+              "砝码质量𝑚/𝑔",
+              "波腹数",
+              "弦线长L/𝑐𝑚",
+              "√𝑚",
+              "波长",
+              "波速",
+              "频率"
+            ],
+            "start": [
+              1,
+              1
+            ],
+            "end": [
+              1,
+              7
+            ]
           },
           {
             "type": "variable",
             "name": "m",
-            "start": [2, 1],
-            "end": [6, 1]
+            "start": [
+              2,
+              1
+            ],
+            "end": [
+              6,
+              1
+            ]
           },
           {
             "type": "variable",
             "name": "n",
-            "start": [2, 2],
-            "end": [6, 2]
+            "start": [
+              2,
+              2
+            ],
+            "end": [
+              6,
+              2
+            ]
           },
           {
             "type": "variable",
             "name": "L",
-            "start": [2, 3],
-            "end": [6, 3]
+            "start": [
+              2,
+              3
+            ],
+            "end": [
+              6,
+              3
+            ]
           },
           {
             "type": "variable",
             "name": "sqrt_m",
-            "start": [2, 4],
-            "end": [6, 4]
+            "start": [
+              2,
+              4
+            ],
+            "end": [
+              6,
+              4
+            ]
           },
           {
             "type": "variable",
             "name": "λ",
-            "start": [2, 5],
-            "end": [6, 5]
+            "start": [
+              2,
+              5
+            ],
+            "end": [
+              6,
+              5
+            ]
           },
           {
             "type": "variable",
             "name": "v",
-            "start": [2, 6],
-            "end": [6, 6]
+            "start": [
+              2,
+              6
+            ],
+            "end": [
+              6,
+              6
+            ]
           },
           {
             "type": "variable",
             "name": "f",
-            "start": [2, 7],
-            "end": [6, 7]
+            "start": [
+              2,
+              7
+            ],
+            "end": [
+              6,
+              7
+            ]
           }
         ]
       }
@@ -235,6 +309,12 @@
         "variableName": "E",
         "frontText": "相对误差: 𝐸=Δ𝑓/𝑓₀=",
         "backText": " 𝐻𝑧"
+      }
+    },
+    {
+      "type": "image",
+      "properties": {
+        "src": "https://experiment-helper-static.oss-cn-hangzhou.aliyuncs.com/images/公式/音叉振动频率的测量.png"
       }
     }
   ]

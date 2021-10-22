@@ -86,6 +86,8 @@ export class Binder {
           break;
         case "textbox":
           break;
+        case "image":
+          break;
         case "table":
           let grids = [];
           for (let j = 0; j < expItem["properties"]["width"] * expItem["properties"]["height"]; j++) {
@@ -164,7 +166,7 @@ export class Binder {
           delete labItem.properties.binds;
           break;
         default:
-          console.error("unsupport UI type", x);
+          console.error("unsupport UI type", expItem);
       }
 
       labItems.push(labItem);

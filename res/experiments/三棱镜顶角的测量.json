@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-19 13:33"
+    "LastEditTime": "2021-10-22 20:24"
   },
   "logic": {
     "functions": {
@@ -27,7 +27,12 @@
         "comment": "",
         "source": {
           "type": "input",
-          "default": [298.20, 279.50, 278.07, 304.14]
+          "default": [
+            298.20,
+            279.50,
+            278.07,
+            304.14
+          ]
         }
       },
       {
@@ -43,7 +48,12 @@
         "comment": "",
         "source": {
           "type": "input",
-          "default": [118.00, 99.44, 98.01, 124.20]
+          "default": [
+            118.00,
+            99.44,
+            98.01,
+            124.20
+          ]
         }
       },
       {
@@ -59,7 +69,12 @@
         "comment": "",
         "source": {
           "type": "input",
-          "default": [178.14, 160.20, 158.14, 183.47]
+          "default": [
+            178.14,
+            160.20,
+            158.14,
+            183.47
+          ]
         }
       },
       {
@@ -75,7 +90,12 @@
         "comment": "",
         "source": {
           "type": "input",
-          "default": [358.14, 340.2, 338.15, 3.47]
+          "default": [
+            358.14,
+            340.2,
+            338.15,
+            3.47
+          ]
         }
       },
       {
@@ -211,45 +231,99 @@
         "binds": [
           {
             "type": "constant",
-            "value": ["序号", "𝜽𝘈⁻¹", "𝜽𝘉⁻¹", "𝜽𝘈⁺¹", "𝜽𝘉⁺¹", "αᵢ"],
-            "start": [1, 1],
-            "end": [1, 6]
+            "value": [
+              "序号",
+              "𝜽𝘈⁻¹",
+              "𝜽𝘉⁻¹",
+              "𝜽𝘈⁺¹",
+              "𝜽𝘉⁺¹",
+              "αᵢ"
+            ],
+            "start": [
+              1,
+              1
+            ],
+            "end": [
+              1,
+              6
+            ]
           },
           {
             "type": "constant",
-            "value": ["①", "②", "③", "④"],
-            "start": [2, 1],
-            "end": [5, 1]
+            "value": [
+              "①",
+              "②",
+              "③",
+              "④"
+            ],
+            "start": [
+              2,
+              1
+            ],
+            "end": [
+              5,
+              1
+            ]
           },
           {
             "type": "variable",
             "name": "θ_A_1",
-            "start": [2, 2],
-            "end": [5, 2]
+            "start": [
+              2,
+              2
+            ],
+            "end": [
+              5,
+              2
+            ]
           },
           {
             "type": "variable",
             "name": "θ_B_1",
-            "start": [2, 3],
-            "end": [5, 3]
+            "start": [
+              2,
+              3
+            ],
+            "end": [
+              5,
+              3
+            ]
           },
           {
             "type": "variable",
             "name": "θ_A_2",
-            "start": [2, 4],
-            "end": [5, 4]
+            "start": [
+              2,
+              4
+            ],
+            "end": [
+              5,
+              4
+            ]
           },
           {
             "type": "variable",
             "name": "θ_B_2",
-            "start": [2, 5],
-            "end": [5, 5]
+            "start": [
+              2,
+              5
+            ],
+            "end": [
+              5,
+              5
+            ]
           },
           {
             "type": "variable",
             "name": "α_str",
-            "start": [2, 6],
-            "end": [5, 6]
+            "start": [
+              2,
+              6
+            ],
+            "end": [
+              5,
+              6
+            ]
           }
         ]
       }
@@ -292,6 +366,12 @@
         "variableName": "α_d_re",
         "frontText": "相对误差 ",
         "backText": "%"
+      }
+    },
+    {
+      "type": "image",
+      "properties": {
+        "src": "https://experiment-helper-static.oss-cn-hangzhou.aliyuncs.com/images/公式/三棱镜顶角的测量.png"
       }
     }
   ]
