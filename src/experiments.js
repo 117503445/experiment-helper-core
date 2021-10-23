@@ -2,7 +2,7 @@
  * @Author: HaoTian Qi
  * @Date: 2021-10-09 22:18:51
  * @Description:
- * @LastEditTime: 2021-10-22 09:36:27
+ * @LastEditTime: 2021-10-23 11:20:38
  * @LastEditors: HaoTian Qi
  */
 let names = [
@@ -13,6 +13,7 @@ let names = [
   "光栅光谱的测量",
   "霍尔效应实验",
   "激光波长的测量",
+  "静电场的模拟",
   "空气中声速的测量",
   "平凸透镜曲率半径的测量",
   "三棱镜顶角的测量",

@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "name": "静电场的模拟",
+    "author": "117503445",
+    "contributors": [],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-23 11:20"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "U_r",
+        "comment": "相对电位",
+        "source": {
+          "type": "mathjs",
+          "expression": "[7,6,5,4,3,2,1]"
+        }
+      },
+      {
+        "name": "r",
+        "comment": "半径",
+        "source": {
+          "type": "input",
+          "default": [1.65, 2.11, 2.65, 3.28, 3.95, 4.71, 5.52]
+        }
+      },
+      {
+        "name": "U_r_U_a",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "U_r / 10"
+        }
+      },
+      {
+        "name": "ln_r",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "log(r)"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "同轴电缆模型电场分布的相对电位与半径数据表"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 8,
+        "height": 4,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["U_r'/V", "r/cm", "U_r'/U_A", "ln(r)"],
+            "start": [1, 1],
+            "end": [4, 1]
+          },
+          {
+            "type": "variable",
+            "name": "U_r",
+            "start": [1, 2],
+            "end": [1, 8]
+          },
+          {
+            "type": "variable",
+            "name": "r",
+            "start": [2, 2],
+            "end": [2, 8]
+          },
+          {
+            "type": "variable",
+            "name": "U_r_U_a",
+            "start": [3, 2],
+            "end": [3, 8]
+          },
+          {
+            "type": "variable",
+            "name": "ln_r",
+            "start": [4, 2],
+            "end": [4, 8]
+          }
+        ]
+      }
+    }
+  ]
+}
