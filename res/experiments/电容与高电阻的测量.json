@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "name": "电容与高电阻的测量",
+    "author": "117503445",
+    "contributors": ["尘与风"],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-24 12:49"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "Q_N",
+        "comment": "标准电容C_N的充电量",
+        "source": {
+          "type": "input",
+          "default": [1.86, 3.89, 5.91, 7.94, 9.98, 12.03, 14.05, 16.05]
+        }
+      },
+      {
+        "name": "Q_X",
+        "comment": "被测电容C_X的充电量",
+        "source": {
+          "type": "input",
+          "default": [0.196, 0.41, 0.622, 0.837, 1.049, 1.261, 1.473, 1.634]
+        }
+      },
+      {
+        "name": "C_X",
+        "comment": "被测电容CX的电容值",
+        "source": {
+          "type": "mathjs",
+          "expression": "Q_X./Q_N"
+        }
+      },
+      {
+        "name": "C_X_a",
+        "comment": "C_X 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "Q",
+        "comment": "电流计充电量",
+        "source": {
+          "type": "input",
+          "default": [9.16, 8.43, 7.43, 6.86, 6.34, 5.84, 5.23, 4.71, 4.35, 3.99, 3.59, 3.29, 2.98, 2.65, 2.49, 2.22]
+        }
+      },
+      {
+        "name": "Q_ln",
+        "comment": "ln(Q)",
+        "source": {
+          "type": "mathjs",
+          "expression": "log(Q)"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "冲击法测量电容数据表"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 9,
+        "height": 4,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["电压/V", "Q_N/uC", "Q_X/uC", "C_X/uF"],
+            "start": [1, 1],
+            "end": [4, 1]
+          },
+          {
+            "type": "constant",
+            "value": ["2.00", "4.00", "6.00", "8.00", "10.00", "12.00", "14.00", "16:00"],
+            "start": [1, 2],
+            "end": [1, 9]
+          },
+          {
+            "type": "variable",
+            "name": "Q_N",
+            "start": [2, 2],
+            "end": [2, 9]
+          },
+          {
+            "type": "variable",
+            "name": "Q_X",
+            "start": [3, 2],
+            "end": [3, 9]
+          },
+          {
+            "type": "variable",
+            "name": "C_X",
+            "start": [4, 2],
+            "end": [4, 9],
+            "precision": 4
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "C_X_a",
+        "frontText": "C_X 平均值",
+        "backText": "uF",
+        "precision": 4
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "冲击法测量高阻数据表"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 17,
+        "height": 3,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["序号", "Q/uC", "Ln(Q)"],
+            "start": [1, 1],
+            "end": [3, 1]
+          },
+          {
+            "type": "constant",
+            "value": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"],
+            "start": [1, 2],
+            "end": [1, 17]
+          },
+          {
+            "type": "variable",
+            "name": "Q",
+            "start": [2, 2],
+            "end": [2, 17]
+          },
+          {
+            "type": "variable",
+            "name": "Q_ln",
+            "start": [3, 2],
+            "end": [3, 17]
+          }
+        ]
+      }
+    }
+  ]
+}

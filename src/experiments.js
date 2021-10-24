@@ -2,12 +2,13 @@
  * @Author: HaoTian Qi
  * @Date: 2021-10-09 22:18:51
  * @Description:
- * @LastEditTime: 2021-10-23 11:20:38
+ * @LastEditTime: 2021-10-24 12:48:52
  * @LastEditors: HaoTian Qi
  */
 let names = [
   "单线扭摆实验",
   "低电阻的测量",
+  "电容与高电阻的测量",
   "电子元件伏安特性的测量",
   "刚体转动惯量的测量",
   "光栅光谱的测量",
