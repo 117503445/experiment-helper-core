@@ -1,0 +1,367 @@
+{
+  "meta": {
+    "name": "薄透镜焦距的测量",
+    "author": "117503445",
+    "contributors": ["尘与风"],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-25 16:48"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "F_1",
+        "comment": "透镜焦距",
+        "source": {
+          "type": "input",
+          "default": [15.2, 15.05, 15.16, 15.09, 15.0, 15.05, 15.1, 15.1]
+        }
+      },
+      {
+        "name": "F_1_a",
+        "comment": "F_1 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "F_1_ua",
+        "comment": "F_1 A类不确定度",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "F_1_u",
+        "comment": "F_1 不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "smartlab_u(F_1,0.05)"
+        }
+      },
+      {
+        "name": "F_1_result",
+        "comment": "F_1 结果",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(string(round(F_1_a,2)),\"±\",string(round(F_1_u,2)))"
+        }
+      },
+      {
+        "name": "X_0",
+        "comment": "物屏位置",
+        "source": {
+          "type": "input",
+          "default": [-15, -18, -20]
+        }
+      },
+      {
+        "name": "X_3",
+        "comment": "像屏位置",
+        "source": {
+          "type": "input",
+          "default": [50, 50, 50]
+        }
+      },
+      {
+        "name": "X_1",
+        "comment": "透镜位置",
+        "source": {
+          "type": "input",
+          "default": [13.5, 14.0, 13.55]
+        }
+      },
+      {
+        "name": "X_2",
+        "comment": "透镜位置",
+        "source": {
+          "type": "input",
+          "default": [18.1, 18.01, 18.01]
+        }
+      },
+      {
+        "name": "D",
+        "comment": "固定物与像屏的间距",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(X_3-X_0)"
+        }
+      },
+      {
+        "name": "d",
+        "comment": "两次成像时的位移",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(X_2-X_1)"
+        }
+      },
+      {
+        "name": "F_2",
+        "comment": "透镜焦距",
+        "source": {
+          "type": "mathjs",
+          "expression": "(D.^2-d.^2)./(4*D)"
+        }
+      },
+      {
+        "name": "F_2_a",
+        "comment": "透镜焦距 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "X_4",
+        "comment": "凸透镜的位置读数",
+        "source": {
+          "type": "input",
+          "default": [16.5, 16.49, 16.48, 16.51, 16.5, 16.5, 16.5, 16.51]
+        }
+      },
+      {
+        "name": "X_5",
+        "comment": "F点的位置读数",
+        "source": {
+          "type": "input",
+          "default": [26, 26.35, 26, 26.01, 26.02, 26.2, 26.3, 26.25]
+        }
+      },
+      {
+        "name": "F_3",
+        "comment": "透镜焦距",
+        "source": {
+          "type": "mathjs",
+          "expression": "-abs(X_5-X_4)"
+        }
+      },
+      {
+        "name": "F_3_a",
+        "comment": "透镜焦距 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "F_3_u",
+        "comment": "F_3 不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "smartlab_u(F_3,0.05)"
+        }
+      },
+      {
+        "name": "F_3_result",
+        "comment": "F_3 结果",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(string(round(F_3_a,2)),\"±\",string(round(F_3_u,2)))"
+        }
+      },
+      {
+        "name": "E_F_3",
+        "comment": "相对不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(F_3_u / F_3_a) * 100"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "目准法测量凸透镜焦距"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 9,
+        "height": 2,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["1", "2", "3", "4", "5", "6", "7", "8"],
+            "start": [1, 2],
+            "end": [1, 9]
+          },
+          {
+            "type": "constant",
+            "value": ["次数 n", "F"],
+            "start": [1, 1],
+            "end": [2, 1]
+          },
+          {
+            "type": "variable",
+            "name": "F_1",
+            "start": [2, 2],
+            "end": [2, 9]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "F_1_ua",
+        "frontText": "F_1 A类不确定度",
+        "backText": "cm"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "F_1_u",
+        "frontText": "F_1 不确定度",
+        "backText": "cm"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "F_1_result",
+        "frontText": "F_1 结果",
+        "backText": "cm"
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "共轭法测量凸透镜焦距"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 8,
+        "height": 4,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["次数n", "X_0", "X_3", "X_1", "X_2", "D", "d", "f"],
+            "start": [1, 1],
+            "end": [1, 8]
+          },
+          {
+            "type": "constant",
+            "value": ["1", "2", "3"],
+            "start": [2, 1],
+            "end": [4, 1]
+          },
+          {
+            "type": "variable",
+            "name": "X_0",
+            "start": [2, 2],
+            "end": [4, 2]
+          },
+          {
+            "type": "variable",
+            "name": "X_3",
+            "start": [2, 3],
+            "end": [4, 3]
+          },
+          {
+            "type": "variable",
+            "name": "X_1",
+            "start": [2, 4],
+            "end": [4, 4]
+          },
+          {
+            "type": "variable",
+            "name": "X_2",
+            "start": [2, 5],
+            "end": [4, 5]
+          },
+          {
+            "type": "variable",
+            "name": "D",
+            "start": [2, 6],
+            "end": [4, 6]
+          },
+          {
+            "type": "variable",
+            "name": "d",
+            "start": [2, 7],
+            "end": [4, 7]
+          },
+          {
+            "type": "variable",
+            "name": "F_2",
+            "start": [2, 8],
+            "end": [4, 8]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "F_2_a",
+        "frontText": "透镜焦距F 平均值",
+        "backText": "cm"
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "自准法测量凹透镜焦距"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 9,
+        "height": 4,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["1", "2", "3", "4", "5", "6", "7", "8"],
+            "start": [1, 2],
+            "end": [1, 9]
+          },
+          {
+            "type": "constant",
+            "value": ["次数n", "X_4", "X_5", "F"],
+            "start": [1, 1],
+            "end": [4, 1]
+          },
+          {
+            "type": "variable",
+            "name": "X_4",
+            "start": [2, 2],
+            "end": [2, 9]
+          },
+          {
+            "type": "variable",
+            "name": "X_5",
+            "start": [3, 2],
+            "end": [3, 9]
+          },
+          {
+            "type": "variable",
+            "name": "F_3",
+            "start": [4, 2],
+            "end": [4, 9]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "F_3_result",
+        "frontText": "F_3 结果",
+        "backText": "cm"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "E_F_3",
+        "frontText": "相对不确定度 E_F",
+        "backText": "%"
+      }
+    }
+  ]
+}

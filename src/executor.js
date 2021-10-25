@@ -1,20 +1,21 @@
 const mathjs = require("mathjs");
-const math = mathjs.create(mathjs.all, { number: "BigNumber",matrix: 'Array', });
+const math = mathjs.create(mathjs.all, { number: "BigNumber", matrix: "Array" });
 import { Interpreter } from "eval5";
 
 function getParser(functions) {
   function smartlab_ua(arr) {
     let n = arr.length;
 
-    let t_factor = [0, 0, 1.84, 1.32, 1.2, 1.14];
+    let t_factor = [0, 0, 1.84, 1.32, 1.2, 1.14, 1.11, 1.09, 1.08];
     let t;
-    if (n < 6) {
+    if (n < t_factor.length) {
       t = t_factor[n];
     } else {
       t = 1;
     }
 
     let avernum = mathjs.mean(arr);
+
     let s = 0; //残差平方之和
     for (const v of arr) {
       s += mathjs.pow(v - avernum, 2);
@@ -26,7 +27,7 @@ function getParser(functions) {
 
   function smartlab_u(arr, uncertainty_yq) {
     let uncertainty_a = smartlab_ua(arr);
-    return Math.sqrt(Math.pow(uncertainty_a, 2) + Math.pow(uncertainty_yq, 2) / 6);
+    return Math.sqrt(Math.pow(uncertainty_a, 2) + Math.pow(uncertainty_yq, 2) / 3);
   }
 
   const parser = math.parser();
