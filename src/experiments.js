@@ -2,7 +2,7 @@
  * @Author: HaoTian Qi
  * @Date: 2021-10-09 22:18:51
  * @Description:
- * @LastEditTime: 2021-10-25 16:58:07
+ * @LastEditTime: 2021-10-27 10:44:51
  * @LastEditors: HaoTian Qi
  */
 let names = [
@@ -12,6 +12,7 @@ let names = [
   "电容与高电阻的测量",
   "电子元件伏安特性的测量",
   "刚体转动惯量的测量",
+  "光的偏振特性的检测",
   "光栅光谱的测量",
   "霍尔效应实验",
   "激光波长的测量",
