@@ -1,0 +1,246 @@
+{
+  "meta": {
+    "name": "电表的改装与校准",
+    "author": "117503445",
+    "contributors": ["尘与风"],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-28 10:25"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "R_g",
+        "comment": "输入",
+        "source": {
+          "type": "input",
+          "default": [3399, 3400, 3450]
+        }
+      },
+      {
+        "name": "R_g_a",
+        "comment": "R_g 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "R_s_jisuan",
+        "comment": "Rs（计算值）",
+        "source": {
+          "type": "mathjs",
+          "expression": "R_g_a / 9"
+        }
+      },
+      {
+        "name": "R_s_shiyan",
+        "comment": "Rs（实验值）",
+        "source": {
+          "type": "input",
+          "default": 387
+        }
+      },
+      {
+        "name": "I_x",
+        "comment": "电流改装表示值",
+        "source": {
+          "type": "mathjs",
+          "expression": "[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]"
+        }
+      },
+      {
+        "name": "I_s",
+        "comment": "电流标准表的值",
+        "source": {
+          "type": "input",
+          "default": [0.1, 0.21, 0.305, 0.4, 0.51, 0.61, 0.7, 0.83, 0.92, 1.0]
+        }
+      },
+      {
+        "name": "I_x_d",
+        "comment": "电流修正值",
+        "source": {
+          "type": "mathjs",
+          "expression": "I_s - I_x"
+        }
+      },
+      {
+        "name": "R_h_jisuan",
+        "comment": "分压电阻（计算值）",
+        "source": {
+          "type": "mathjs",
+          "expression": "10000 - R_g_a"
+        }
+      },
+      {
+        "name": "R_h_shiyan",
+        "comment": "分压电阻（实验值）",
+        "source": {
+          "type": "input",
+          "default": 6480
+        }
+      },
+      {
+        "name": "U_x",
+        "comment": "电压改装表示值",
+        "source": {
+          "type": "mathjs",
+          "expression": "[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]"
+        }
+      },
+      {
+        "name": "U_s",
+        "comment": "电压标准表的值",
+        "source": {
+          "type": "input",
+          "default": [0.105, 0.2, 0.31, 0.4, 0.51, 0.605, 0.71, 0.805, 0.9, 1]
+        }
+      },
+      {
+        "name": "U_x_d",
+        "comment": "电压修正值",
+        "source": {
+          "type": "mathjs",
+          "expression": "U_s-U_x"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "测量表头内阻数据表格"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 4,
+        "height": 2,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["I/uA", "R_g/Ω"],
+            "start": [1, 1],
+            "end": [2, 1]
+          },
+          {
+            "type": "constant",
+            "value": [70, 80, 90],
+            "start": [1, 2],
+            "end": [1, 4]
+          },
+          {
+            "type": "variable",
+            "name": "R_g",
+            "start": [2, 2],
+            "end": [2, 4]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "R_g_a",
+        "frontText": "R_g 平均值",
+        "backText": "Ω"
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "电流表校正数据表格"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "R_s_jisuan",
+        "frontText": "R_s 计算值",
+        "backText": "Ω"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 11,
+        "height": 3,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["I_x/mA", "I_s/mA", "I_s-I_x/mA"],
+            "start": [1, 1],
+            "end": [3, 1]
+          },
+          {
+            "type": "variable",
+            "name": "I_x",
+            "start": [1, 2],
+            "end": [1, 11]
+          },
+          {
+            "type": "variable",
+            "name": "I_s",
+            "start": [2, 2],
+            "end": [2, 11]
+          },
+          {
+            "type": "variable",
+            "name": "I_x_d",
+            "start": [3, 2],
+            "end": [3, 11]
+          }
+        ]
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "电压表校正数据表格"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "R_h_jisuan",
+        "frontText": "分压电阻 R_H",
+        "backText": "Ω"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 11,
+        "height": 3,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["U_x/V", "U_s/V", "U_s - U_x /V"],
+            "start": [1, 1],
+            "end": [3, 1]
+          },
+          {
+            "type": "variable",
+            "name": "U_x",
+            "start": [1, 2],
+            "end": [1, 11]
+          },
+          {
+            "type": "variable",
+            "name": "U_s",
+            "start": [2, 2],
+            "end": [2, 11]
+          },
+          {
+            "type": "variable",
+            "name": "U_x_d",
+            "start": [3, 2],
+            "end": [3, 11]
+          }
+        ]
+      }
+    }
+  ]
+}

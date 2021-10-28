@@ -2,13 +2,14 @@
  * @Author: HaoTian Qi
  * @Date: 2021-10-09 22:18:51
  * @Description:
- * @LastEditTime: 2021-10-27 10:44:51
+ * @LastEditTime: 2021-10-28 11:24:43
  * @LastEditors: HaoTian Qi
  */
 let names = [
   "薄透镜焦距的测量",
   "单线扭摆实验",
   "低电阻的测量",
+  "电表的改装与校准",
   "电容与高电阻的测量",
   "电子元件伏安特性的测量",
   "刚体转动惯量的测量",
