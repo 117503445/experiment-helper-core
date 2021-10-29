@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-14 11:03"
+    "LastEditTime": "2021-10-29 21:13"
   },
   "logic": {
     "functions": {},
@@ -101,6 +101,12 @@
   },
   "ui": [
     {
+      "type": "tablehead",
+      "properties": {
+        "text": "磁感应强度的测量数据表"
+      }
+    },
+    {
       "type": "input",
       "properties": {
         "variableName": "K_H_1",
@@ -157,6 +163,12 @@
             "end": [5, 10]
           }
         ]
+      }
+    },
+    {
+      "type": "tablehead",
+      "properties": {
+        "text": "磁感应强度与工作电流的关系数据表"
       }
     },
     {

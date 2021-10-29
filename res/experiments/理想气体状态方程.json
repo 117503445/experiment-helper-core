@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-29 10:09"
+    "LastEditTime": "2021-10-29 21:13"
   },
   "logic": {
     "functions": {},
@@ -61,7 +61,7 @@
   },
   "ui": [
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "压强和体积的关系"
       }
@@ -100,7 +100,7 @@
       }
     },
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "压强和温度的关系(升温)"
       }
@@ -139,7 +139,7 @@
       }
     },
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "压强和温度的关系(降温)"
       }

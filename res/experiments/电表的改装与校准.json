@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-28 10:25"
+    "LastEditTime": "2021-10-29 21:13"
   },
   "logic": {
     "functions": {},
@@ -108,7 +108,7 @@
   },
   "ui": [
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "测量表头内阻数据表格"
       }
@@ -149,7 +149,7 @@
       }
     },
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "电流表校正数据表格"
       }
@@ -196,7 +196,7 @@
       }
     },
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "电压表校正数据表格"
       }

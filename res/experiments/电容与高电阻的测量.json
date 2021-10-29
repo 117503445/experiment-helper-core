@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-24 12:49"
+    "LastEditTime": "2021-10-29 21:13"
   },
   "logic": {
     "functions": {},
@@ -60,7 +60,7 @@
   },
   "ui": [
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "冲击法测量电容数据表"
       }
@@ -115,7 +115,7 @@
       }
     },
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "冲击法测量高阻数据表"
       }

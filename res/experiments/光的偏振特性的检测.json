@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-27 10:45"
+    "LastEditTime": "2021-10-29 21:13"
   },
   "logic": {
     "functions": {},
@@ -67,7 +67,7 @@
       }
     },
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "验证马吕斯定律数据表"
       }

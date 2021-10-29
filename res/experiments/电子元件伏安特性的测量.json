@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-22 09:37"
+    "LastEditTime": "2021-10-29 21:13"
   },
   "logic": {
     "functions": {},
@@ -86,7 +86,7 @@
   },
   "ui": [
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "测量线性电阻元件的伏安特性"
       }
@@ -138,7 +138,7 @@
       }
     },
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "测量非线性电阻元件的伏安特性"
       }
@@ -190,7 +190,7 @@
       }
     },
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "测量二极管的伏安特性"
       }

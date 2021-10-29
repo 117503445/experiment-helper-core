@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-22 20:24"
+    "LastEditTime": "2021-10-29 21:13"
   },
   "logic": {
     "functions": {
@@ -24,11 +24,7 @@
         "comment": "",
         "source": {
           "type": "input",
-          "default": [
-            0.1,
-            0.2,
-            0.3
-          ]
+          "default": [0.1, 0.2, 0.3]
         }
       },
       {
@@ -36,11 +32,7 @@
         "comment": "",
         "source": {
           "type": "input",
-          "default": [
-            0.0001,
-            0.0002,
-            0.0003
-          ]
+          "default": [0.0001, 0.0002, 0.0003]
         }
       },
       {
@@ -84,6 +76,12 @@
       }
     },
     {
+      "type": "tablehead",
+      "properties": {
+        "text": "demo 表格"
+      }
+    },
+    {
       "type": "table",
       "properties": {
         "width": 3,
@@ -91,67 +89,33 @@
         "binds": [
           {
             "type": "constant",
-            "value": [
-              "①",
-              "②",
-              "③"
-            ],
-            "start": [
-              1,
-              1
-            ],
-            "end": [
-              1,
-              3
-            ]
+            "value": ["①", "②", "③"],
+            "start": [1, 1],
+            "end": [1, 3]
           },
           {
             "type": "variable",
             "name": "b",
-            "start": [
-              2,
-              1
-            ],
-            "end": [
-              2,
-              3
-            ]
+            "start": [2, 1],
+            "end": [2, 3]
           },
           {
             "type": "variable",
             "name": "c",
-            "start": [
-              3,
-              1
-            ],
-            "end": [
-              3,
-              3
-            ]
+            "start": [3, 1],
+            "end": [3, 3]
           },
           {
             "type": "variable",
             "name": "d",
-            "start": [
-              4,
-              1
-            ],
-            "end": [
-              4,
-              3
-            ]
+            "start": [4, 1],
+            "end": [4, 3]
           },
           {
             "type": "variable",
             "name": "e",
-            "start": [
-              5,
-              1
-            ],
-            "end": [
-              5,
-              3
-            ]
+            "start": [5, 1],
+            "end": [5, 3]
           }
         ]
       }

@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-25 16:48"
+    "LastEditTime": "2021-10-29 21:13"
   },
   "logic": {
     "functions": {},
@@ -169,7 +169,7 @@
   },
   "ui": [
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "目准法测量凸透镜焦距"
       }
@@ -226,7 +226,7 @@
       }
     },
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "共轭法测量凸透镜焦距"
       }
@@ -303,7 +303,7 @@
       }
     },
     {
-      "type": "textbox",
+      "type": "tablehead",
       "properties": {
         "text": "自准法测量凹透镜焦距"
       }
