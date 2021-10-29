@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "name": "理想气体状态方程",
+    "author": "117503445",
+    "contributors": ["尘与风"],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-29 10:09"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "p",
+        "comment": "压强",
+        "source": {
+          "type": "input",
+          "default": [0.04, 5.62, 11.7, 18.75, 26.4, 35.5, 46.05, 58.2, 72.7, 90.5]
+        }
+      },
+      {
+        "name": "p_1",
+        "comment": "压强的倒数",
+        "source": {
+          "type": "mathjs",
+          "expression": "1./p"
+        }
+      },
+      {
+        "name": "t_2",
+        "comment": "温度",
+        "source": {
+          "type": "input",
+          "default": [24, 28, 32, 36, 40, 44, 48, 52, 56, 60]
+        }
+      },
+      {
+        "name": "T_2",
+        "comment": "绝对温度",
+        "source": {
+          "type": "mathjs",
+          "expression": "t_2+273.15"
+        }
+      },
+      {
+        "name": "t_3",
+        "comment": "温度",
+        "source": {
+          "type": "input",
+          "default": [64, 60, 56, 52, 48, 44, 40, 36, 32, 28]
+        }
+      },
+      {
+        "name": "T_3",
+        "comment": "绝对温度",
+        "source": {
+          "type": "mathjs",
+          "expression": "t_3+273.15"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "压强和体积的关系"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 11,
+        "height": 3,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["测量次数", "压强P (kPa)", "1/p"],
+            "start": [1, 1],
+            "end": [3, 1]
+          },
+          {
+            "type": "constant",
+            "value": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            "start": [1, 2],
+            "end": [1, 11]
+          },
+          {
+            "type": "variable",
+            "name": "p",
+            "start": [2, 2],
+            "end": [2, 11]
+          },
+          {
+            "type": "variable",
+            "name": "p_1",
+            "start": [3, 2],
+            "end": [3, 11]
+          }
+        ]
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "压强和温度的关系(升温)"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 11,
+        "height": 3,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["测量次数", "温度t (C)", "绝对温度T (C)"],
+            "start": [1, 1],
+            "end": [3, 1]
+          },
+          {
+            "type": "constant",
+            "value": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            "start": [1, 2],
+            "end": [1, 11]
+          },
+          {
+            "type": "variable",
+            "name": "t_2",
+            "start": [2, 2],
+            "end": [2, 11]
+          },
+          {
+            "type": "variable",
+            "name": "T_2",
+            "start": [3, 2],
+            "end": [3, 11]
+          }
+        ]
+      }
+    },
+    {
+      "type": "textbox",
+      "properties": {
+        "text": "压强和温度的关系(降温)"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 11,
+        "height": 3,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["测量次数", "温度t (C)", "绝对温度T (C)"],
+            "start": [1, 1],
+            "end": [3, 1]
+          },
+          {
+            "type": "constant",
+            "value": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            "start": [1, 2],
+            "end": [1, 11]
+          },
+          {
+            "type": "variable",
+            "name": "t_3",
+            "start": [2, 2],
+            "end": [2, 11]
+          },
+          {
+            "type": "variable",
+            "name": "T_3",
+            "start": [3, 2],
+            "end": [3, 11]
+          }
+        ]
+      }
+    }
+  ]
+}

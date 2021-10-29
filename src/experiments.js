@@ -2,7 +2,7 @@
  * @Author: HaoTian Qi
  * @Date: 2021-10-09 22:18:51
  * @Description:
- * @LastEditTime: 2021-10-28 11:24:43
+ * @LastEditTime: 2021-10-29 10:12:47
  * @LastEditors: HaoTian Qi
  */
 let names = [
@@ -19,6 +19,7 @@ let names = [
   "激光波长的测量",
   "静电场的模拟",
   "空气中声速的测量",
+  "理想气体状态方程",
   "平凸透镜曲率半径的测量",
   "三棱镜顶角的测量",
   "水中声速的测量",
