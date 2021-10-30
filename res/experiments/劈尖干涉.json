@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "name": "劈尖干涉",
+    "author": "117503445",
+    "contributors": ["尘与风"],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-30 15:40"
+  },
+  "logic": {
+    "functions": {
+      "get_l_k": "(function(arr){var arr_r = [];for (var i = 0; i < arr.length - 4; i++) {arr_r.push(parseFloat(arr[i+4]) - parseFloat(arr[i]));}return arr_r;})"
+    },
+    "variables": [
+      {
+        "name": "L",
+        "comment": "劈尖的长度",
+        "source": {
+          "type": "input",
+          "default": 37.735
+        }
+      },
+      {
+        "name": "n_k",
+        "comment": "暗纹距离差值",
+        "source": {
+          "type": "input",
+          "default": [35.018, 35.785, 36.566, 37.331, 38.104, 38.897, 39.602, 40.321]
+        }
+      },
+      {
+        "name": "l_k",
+        "comment": "",
+        "source": {
+          "type": "mathjs",
+          "expression": "get_l_k(n_k)"
+        }
+      },
+      {
+        "name": "l_k_a",
+        "comment": "l_k 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "S",
+        "comment": "相邻两暗纹的距离",
+        "source": {
+          "type": "mathjs",
+          "expression": "l_k_a / 40"
+        }
+      },
+      {
+        "name": "D_a",
+        "comment": "细丝直径的平均",
+        "source": {
+          "type": "mathjs",
+          "expression": "589.3 * L / (2*S) / 100000"
+        }
+      },
+
+      {
+        "name": "D_u",
+        "comment": "细丝直径 不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "smartlab_u(l_k,0.005)"
+        }
+      },
+      {
+        "name": "D_result",
+        "comment": "细丝直径 结果",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(string(round(D_a,3)),\"±\",string(round(D_u,3)))"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "L",
+        "frontText": "劈尖的长度",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 3,
+        "height": 9,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["k", "读数 n_k/mm", "l_k/mm"],
+            "start": [1, 1],
+            "end": [1, 3]
+          },
+          {
+            "type": "constant",
+            "value": ["0", "10", "20", "30", "40", "50", "60", "70"],
+            "start": [2, 1],
+            "end": [9, 1]
+          },
+          {
+            "type": "variable",
+            "name": "n_k",
+            "start": [2, 2],
+            "end": [9, 2]
+          },
+          {
+            "type": "variable",
+            "name": "l_k",
+            "start": [2, 3],
+            "end": [5, 3]
+          },
+          {
+            "type": "constant",
+            "value": ["k", "读数 n_k/mm", "l_k/mm"],
+            "start": [6, 3],
+            "end": [9, 3]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "l_k_a",
+        "frontText": "相对差值 l_k 平均值",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "S",
+        "frontText": "相邻两暗纹的距离S",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "D_a",
+        "frontText": "细丝直径的平均",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "D_u",
+        "frontText": "细丝直径 不确定度",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "D_result",
+        "frontText": "D = ",
+        "backText": "mm"
+      }
+    }
+  ]
+}

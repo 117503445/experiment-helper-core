@@ -86,6 +86,8 @@ export class Binder {
           break;
         case "textbox":
           break;
+        case "tablehead":
+          break;
         case "image":
           break;
         case "table":
