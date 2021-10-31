@@ -2,7 +2,7 @@
  * @Author: HaoTian Qi
  * @Date: 2021-10-09 22:18:51
  * @Description:
- * @LastEditTime: 2021-10-29 10:12:47
+ * @LastEditTime: 2021-10-31 13:47:47
  * @LastEditors: HaoTian Qi
  */
 let names = [
@@ -26,6 +26,7 @@ let names = [
   "水中声速的测量",
   "衍射光强分布的测量",
   "音叉振动频率的测量",
+  "直螺线管磁场分布的测量",
   "重力加速度的测量"
 ];
 

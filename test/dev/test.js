@@ -5,24 +5,37 @@ import { execute } from "../../src/executor";
 let p = require("../../src/util").p;
 let experiments = require("../../src/experiments").experiments;
 const fs = require("fs");
-// fs.writeFileSync("./tmp/1.json", JSON.stringify(items, null, 2));
+const check = require("../../src/check").check;
+const Result = require("../../src/check").Result;
 
-fs.mkdirSync("./tmp/dev");
 describe("dev", function () {
-  it("build", function () {
-    let exp = experiments["空气中声速的测量"];
-    let binder = new Binder(exp);
+  let name = "直螺线管磁场分布的测量";
+  let path = "./tmp/" + name + "/";
+  fs.mkdirSync(path);
+  describe(name, () => {
+    let exp = experiments[name];
+    it("check", () => {
+      let result = check(exp);
 
-    let labItems = binder.getLabItems(true);
-    fs.writeFileSync("./tmp/dev/0-labItems.json", JSON.stringify(labItems, null, 2));
+      // if (!result.isEmpty) {
+      //   p("result", result);
+      // }
+      assert.equal(result.isEmpty, true, JSON.stringify(result, null, 2));
+    });
+    it("run", () => {
+      let binder = new Binder(exp);
 
-    let stdInput = binder.getStdInput(labItems);
-    fs.writeFileSync("./tmp/dev/stdInput.json", JSON.stringify(stdInput, null, 2));
+      let labItems = binder.getLabItems(true);
+      fs.writeFileSync(path + "0-labItems.json", JSON.stringify(labItems, null, 2));
 
-    let stdOutput = binder.getStdOutput(labItems);
-    fs.writeFileSync("./tmp/dev/stdOutput.json", JSON.stringify(stdOutput, null, 2));
+      let stdInput = binder.getStdInput(labItems);
+      fs.writeFileSync(path + "1-stdInput.json", JSON.stringify(stdInput, null, 2));
 
-    binder.calculateLabItems(labItems);
-    fs.writeFileSync("./tmp/dev/1-labItems.json", JSON.stringify(labItems, null, 2));
+      let stdOutput = binder.getStdOutput(labItems);
+      fs.writeFileSync(path + "2-stdOutput.json", JSON.stringify(stdOutput, null, 2));
+
+      labItems = binder.calculateLabItems(labItems);
+      fs.writeFileSync(path + "3-calculate.json", JSON.stringify(labItems, null, 2));
+    });
   });
 });

@@ -1,0 +1,351 @@
+{
+  "meta": {
+    "name": "直螺线管磁场分布的测量",
+    "author": "117503445",
+    "contributors": ["尘与风"],
+    "version": "0.0.1",
+    "LastEditTime": "2021-10-31 13:22"
+  },
+  "logic": {
+    "functions": {},
+    "variables": [
+      {
+        "name": "M",
+        "comment": "互感系数",
+        "source": {
+          "type": "input",
+          "default": 7.05
+        }
+      },
+      {
+        "name": "I_0",
+        "comment": "回路电流",
+        "source": {
+          "type": "input",
+          "default": [128, 144, 120]
+        }
+      },
+      {
+        "name": "d_m1",
+        "comment": "一个方向的最大偏转距离",
+        "source": {
+          "type": "input",
+          "default": [11.4, 13.4, 11.7]
+        }
+      },
+      {
+        "name": "d_m2",
+        "comment": "另一个方向的最大偏转距离",
+        "source": {
+          "type": "input",
+          "default": [11.2, 13.6, 11.9]
+        }
+      },
+      {
+        "name": "d_m_a",
+        "comment": "最大偏转距离",
+        "source": {
+          "type": "mathjs",
+          "expression": "(d_m1+d_m2)/2"
+        }
+      },
+      {
+        "name": "k_br",
+        "comment": "冲击常数与内阻的乘积",
+        "source": {
+          "type": "mathjs",
+          "expression": "M .* I_0 ./ d_m_a"
+        }
+      },
+      {
+        "name": "k_br_a",
+        "comment": "k_br 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "N",
+        "comment": "螺线管线圈匝数",
+        "source": {
+          "type": "input",
+          "default": 4560
+        }
+      },
+      {
+        "name": "n",
+        "comment": "探测线圈匝数",
+        "source": {
+          "type": "input",
+          "default": 3200
+        }
+      },
+      {
+        "name": "L",
+        "comment": "螺线管长度",
+        "source": {
+          "type": "input",
+          "default": 0.302
+        }
+      },
+      {
+        "name": "S",
+        "comment": "探测线圈截面积",
+        "source": {
+          "type": "input",
+          "default": 0.00011
+        }
+      },
+      {
+        "name": "r_0",
+        "comment": "螺线管半径",
+        "source": {
+          "type": "input",
+          "default": 1.4
+        }
+      },
+      {
+        "name": "I",
+        "comment": "线圈内电流",
+        "source": {
+          "type": "input",
+          "default": 146
+        }
+      },
+      {
+        "name": "d_left",
+        "comment": "左侧最大偏转距离",
+        "source": {
+          "type": "input",
+          "default": 13.7
+        }
+      },
+      {
+        "name": "d_right",
+        "comment": "右侧最大偏转距离",
+        "source": {
+          "type": "input",
+          "default": 16.1
+        }
+      },
+      {
+        "name": "d_m_2",
+        "comment": "最大偏转距离",
+        "source": {
+          "type": "mathjs",
+          "expression": "(d_left+d_right)/2"
+        }
+      },
+      {
+        "name": "B_0",
+        "comment": "磁感应强度（理论值）",
+        "source": {
+          "type": "mathjs",
+          "expression": "0.0000004*pi*N*I/sqrt(L^2+4*(0.001*r_0)^2)/10"
+        }
+      },
+      {
+        "name": "B",
+        "comment": "磁感应强度（实验值）",
+        "source": {
+          "type": "mathjs",
+          "expression": "k_br_a*d_m_2/(n*S)/1000/10"
+        }
+      },
+      {
+        "name": "E",
+        "comment": "相对误差",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(B_0-B)/B_0*100"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "tablehead",
+      "properties": {
+        "text": "测量 RK_b 数据表"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "M",
+        "frontText": "互感系数 M",
+        "backText": "mH"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 5,
+        "height": 4,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["I_0/mA", "d_m1/cm", "d_m2/cm", "d_平均/cm", "K_bR CΩ/mm"],
+            "start": [1, 1],
+            "end": [1, 5]
+          },
+          {
+            "type": "variable",
+            "name": "I_0",
+            "start": [2, 1],
+            "end": [4, 1]
+          },
+          {
+            "type": "variable",
+            "name": "d_m1",
+            "start": [2, 2],
+            "end": [4, 2]
+          },
+          {
+            "type": "variable",
+            "name": "d_m2",
+            "start": [2, 3],
+            "end": [4, 3]
+          },
+          {
+            "type": "variable",
+            "name": "d_m_a",
+            "start": [2, 4],
+            "end": [4, 4]
+          },
+          {
+            "type": "variable",
+            "name": "k_br",
+            "start": [2, 5],
+            "end": [4, 5]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "k_br_a",
+        "frontText": "k_br 平均值",
+        "backText": "CΩ/mm"
+      }
+    },
+    {
+      "type": "tablehead",
+      "properties": {
+        "text": "测磁感应强度 B 数据表格"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "N",
+        "frontText": "螺线管线圈 N",
+        "backText": "匝"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "n",
+        "frontText": "探测线圈 n",
+        "backText": "匝"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "L",
+        "frontText": "螺线管长度 L",
+        "backText": "m"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "S",
+        "frontText": "探测线圈截面积 S",
+        "backText": "m^2"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "r_0",
+        "frontText": "螺线管半径 r_0",
+        "backText": "cm"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "I",
+        "frontText": "线圈内电流 I",
+        "backText": "mA"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 2,
+        "height": 4,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["x/mm", "d_左 /cm", "d_右 /cm", "d_m/cm"],
+            "start": [1, 1],
+            "end": [4, 1]
+          },
+          {
+            "type": "constant",
+            "value": "0",
+            "start": [1, 2],
+            "end": [1, 2]
+          },
+          {
+            "type": "variable",
+            "name": "d_left",
+            "start": [2, 2],
+            "end": [2, 2]
+          },
+          {
+            "type": "variable",
+            "name": "d_right",
+            "start": [3, 2],
+            "end": [3, 2]
+          },
+          {
+            "type": "variable",
+            "name": "d_m_2",
+            "start": [4, 2],
+            "end": [4, 2]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "B_0",
+        "frontText": "理论值 B_0",
+        "backText": "T"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "B",
+        "frontText": "实验值 B",
+        "backText": "T"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "E",
+        "frontText": "相对误差 E",
+        "backText": "%"
+      }
+    }
+  ]
+}

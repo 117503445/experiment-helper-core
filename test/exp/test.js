@@ -10,6 +10,7 @@ const Result = require("../../src/check").Result;
 // fs.writeFileSync("./tmp/1.json", JSON.stringify(items, null, 2));
 
 describe("exp", function () {
+  experiments["debug"] = require("../../res/experiments/debug.json");;
   for (let name in experiments) {
     let path = "./tmp/" + name + "/";
     fs.mkdirSync(path);

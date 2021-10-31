@@ -112,7 +112,11 @@ export class Binder {
                       defaultValue = "";
                     }
                   } else {
-                    defaultValue = defaultValue.map((item) => math.format(item, { notation: "fixed" }));
+                    if (Array.isArray(defaultValue)) {
+                      defaultValue = defaultValue.map((item) => math.format(item, { notation: "fixed" }));
+                    } else {
+                      defaultValue = math.format(defaultValue, { notation: "fixed" });
+                    }
                   }
                 } else {
                   type = "output";
