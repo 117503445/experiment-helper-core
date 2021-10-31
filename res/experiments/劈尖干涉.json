@@ -118,7 +118,7 @@
           },
           {
             "type": "constant",
-            "value": ["k", "读数 n_k/mm", "l_k/mm"],
+            "value": ["", "", "", ""],
             "start": [6, 3],
             "end": [9, 3]
           }
