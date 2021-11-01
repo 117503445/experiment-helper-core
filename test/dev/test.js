@@ -9,7 +9,7 @@ const check = require("../../src/check").check;
 const Result = require("../../src/check").Result;
 
 describe("dev", function () {
-  let name = "直螺线管磁场分布的测量";
+  let name = "劈尖干涉";
   let path = "./tmp/" + name + "/";
   fs.mkdirSync(path);
   describe(name, () => {

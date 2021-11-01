@@ -2,9 +2,9 @@
   "meta": {
     "name": "劈尖干涉",
     "author": "117503445",
-    "contributors": ["尘与风"],
+    "contributors": ["尘与风", "小柴"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-30 15:40"
+    "LastEditTime": "2021-11-01 18:03"
   },
   "logic": {
     "functions": {
@@ -55,7 +55,7 @@
         "comment": "细丝直径的平均",
         "source": {
           "type": "mathjs",
-          "expression": "589.3 * L / (2*S) / 100000"
+          "expression": "589.3 * L / (2*S) / 1000000"
         }
       },
 
@@ -64,7 +64,7 @@
         "comment": "细丝直径 不确定度",
         "source": {
           "type": "mathjs",
-          "expression": "smartlab_u(l_k,0.005)"
+          "expression": "smartlab_u(l_k,0.004)"
         }
       },
       {
