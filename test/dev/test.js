@@ -9,7 +9,7 @@ const check = require("../../src/check").check;
 const Result = require("../../src/check").Result;
 
 describe("dev", function () {
-  let name = "劈尖干涉";
+  let name = "拉伸法测量杨氏弹性模型";
   let path = "./tmp/" + name + "/";
   fs.mkdirSync(path);
   describe(name, () => {

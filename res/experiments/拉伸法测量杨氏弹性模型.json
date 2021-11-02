@@ -1,0 +1,328 @@
+{
+  "meta": {
+    "name": "拉伸法测量杨氏弹性模型",
+    "author": "117503445",
+    "contributors": ["尘与风"],
+    "version": "0.0.1",
+    "LastEditTime": "2021-11-02 13:21"
+  },
+  "logic": {
+    "functions": {
+      "get_n_d": "(function(arr){var arr_r = [];for (var i = 0; i < arr.length - 4; i++) {arr_r.push(parseFloat(arr[i+4]) - parseFloat(arr[i]));}return arr_r;})"
+    },
+    "variables": [
+      {
+        "name": "ni_zeng",
+        "comment": "增荷时光标视值",
+        "source": {
+          "type": "input",
+          "default": [3.6, 4, 4.4, 4.8, 5.2, 5.6, 6, 6.4]
+        }
+      },
+      {
+        "name": "ni_jian",
+        "comment": "减荷时光标视值",
+        "source": {
+          "type": "input",
+          "default": [4.24, 4.66, 5.1, 5.51, 5.78, 6.15, 6.22, 6.4]
+        }
+      },
+      {
+        "name": "ni",
+        "comment": "光标视值平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "(ni_zeng + ni_jian)/2"
+        }
+      },
+      {
+        "name": "Δn",
+        "comment": "光标偏移量",
+        "source": {
+          "type": "mathjs",
+          "expression": "get_n_d(ni)"
+        }
+      },
+      {
+        "name": "Δn_a",
+        "comment": "光标偏移量 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "δn",
+        "comment": "偏差",
+        "source": {
+          "type": "mathjs",
+          "expression": "abs(Δn - Δn_a)"
+        }
+      },
+      {
+        "name": "δn_a",
+        "comment": "偏差平均值",
+        "source": {
+          "type": "mathjs",
+          "expression": "mean(δn)"
+        }
+      },
+      {
+        "name": "d_0",
+        "comment": "零差值",
+        "source": {
+          "type": "input",
+          "default": -0.01
+        }
+      },
+      {
+        "name": "d_shi",
+        "comment": "测量值",
+        "source": {
+          "type": "input",
+          "default": [0.695, 0.7, 0.7, 0.71, 0.69, 0.695]
+        }
+      },
+      {
+        "name": "d_shi_a",
+        "comment": "测量值 平均值",
+        "source": {
+          "type": "mathjs-suffix"
+        }
+      },
+      {
+        "name": "d_shi_u",
+        "comment": "测量值 不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "smartlab_u(d_shi,0.005)"
+        }
+      },
+      {
+        "name": "d_shi_result",
+        "comment": "d视 结果",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(string(round(d_shi_a,3)),\"±\",string(round(d_shi_u,3)))"
+        }
+      },
+      {
+        "name": "L",
+        "comment": "金属丝原长",
+        "source": {
+          "type": "input",
+          "default": 1.073
+        }
+      },
+      {
+        "name": "D",
+        "comment": "光杠杆常数的长度",
+        "source": {
+          "type": "input",
+          "default": 1.368
+        }
+      },
+      {
+        "name": "H",
+        "comment": "垂直距离",
+        "source": {
+          "type": "input",
+          "default": 0.0783
+        }
+      },
+      {
+        "name": "Y",
+        "comment": "杨氏弹性模量",
+        "source": {
+          "type": "mathjs",
+          "expression": "8*4*smartlab_g*L*D/(pi*d_shi_a^2*H*Δn_a*1000)"
+        }
+      },
+      {
+        "name": "Y_u",
+        "comment": "杨氏弹性模量 不确定度",
+        "source": {
+          "type": "mathjs",
+          "expression": "sqrt( (0.005/L)^2/3 + (0.00001/D)^2/3 + (2 * d_shi_u/d_shi_a)^2 + (0.005/H)^2/3 +  (δn_a/Δn_a)^2) * Y"
+        }
+      },
+      {
+        "name": "Y_result",
+        "comment": "Y 结果",
+        "source": {
+          "type": "mathjs",
+          "expression": "concat(string(round(Y,1)),\"±\",string(round(Y_u,1)))"
+        }
+      }
+    ]
+  },
+  "ui": [
+    {
+      "type": "tablehead",
+      "properties": {
+        "text": "钢丝的微小伸长量测量数据"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 6,
+        "height": 9,
+        "binds": [
+          {
+            "type": "constant",
+            "value": ["序号", "砝码质量 M/kg", "增荷时X_i+", "减荷时X_i-", "平均值", "光标偏移量", "偏差"],
+            "start": [1, 1],
+            "end": [1, 6]
+          },
+          {
+            "type": "constant",
+            "value": ["0", "1", "2", "3", "4", "5", "6", "7"],
+            "start": [2, 1],
+            "end": [9, 1]
+          },
+          {
+            "type": "variable",
+            "name": "ni_zeng",
+            "start": [2, 2],
+            "end": [9, 2]
+          },
+          {
+            "type": "variable",
+            "name": "ni_jian",
+            "start": [2, 3],
+            "end": [9, 3]
+          },
+          {
+            "type": "variable",
+            "name": "ni",
+            "start": [2, 4],
+            "end": [9, 4]
+          },
+          {
+            "type": "variable",
+            "name": "Δn",
+            "start": [2, 5],
+            "end": [5, 5]
+          },
+          {
+            "type": "constant",
+            "value": ["", "", "", ""],
+            "start": [6, 5],
+            "end": [9, 5]
+          },
+          {
+            "type": "variable",
+            "name": "δn",
+            "start": [2, 6],
+            "end": [5, 6]
+          },
+          {
+            "type": "constant",
+            "value": ["", "", "", ""],
+            "start": [6, 6],
+            "end": [9, 6]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "Δn_a",
+        "frontText": "光标偏移量Δn 平均值",
+        "backText": "cm"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "δn",
+        "frontText": "偏差δn 平均值",
+        "backText": "cm"
+      }
+    },
+    {
+      "type": "tablehead",
+      "properties": {
+        "text": "钢丝的直径测量数据"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "d_0",
+        "frontText": "零差值 d_0",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "table",
+      "properties": {
+        "width": 7,
+        "height": 1,
+        "binds": [
+          {
+            "type": "constant",
+            "value": "d/mm",
+            "start": [1, 1],
+            "end": [1, 1]
+          },
+          {
+            "type": "variable",
+            "name": "d_shi",
+            "start": [1, 2],
+            "end": [1, 7]
+          }
+        ]
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_shi_u",
+        "frontText": "不确定度 Δd=",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "d_shi_result",
+        "frontText": "测量结果 d=",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "L",
+        "frontText": "L= ",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "H",
+        "frontText": "H= ",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "D",
+        "frontText": "D= ",
+        "backText": "mm"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "Y_result",
+        "frontText": "测量结果 Y=",
+        "backText": "* 10^11 N/m^2"
+      }
+    }
+  ]
+}
