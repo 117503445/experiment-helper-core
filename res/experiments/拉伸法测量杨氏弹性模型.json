@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-11-02 13:21"
+    "LastEditTime": "2021-11-02 13:39"
   },
   "logic": {
     "functions": {
@@ -236,7 +236,7 @@
     {
       "type": "output",
       "properties": {
-        "variableName": "δn",
+        "variableName": "δn_a",
         "frontText": "偏差δn 平均值",
         "backText": "cm"
       }
