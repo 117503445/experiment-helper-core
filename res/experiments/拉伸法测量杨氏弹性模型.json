@@ -2,9 +2,9 @@
   "meta": {
     "name": "拉伸法测量杨氏弹性模型",
     "author": "117503445",
-    "contributors": ["尘与风"],
+    "contributors": ["尘与风", "高尚女诗人的腿毛"],
     "version": "0.0.1",
-    "LastEditTime": "2021-11-02 13:39"
+    "LastEditTime": "2021-11-03 22:00"
   },
   "logic": {
     "functions": {
@@ -170,7 +170,7 @@
         "binds": [
           {
             "type": "constant",
-            "value": ["序号", "砝码质量 M/kg", "增荷时X_i+", "减荷时X_i-", "平均值", "光标偏移量", "偏差"],
+            "value": ["序号", "增荷时X_i+", "减荷时X_i-", "平均值", "光标偏移量", "偏差"],
             "start": [1, 1],
             "end": [1, 6]
           },
