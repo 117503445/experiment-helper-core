@@ -1,6 +1,6 @@
 {
   "name": "@t117503445/experiment-helper-core",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "Core of experiment helper",
   "main": "index.js",
   "scripts": {
