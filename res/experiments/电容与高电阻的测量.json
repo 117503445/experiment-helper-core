@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-29 21:13"
+    "LastEditTime": "2021-11-16 16:50"
   },
   "logic": {
     "functions": {},
@@ -151,6 +151,12 @@
             "end": [3, 17]
           }
         ]
+      }
+    },
+    {
+      "type": "image",
+      "properties": {
+        "src": "https://experiment-helper-static.oss-cn-hangzhou.aliyuncs.com/images/公式/电容与高电阻的测量.png"
       }
     }
   ]

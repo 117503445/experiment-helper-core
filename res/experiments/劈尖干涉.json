@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风", "小柴"],
     "version": "0.0.1",
-    "LastEditTime": "2021-11-01 18:03"
+    "LastEditTime": "2021-11-16 16:50"
   },
   "logic": {
     "functions": {
@@ -163,6 +163,12 @@
         "variableName": "D_result",
         "frontText": "D = ",
         "backText": "mm"
+      }
+    },
+    {
+      "type": "image",
+      "properties": {
+        "src": "https://experiment-helper-static.oss-cn-hangzhou.aliyuncs.com/images/公式/劈尖干涉.png"
       }
     }
   ]

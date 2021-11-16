@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-31 13:22"
+    "LastEditTime": "2021-11-16 16:50"
   },
   "logic": {
     "functions": {},
@@ -345,6 +345,12 @@
         "variableName": "E",
         "frontText": "相对误差 E",
         "backText": "%"
+      }
+    },
+    {
+      "type": "image",
+      "properties": {
+        "src": "https://experiment-helper-static.oss-cn-hangzhou.aliyuncs.com/images/公式/直螺线管磁场分布的测量.png"
       }
     }
   ]

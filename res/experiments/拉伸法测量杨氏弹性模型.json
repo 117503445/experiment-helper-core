@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风", "高尚女诗人的腿毛"],
     "version": "0.0.1",
-    "LastEditTime": "2021-11-03 22:00"
+    "LastEditTime": "2021-11-16 16:50"
   },
   "logic": {
     "functions": {
@@ -322,6 +322,12 @@
         "variableName": "Y_result",
         "frontText": "测量结果 Y=",
         "backText": "* 10^11 N/m^2"
+      }
+    },
+    {
+      "type": "image",
+      "properties": {
+        "src": "https://experiment-helper-static.oss-cn-hangzhou.aliyuncs.com/images/公式/拉伸法测量杨氏弹性模型.png"
       }
     }
   ]
