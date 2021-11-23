@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风", "华青"],
     "version": "0.0.1",
-    "LastEditTime": "2021-11-23 13:17"
+    "LastEditTime": "2021-11-23 10:55"
   },
   "logic": {
     "functions": {},
@@ -199,7 +199,7 @@
           },
           {
             "type": "constant",
-            "value": ["工作电流 I/A", "(+B,+I)U_1/mV", "(+B,-I)U_2/mV", "U_H/mV", "B/T"],
+            "value": ["工作电流 I/mA", "(+B,+I)U_1/mV", "(+B,-I)U_2/mV", "U_H/mV", "B/T"],
             "start": [1, 1],
             "end": [5, 1]
           },
