@@ -3,7 +3,7 @@ const mathjs = require("mathjs");
 const math = mathjs.create(mathjs.all, { number: "BigNumber" });
 
 import { execute } from "./executor";
-import { p, deepCopy, posToIndex, IndexToPos } from "./util";
+import { p, deepCopy, posToIndex, IndexToPos, FixTailZero } from "./util";
 
 // 展开 Grids，一维变二维
 function tableGridsFlat(items) {
@@ -254,7 +254,12 @@ export class Binder {
         if (typeof value == "string") {
           return value;
         }
-        return math.string(math.round(math.bignumber(value), precision));
+
+        let s = math.string(math.round(math.bignumber(value), precision));
+
+        // when value == 1, precision == 2, s still == "1", not "1.00"
+
+        return FixTailZero(s, precision);
       }
 
       if (c["type"] == "table") {

@@ -57,6 +57,14 @@
           "type": "mathjs",
           "expression": "addIndex(d)"
         }
+      },
+      {
+        "name": "f",
+        "comment": "测试 保留 位数",
+        "source": {
+          "type": "mathjs",
+          "expression": "1 + 2"
+        }
       }
     ]
   },
@@ -132,6 +140,15 @@
       "type": "image",
       "properties": {
         "src": "https://experiment-helper-static.oss-cn-hangzhou.aliyuncs.com/images/公式/三棱镜顶角的测量.png"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "f",
+        "frontText": "f = ",
+        "backText": "",
+        "precision": 2
       }
     }
   ]

@@ -20,4 +20,28 @@ function IndexToPos(index, width) {
   return { x, y };
 }
 
-export { p, deepCopy, posToIndex, IndexToPos };
+function FixTailZero(num, precision) {
+  num = num.toString();
+
+  precision = parseInt(precision, 10)
+
+  let splits = num.split(".");
+
+  let integer = splits[0];
+  let decimal = "";
+
+  if (splits.length == 2) {
+    decimal = splits[1];
+  } else if (splits.length > 2) {
+    throw "num illegal";
+  }
+  decimal = decimal.padEnd(precision, "0");
+
+  if (precision == 0) {
+    return integer;
+  } else {
+    return `${integer}.${decimal}`;
+  }
+}
+
+export { p, deepCopy, posToIndex, IndexToPos, FixTailZero };
