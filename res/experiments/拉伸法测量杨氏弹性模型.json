@@ -2,7 +2,7 @@
   "meta": {
     "name": "拉伸法测量杨氏弹性模型",
     "author": "117503445",
-    "contributors": ["尘与风", "高尚女诗人的腿毛"],
+    "contributors": ["尘与风", "高尚女诗人的腿毛", "木心白白"],
     "version": "0.0.1",
     "LastEditTime": "2021-11-16 16:50"
   },
@@ -297,7 +297,7 @@
       "properties": {
         "variableName": "L",
         "frontText": "L= ",
-        "backText": "mm"
+        "backText": "m"
       }
     },
     {
@@ -305,7 +305,7 @@
       "properties": {
         "variableName": "H",
         "frontText": "H= ",
-        "backText": "mm"
+        "backText": "m"
       }
     },
     {
