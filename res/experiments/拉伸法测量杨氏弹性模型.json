@@ -110,7 +110,7 @@
         "comment": "金属丝原长",
         "source": {
           "type": "input",
-          "default": 1.073
+          "default": 0.973
         }
       },
       {
@@ -118,7 +118,7 @@
         "comment": "光杠杆常数的长度",
         "source": {
           "type": "input",
-          "default": 1.368
+          "default": 0.045
         }
       },
       {
@@ -126,7 +126,7 @@
         "comment": "垂直距离",
         "source": {
           "type": "input",
-          "default": 0.0783
+          "default": 0.939
         }
       },
       {
