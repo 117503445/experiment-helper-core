@@ -2,9 +2,9 @@
   "meta": {
     "name": "单线扭摆实验",
     "author": "117503445",
-    "contributors": [],
+    "contributors": ["徐驰翔"],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-22 20:24"
+    "LastEditTime": "2021-12-07 21:40"
   },
   "logic": {
     "functions": {},
@@ -448,7 +448,7 @@
       "properties": {
         "variableName": "F",
         "frontText": "𝐹=",
-        "backText": "×10^-3 kg*m^2"
+        "backText": "×10^-3 N·m"
       }
     },
     {
