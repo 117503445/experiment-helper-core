@@ -7,6 +7,10 @@
 ```sh
 yarn
 yarn test
+
+yarn version --major
+yarn version --minor
+yarn version --patch
 ```
 
 VSCode 安装插件: [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)

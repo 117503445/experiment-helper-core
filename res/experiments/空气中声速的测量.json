@@ -96,10 +96,11 @@
         }
       },
       {
-        "name": "λ_ua",
+        "name": "λ_u",
         "comment": "波长不确定度",
         "source": {
-          "type": "mathjs-suffix"
+          "type": "mathjs",
+          "expression": "smartlab_u(λ,0.02)"
         }
       },
       {
@@ -115,7 +116,7 @@
         "comment": "声速相对不确定度",
         "source": {
           "type": "mathjs",
-          "expression": "sqrt( (f_d_yiqi/f)^2 + (λ_ua/λ_a)^2 )"
+          "expression": "sqrt( (f_d_yiqi/f)^2 + (λ_u/λ_a)^2 )"
         }
       },
       {
@@ -297,7 +298,7 @@
     {
       "type": "output",
       "properties": {
-        "variableName": "λ_ua",
+        "variableName": "λ_u",
         "frontText": "波长不确定度：Δ𝜆= ",
         "backText": "𝑚𝑚"
       }
