@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["徐驰翔"],
     "version": "0.0.1",
-    "LastEditTime": "2021-12-07 21:40"
+    "LastEditTime": "2022-05-15 17:18"
   },
   "logic": {
     "functions": {},
@@ -67,7 +67,7 @@
         "comment": "摆盘周期",
         "source": {
           "type": "mathjs",
-          "expression": "T_0_a / 20"
+          "expression": "T_0_a / 30"
         }
       },
       {
@@ -96,7 +96,7 @@
         "comment": "摆盘圆环周期",
         "source": {
           "type": "mathjs",
-          "expression": "T_a / 20"
+          "expression": "T_a / 30"
         }
       },
       {
@@ -225,7 +225,7 @@
           {
             "type": "constant",
             "value": [
-              "振动时间(20次)",
+              "振动时间(30次)",
               "摆盘𝑇₀",
               "摆盘+圆环𝑇"
             ],
