@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-22 20:24"
+    "LastEditTime": "2022-05-15 21:13"
   },
   "logic": {
     "functions": {
@@ -140,7 +140,7 @@
         "comment": "声速相对误差",
         "source": {
           "type": "mathjs",
-          "expression": "abs(v-v_0)/v*100"
+          "expression": "abs(v_0-v)/v_0*100"
         }
       }
     ]
