@@ -2,9 +2,12 @@
   "meta": {
     "name": "单线扭摆实验",
     "author": "117503445",
-    "contributors": ["徐驰翔"],
+    "contributors": [
+      "徐驰翔",
+      "CVC"
+    ],
     "version": "0.0.1",
-    "LastEditTime": "2022-05-15 17:18"
+    "LastEditTime": "2022-05-15 17:27"
   },
   "logic": {
     "functions": {},
