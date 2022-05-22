@@ -4,14 +4,23 @@
     "author": "117503445",
     "contributors": [
       "徐驰翔",
-      "CVC"
+      "CVC",
+      "Dimole"
     ],
     "version": "0.0.1",
-    "LastEditTime": "2022-05-15 17:27"
+    "LastEditTime": "2022-05-22 22:51"
   },
   "logic": {
     "functions": {},
     "variables": [
+      {
+        "name": "n",
+        "comment": "振动次数",
+        "source": {
+          "type": "input",
+          "default": 30
+        }
+      },
       {
         "name": "l",
         "comment": "长度",
@@ -70,7 +79,7 @@
         "comment": "摆盘周期",
         "source": {
           "type": "mathjs",
-          "expression": "T_0_a / 30"
+          "expression": "T_0_a / n"
         }
       },
       {
@@ -99,7 +108,7 @@
         "comment": "摆盘圆环周期",
         "source": {
           "type": "mathjs",
-          "expression": "T_a / 30"
+          "expression": "T_a / n"
         }
       },
       {
@@ -200,6 +209,14 @@
   },
   "ui": [
     {
+      "type": "input",
+      "properties": {
+        "variableName": "n",
+        "frontText": "振动次数",
+        "backText": " 次"
+      }
+    },
+    {
       "type": "table",
       "properties": {
         "width": 8,
@@ -228,7 +245,7 @@
           {
             "type": "constant",
             "value": [
-              "振动时间(30次)",
+              "振动时间",
               "摆盘𝑇₀",
               "摆盘+圆环𝑇"
             ],
