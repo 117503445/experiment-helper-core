@@ -8,7 +8,7 @@
   },
   "logic": {
     "functions": {
-      "get_λ": "(function(arr){var arr_r = [];for (var i = 0; i < 5; i++) {arr_r.push((parseFloat(arr[i+5]) - parseFloat(arr[i]))*0.4);}return arr_r;})"
+      "get_λ": "(function(arr){var arr_r = [];for (var i = 0; i < 5; i++) {arr_r.push(Math.abs((parseFloat(arr[i+5]) - parseFloat(arr[i]))*0.4));}return arr_r;})"
     },
     "variables": [
       {
