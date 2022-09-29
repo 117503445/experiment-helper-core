@@ -2,7 +2,12 @@
   "meta": {
     "name": "拉伸法测量杨氏弹性模型",
     "author": "117503445",
-    "contributors": ["尘与风", "高尚女诗人的腿毛", "木心白白"],
+    "contributors": [
+      "尘与风",
+      "高尚女诗人的腿毛",
+      "木心白白",
+      "邓斌"
+    ],
     "version": "0.0.1",
     "LastEditTime": "2021-11-16 16:50"
   },
@@ -16,7 +21,16 @@
         "comment": "增荷时光标视值",
         "source": {
           "type": "input",
-          "default": [3.6, 4, 4.4, 4.8, 5.2, 5.6, 6, 6.4]
+          "default": [
+            2.06,
+            2.70,
+            3.32,
+            3.91,
+            4.38,
+            4.95,
+            5.56,
+            6.15
+          ]
         }
       },
       {
@@ -24,7 +38,16 @@
         "comment": "减荷时光标视值",
         "source": {
           "type": "input",
-          "default": [4.24, 4.66, 5.1, 5.51, 5.78, 6.15, 6.22, 6.4]
+          "default": [
+            1.96,
+            2.58,
+            3.20,
+            3.78,
+            4.44,
+            5.01,
+            5.62,
+            6.23
+          ]
         }
       },
       {
@@ -71,7 +94,7 @@
         "comment": "零差值",
         "source": {
           "type": "input",
-          "default": -0.01
+          "default": -0.015
         }
       },
       {
@@ -79,7 +102,14 @@
         "comment": "测量值",
         "source": {
           "type": "input",
-          "default": [0.695, 0.7, 0.7, 0.71, 0.69, 0.695]
+          "default": [
+            0.626,
+            0.625,
+            0.628,
+            0.622,
+            0.625,
+            0.623
+          ]
         }
       },
       {
@@ -102,7 +132,7 @@
         "comment": "d视 结果",
         "source": {
           "type": "mathjs",
-          "expression": "concat(string(round(d_shi_a,3)),\"±\",string(round(d_shi_u,3)))"
+          "expression": "concat(string(round(d_shi_a-d_0,3)),\"±\",string(round(d_shi_u,3)))"
         }
       },
       {
@@ -134,7 +164,7 @@
         "comment": "杨氏弹性模量",
         "source": {
           "type": "mathjs",
-          "expression": "8*4*smartlab_g*L*D/(pi*d_shi_a^2*H*Δn_a*1000)"
+          "expression": "8*4*smartlab_g*L*H/(pi*d_shi_a^2*D*Δn_a*1000)"
         }
       },
       {
@@ -142,7 +172,7 @@
         "comment": "杨氏弹性模量 不确定度",
         "source": {
           "type": "mathjs",
-          "expression": "sqrt( (0.005/L)^2/3 + (0.00001/D)^2/3 + (2 * d_shi_u/d_shi_a)^2 + (0.005/H)^2/3 +  (δn_a/Δn_a)^2) * Y"
+          "expression": "sqrt( (0.003/L)^2 + (0.003/H)^2 + (2 * d_shi_u/d_shi_a)^2 + (0.003/D)^2 + (δn_a/Δn_a)^2) * Y"
         }
       },
       {
@@ -150,7 +180,7 @@
         "comment": "Y 结果",
         "source": {
           "type": "mathjs",
-          "expression": "concat(string(round(Y,1)),\"±\",string(round(Y_u,1)))"
+          "expression": "concat(string(round(Y,2)),\"±\",string(round(Y_u,2)))"
         }
       }
     ]
@@ -170,57 +200,137 @@
         "binds": [
           {
             "type": "constant",
-            "value": ["序号", "增荷时X_i+", "减荷时X_i-", "平均值", "光标偏移量", "偏差"],
-            "start": [1, 1],
-            "end": [1, 6]
+            "value": [
+              "序号",
+              "增荷时X_i+",
+              "减荷时X_i-",
+              "平均值",
+              "光标偏移量",
+              "偏差"
+            ],
+            "start": [
+              1,
+              1
+            ],
+            "end": [
+              1,
+              6
+            ]
           },
           {
             "type": "constant",
-            "value": ["0", "1", "2", "3", "4", "5", "6", "7"],
-            "start": [2, 1],
-            "end": [9, 1]
+            "value": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ],
+            "start": [
+              2,
+              1
+            ],
+            "end": [
+              9,
+              1
+            ]
           },
           {
             "type": "variable",
             "name": "ni_zeng",
-            "start": [2, 2],
-            "end": [9, 2]
+            "start": [
+              2,
+              2
+            ],
+            "end": [
+              9,
+              2
+            ]
           },
           {
             "type": "variable",
             "name": "ni_jian",
-            "start": [2, 3],
-            "end": [9, 3]
+            "start": [
+              2,
+              3
+            ],
+            "end": [
+              9,
+              3
+            ]
           },
           {
             "type": "variable",
             "name": "ni",
-            "start": [2, 4],
-            "end": [9, 4]
+            "start": [
+              2,
+              4
+            ],
+            "end": [
+              9,
+              4
+            ]
           },
           {
             "type": "variable",
             "name": "Δn",
-            "start": [2, 5],
-            "end": [5, 5]
+            "start": [
+              2,
+              5
+            ],
+            "end": [
+              5,
+              5
+            ]
           },
           {
             "type": "constant",
-            "value": ["", "", "", ""],
-            "start": [6, 5],
-            "end": [9, 5]
+            "value": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "start": [
+              6,
+              5
+            ],
+            "end": [
+              9,
+              5
+            ]
           },
           {
             "type": "variable",
             "name": "δn",
-            "start": [2, 6],
-            "end": [5, 6]
+            "start": [
+              2,
+              6
+            ],
+            "end": [
+              5,
+              6
+            ]
           },
           {
             "type": "constant",
-            "value": ["", "", "", ""],
-            "start": [6, 6],
-            "end": [9, 6]
+            "value": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "start": [
+              6,
+              6
+            ],
+            "end": [
+              9,
+              6
+            ]
           }
         ]
       }
@@ -264,14 +374,26 @@
           {
             "type": "constant",
             "value": "d/mm",
-            "start": [1, 1],
-            "end": [1, 1]
+            "start": [
+              1,
+              1
+            ],
+            "end": [
+              1,
+              1
+            ]
           },
           {
             "type": "variable",
             "name": "d_shi",
-            "start": [1, 2],
-            "end": [1, 7]
+            "start": [
+              1,
+              2
+            ],
+            "end": [
+              1,
+              7
+            ]
           }
         ]
       }
