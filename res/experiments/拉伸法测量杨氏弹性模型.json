@@ -148,7 +148,7 @@
         "comment": "光杠杆常数的长度",
         "source": {
           "type": "input",
-          "default": 0.045
+          "default": 45
         }
       },
       {
@@ -164,7 +164,7 @@
         "comment": "杨氏弹性模量",
         "source": {
           "type": "mathjs",
-          "expression": "8*4*smartlab_g*L*H/(pi*d_shi_a^2*D*Δn_a*1000)"
+          "expression": "8*4*smartlab_g*L*H/(pi*d_shi_a^2*D*Δn_a)"
         }
       },
       {
@@ -172,7 +172,7 @@
         "comment": "杨氏弹性模量 不确定度",
         "source": {
           "type": "mathjs",
-          "expression": "sqrt( (0.003/L)^2 + (0.003/H)^2 + (2 * d_shi_u/d_shi_a)^2 + (0.003/D)^2 + (δn_a/Δn_a)^2) * Y"
+          "expression": "sqrt( (0.003/L)^2 + (0.003/H)^2 + (2 * d_shi_u/d_shi_a)^2 + (0.003/(D/1000))^2 + (δn_a/Δn_a)^2) * Y"
         }
       },
       {
