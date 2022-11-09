@@ -46,7 +46,7 @@
         "comment": "磁感应强度",
         "source": {
           "type": "mathjs",
-          "expression": "U_1_1 / (K_H_1 * 10)"
+          "expression": "U_H_1 / (K_H_1 * 10)"
         }
       },
       {
@@ -94,7 +94,7 @@
         "comment": "磁感应强度",
         "source": {
           "type": "mathjs",
-          "expression": "U_1_2 ./ I / (K_H_2)"
+          "expression": "U_H_2 ./ I / (K_H_2)"
         }
       }
     ]
