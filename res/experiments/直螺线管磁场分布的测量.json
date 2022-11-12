@@ -281,7 +281,7 @@
       "properties": {
         "variableName": "I",
         "frontText": "线圈内电流 I",
-        "backText": "mA"
+        "backText": "mA（下方这个表格只有 1 列, 因为只需计算 x = 0 的数据）"
       }
     },
     {
