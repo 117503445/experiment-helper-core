@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-22 20:24"
+    "LastEditTime": "2023-03-21 21:42"
   },
   "logic": {
     "functions": {},
@@ -694,6 +694,38 @@
         "variableName": "I_0",
         "frontText": "圆盘转动惯量：𝐼₀=",
         "backText": "𝑔·𝑐𝑚²"
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "r_u",
+        "frontText": "上圆盘半径不确定度：Δr=",
+        "backText": ""
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "R_u",
+        "frontText": "下圆盘有效半径不确定度：ΔR=",
+        "backText": ""
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "H_u",
+        "frontText": "上下圆盘垂直距离不确定度：ΔH=",
+        "backText": ""
+      }
+    },
+    {
+      "type": "output",
+      "properties": {
+        "variableName": "T_0_ua",
+        "frontText": "下圆盘单次振动周期A类不确定度：ΔT=",
+        "backText": ""
       }
     },
     {
