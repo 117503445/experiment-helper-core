@@ -1,0 +1,10 @@
+{
+    "image": "117503445/dev-front",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "esbenp.prettier-vscode"
+            ]
+        }
+    }
+}
