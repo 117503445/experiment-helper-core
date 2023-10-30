@@ -204,7 +204,7 @@
     {
       "type": "tablehead",
       "properties": {
-        "text": "金属丝长度测量数据表"
+        "text": "金属丝直径测量数据表"
       }
     },
     {
@@ -361,7 +361,8 @@
             "end": [
               5,
               9
-            ]
+            ],
+            "precision": 5
           },
           {
             "type": "variable",
