@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": [],
     "version": "0.0.1",
-    "LastEditTime": "2021-10-22 20:24"
+    "LastEditTime": "2024-03-19 21:15"
   },
   "logic": {
     "functions": {},
@@ -258,7 +258,7 @@
       "properties": {
         "variableName": "λ_a",
         "frontText": "λ平均值：",
-        "backText": "𝑚𝑚"
+        "backText": "𝑛𝑚"
       }
     },
     {
@@ -266,7 +266,7 @@
       "properties": {
         "variableName": "δ",
         "frontText": "绝对误差δ：",
-        "backText": "𝑚𝑚"
+        "backText": "𝑛𝑚"
       }
     },
     {
