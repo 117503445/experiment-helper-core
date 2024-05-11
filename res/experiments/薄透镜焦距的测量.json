@@ -4,7 +4,7 @@
     "author": "117503445",
     "contributors": ["尘与风"],
     "version": "0.0.1",
-    "LastEditTime": "2021-11-16 16:50"
+    "LastEditTime": "2024-05-11 16:39"
   },
   "logic": {
     "functions": {},
@@ -111,19 +111,19 @@
         }
       },
       {
-        "name": "X_4",
-        "comment": "凸透镜的位置读数",
+        "name": "WUJU",
+        "comment": "物距",
         "source": {
           "type": "input",
-          "default": [16.5, 16.49, 16.48, 16.51, 16.5, 16.5, 16.5, 16.51]
+          "default": 27.98
         }
       },
       {
-        "name": "X_5",
-        "comment": "F点的位置读数",
+        "name": "XIANGJU",
+        "comment": "像距",
         "source": {
           "type": "input",
-          "default": [26, 26.35, 26, 26.01, 26.02, 26.2, 26.3, 26.25]
+          "default": [32.09,32.03,32.01,32.07,32.04,31.97,32.00,32.02]
         }
       },
       {
@@ -131,7 +131,7 @@
         "comment": "透镜焦距",
         "source": {
           "type": "mathjs",
-          "expression": "-abs(X_5-X_4)"
+          "expression": "XIANGJU*WUJU./(XIANGJU+WUJU)"
         }
       },
       {
@@ -305,14 +305,22 @@
     {
       "type": "tablehead",
       "properties": {
-        "text": "自准法测量凹透镜焦距"
+        "text": "物像像距法"
+      }
+    },
+    {
+      "type": "input",
+      "properties": {
+        "variableName": "WUJU",
+        "frontText": "物距",
+        "backText": "cm"
       }
     },
     {
       "type": "table",
       "properties": {
         "width": 9,
-        "height": 4,
+        "height": 3,
         "binds": [
           {
             "type": "constant",
@@ -322,27 +330,21 @@
           },
           {
             "type": "constant",
-            "value": ["次数n", "X_4", "X_5", "F"],
+            "value": ["次数n", "像距/cm", "f/cm"],
             "start": [1, 1],
-            "end": [4, 1]
+            "end": [3, 1]
           },
           {
             "type": "variable",
-            "name": "X_4",
+            "name": "XIANGJU",
             "start": [2, 2],
             "end": [2, 9]
           },
           {
             "type": "variable",
-            "name": "X_5",
+            "name": "F_3",
             "start": [3, 2],
             "end": [3, 9]
-          },
-          {
-            "type": "variable",
-            "name": "F_3",
-            "start": [4, 2],
-            "end": [4, 9]
           }
         ]
       }
