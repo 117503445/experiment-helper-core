@@ -54,7 +54,7 @@
         "comment": "冲击常数与内阻的乘积",
         "source": {
           "type": "mathjs",
-          "expression": "M .* I_0 ./ d_m_a / 10000000"
+          "expression": "M .* I_0 ./ d_m_a / 10"
         }
       },
       {
@@ -141,7 +141,7 @@
         "comment": "磁感应强度（理论值）",
         "source": {
           "type": "mathjs",
-          "expression": "0.0000004*pi*N*I/sqrt(L^2+4*(0.001*r_0)^2)/10"
+          "expression": "0.0000004*pi*N*I/sqrt(L^2+4*(0.001*r_0)^2)"
         }
       },
       {
@@ -149,7 +149,7 @@
         "comment": "磁感应强度（实验值）",
         "source": {
           "type": "mathjs",
-          "expression": "k_br_a*d_m_2/(n*S)/1000/10"
+          "expression": "k_br_a*d_m_2/(n*S)/100"
         }
       },
       {
@@ -185,7 +185,7 @@
         "binds": [
           {
             "type": "constant",
-            "value": ["I_0/mA", "d_m1/cm", "d_m2/cm", "d_平均/cm", "K_bR CΩ/mm"],
+            "value": ["I_0/mA", "d_m1/cm", "d_m2/cm", "d_平均/cm", "K_bR 10^-6 CΩ/mm"],
             "start": [1, 1],
             "end": [1, 5]
           },
@@ -227,7 +227,7 @@
       "properties": {
         "variableName": "k_br_a",
         "frontText": "k_br 平均值",
-        "backText": "CΩ/mm"
+        "backText": "10^-6 CΩ/mm"
       }
     },
     {
@@ -328,7 +328,7 @@
       "properties": {
         "variableName": "B_0",
         "frontText": "理论值 B_0",
-        "backText": "T"
+        "backText": "10^-3 T"
       }
     },
     {
@@ -336,7 +336,7 @@
       "properties": {
         "variableName": "B",
         "frontText": "实验值 B",
-        "backText": "T"
+        "backText": "10^-3 T"
       }
     },
     {
