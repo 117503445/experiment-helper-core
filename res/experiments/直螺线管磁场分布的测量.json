@@ -54,7 +54,7 @@
         "comment": "冲击常数与内阻的乘积",
         "source": {
           "type": "mathjs",
-          "expression": "M .* I_0 ./ d_m_a"
+          "expression": "M .* I_0 ./ d_m_a / 10000000"
         }
       },
       {
